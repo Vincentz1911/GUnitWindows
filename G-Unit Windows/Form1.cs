@@ -19,7 +19,7 @@ namespace G_Unit_Windows
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            groupBox1.Visible = true;
         }
 
         private void button4_Click(object sender, EventArgs e)
