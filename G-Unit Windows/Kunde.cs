@@ -8,7 +8,7 @@ namespace G_Unit_Windows
 {
     class Kunde
     {
-        static int[] PK_kundenr;
+        public static int[] PK_kundenr;
         static string[] kundenavn, CPR, SQLData;
         static DateTime?[] kundedato, kundeslutdato;
         static string SQLSend, CPRString;

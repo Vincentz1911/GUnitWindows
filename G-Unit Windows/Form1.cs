@@ -16,6 +16,8 @@ namespace G_Unit_Windows
         {
             InitializeComponent();
             comboBox1.SelectedIndex = 0;
+            groupBox1.Visible = false;
+            groupFindKunde.Visible = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -37,16 +39,22 @@ namespace G_Unit_Windows
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Kunde.FindKunde(textBox3.Text, comboBox1.SelectedIndex+1);
+            
         }
 
 
         private void button5_Click(object sender, EventArgs e)
         {
-
+            Kunde.FindKunde(textBox3.Text, comboBox1.SelectedIndex + 1);
+            //MessageBox.Show(Kunde.PK_kundenr[0].ToString());
         }
 
         private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

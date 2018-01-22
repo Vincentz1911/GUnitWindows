@@ -42,6 +42,7 @@
             this.button5 = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.listView1 = new System.Windows.Forms.ListView();
             this.groupBox1.SuspendLayout();
             this.groupFindKunde.SuspendLayout();
             this.SuspendLayout();
@@ -200,11 +201,21 @@
             this.label4.TabIndex = 10;
             this.label4.Text = "Søg";
             // 
+            // listView1
+            // 
+            this.listView1.Location = new System.Drawing.Point(693, 49);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(401, 473);
+            this.listView1.TabIndex = 11;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1153, 623);
+            this.Controls.Add(this.listView1);
             this.Controls.Add(this.groupFindKunde);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button3);
@@ -237,6 +248,7 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ListView listView1;
     }
 }
 
