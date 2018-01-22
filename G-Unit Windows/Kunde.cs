@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace G_Unit_Windows
 {
@@ -15,47 +14,59 @@ namespace G_Unit_Windows
         static string SQLSend, CPRString;
 
         //******************* KUNDEMENU *******************
-        static void KundeMenu(int kundenr)
+        public static void KundeMenu(int kundenr)
         {
             Console.Clear();
-            Console.WriteLine("***********\n*Kundemenu*\n***********");
+            Console.WriteLine("**********\n*Kundemenu*\n***********");
             SQLSend = "select * from Kunde where PK_kundenr like '" + kundenr + "'";
             SQLData = Database.SQLkommandoGet(SQLSend);
             ParseKunde(SQLData);
 
-            Console.WriteLine("1) Opret konto \n2) Vælg aktiv konto\n3) Slet konto\n4) Indsæt beløb ");
-            Console.ReadKey();
+            Console.WriteLine("1) Opret konto\n2) Vælg konto\n3) Slet kunde\n ");
+            string valg = Console.ReadLine();
+
+            switch (valg)
+            {
+                case "1":
+                    Konto.OpretKonto(kundenr);
+                    break;
+                case "2":
+                    Konto.VælgKonto(kundenr);
+                    break;
+                case "3":
+                    SletKunde();
+                    break;
+                default:
+                    break;
+            }
+            /// HER
         }
 
         //******************* OPRET KUNDE *******************
         public static void OpretKunde(string navn, string CPRString)
         {
-            //Console.Write("Indtast navn på ny kunde: ");
-            //string navn = Console.ReadLine();
             //do //Checker for om CPR nummeret er på 10 tal og kun numerisk
             //{
-            //    //Console.Write("Indtast CPR-nr: ");
-            //    //CPRString = Console.ReadLine();
+            //    Console.Write("Indtast CPR-nr: ");
+            //    CPRString = Console.ReadLine();
             //    CPRString = CPRString.Replace("-", "").Replace("/", "");
-            //} while (CPRString.Length != 10 && int.TryParse(CPRString, out int CPRnr));
+            //} while (CPRString.Length != 10 || !(Int64.TryParse(CPRString, out Int64 CPRnr)));
 
             //Sender data til database
-            string SQLSend = "INSERT INTO Kunde values('" + navn + "', GetDate(), '', " + CPRString + ")";
+            string SQLSend = $"INSERT INTO Kunde values('{navn}', GetDate(), '','{CPRString}')";
             Database.SQLkommandoSet(SQLSend);
             //Modtager kundenr fra database baseret på CPR nr
-            string SQLGet = "SELECT PK_kundenr from Kunde where CPR = " + CPRString + ";";
+            string SQLGet = $"SELECT PK_kundenr from Kunde where CPR = '{CPRString}';";
             SQLData = Database.SQLkommandoGet(SQLGet);
-
-            MessageBox.Show($"Bruger {navn} CPR {CPRString} blev oprettet på kontonr {int.Parse(SQLData[0])}");
             //Starter kundemenu med kundenr
-           // KundeMenu(int.Parse(SQLData[0]));
+            //KundeMenu(int.Parse(SQLData[0]));
         }
 
         //******************* FIND KUNDE *******************
-        public static void FindKunde(string valg)
+        public static void FindKunde(string str, int valg)
         {
-            string str;
-            switch (valg)
+            //string str;
+            switch (valg.ToString())
             {
                 case "1": // Søger efter kundenavn
                     Console.Write("Indtast søgning på kunde: ");
@@ -93,9 +104,9 @@ namespace G_Unit_Windows
             ParseKunde(SQLData);
             if (PK_kundenr.Length > 1)
             {
-                Console.Write("\nVælg nr: ");
-                int knr = int.Parse(Console.ReadLine());
-                KundeMenu(PK_kundenr[knr]);
+                // Console.Write("Vælg nr: ");
+                // int knr = int.Parse(Console.ReadLine());
+                // KundeMenu(PK_kundenr[knr]);
             }
             else KundeMenu(PK_kundenr[0]);
         }
@@ -105,8 +116,7 @@ namespace G_Unit_Windows
         {
             Console.Write("Indtast CPR-nr på kunde der skal slettes: ");
             string CPRString = Console.ReadLine();
-            int CPR = int.Parse(CPRString.Replace("-", ""));
-            string SQLSend = $"UPDATE Kunde set kundeslutdato = GetDate() where CPR = {CPR};";
+            string SQLSend = $"UPDATE Kunde set kundeslutdato = GetDate() where CPR = '{CPR}';";
             Database.SQLkommandoSet(SQLSend);
         }
 
