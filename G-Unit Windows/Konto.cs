@@ -125,40 +125,40 @@ namespace G_Unit_Windows
 
 
 
-        public static void OpretKonto(int kundenr)
+        public static void OpretKonto(int kundenr, int kontoType)
         {
-            Console.Clear();
+            //Console.Clear();
 
-            string kontoType;
+            //string kontoType;
             int kontoNummer;
 
-            while (true)
-            {
-                Console.Write("Indtast Konto Type \n1.Løn\n2.Opsparing\n3.Lån\n");
-                kontoType = Console.ReadLine();
+            //while (true)
+            //{
+//                Console.Write("Indtast Konto Type \n1.Løn\n2.Opsparing\n3.Lån\n");
+//                kontoType = Console.ReadLine();
 
-                if (!int.TryParse(kontoType.Replace("-", "").Replace("+", ""), out var y) || y > 3 || y < 1)
-                {
-                    Console.Write($"Ugyldigt kontotype {y}.");
-                    continue;
-                }
-                break;
-            }
+            //    if (!int.TryParse(kontoType.Replace("-", "").Replace("+", ""), out var y) || y > 3 || y < 1)
+            //    {
+            //        Console.Write($"Ugyldigt kontotype {y}.");
+            //        continue;
+            //    }
+            //    break;
+            //}
 
-            switch (kontoType)
-            {
-                case "1":
-                    kontoType = "1";
-                    break;
-                case "2":
-                    kontoType = "2";
-                    break;
-                case "3":
-                    kontoType = "3";
-                    break;
-                default:
-                    break;
-            }
+            //switch (kontoType.ToString())
+            //{
+            //    case "1":
+            //        kontoType = "1";
+            //        break;
+            //    case "2":
+            //        kontoType = "2";
+            //        break;
+            //    case "3":
+            //        kontoType = "3";
+            //        break;
+            //    default:
+            //        break;
+            //}
 
             // Opretter konto.
             string SQLSend = $"IF exists (select 1 from Kunde where PK_kundenr = '{kundenr}') insert into Konto values(0, GETDATE(), null, (select PK_kundenr from Kunde where PK_kundenr = '{kundenr}') , '{kontoType}');";
@@ -169,12 +169,12 @@ namespace G_Unit_Windows
             string strKontonummer = Database.SQLkommandoGet(SQLGet)[0];
             kontoNummer = int.Parse(strKontonummer);
 
-            Console.Write("Konto oprettet! Tryk en tast!");
-            Console.ReadKey();
+//            Console.Write("Konto oprettet! Tryk en tast!");
+//            Console.ReadKey();
 
             // Vigtig, gemmer kontonummer i lokal variabel.
             _kontoNummer = kontoNummer;
-            KontoMenu();
+//            KontoMenu();
         }
 
         public static void VælgKonto(int kundenr)

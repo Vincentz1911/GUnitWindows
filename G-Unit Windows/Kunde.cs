@@ -9,37 +9,16 @@ namespace G_Unit_Windows
     class Kunde
     {
         public static int[] PK_kundenr;
-        static string[] kundenavn, CPR, SQLData;
-        static DateTime?[] kundedato, kundeslutdato;
-        static string SQLSend, CPRString;
+        public static string[] kundenavn, CPR, SQLData;
+        public static DateTime?[] kundedato, kundeslutdato;
+        public static string SQLSend, CPRString;
 
         //******************* KUNDEMENU *******************
         public static void KundeMenu(int kundenr)
         {
-            Console.Clear();
-            Console.WriteLine("**********\n*Kundemenu*\n***********");
             SQLSend = "select * from Kunde where PK_kundenr like '" + kundenr + "'";
             SQLData = Database.SQLkommandoGet(SQLSend);
             ParseKunde(SQLData);
-
-            Console.WriteLine("1) Opret konto\n2) Vælg konto\n3) Slet kunde\n ");
-            string valg = Console.ReadLine();
-
-            switch (valg)
-            {
-                case "1":
-                    Konto.OpretKonto(kundenr);
-                    break;
-                case "2":
-                    Konto.VælgKonto(kundenr);
-                    break;
-                case "3":
-                    SletKunde();
-                    break;
-                default:
-                    break;
-            }
-            /// HER
         }
 
         //******************* OPRET KUNDE *******************
@@ -56,8 +35,10 @@ namespace G_Unit_Windows
             string SQLSend = $"INSERT INTO Kunde values('{navn}', GetDate(), '','{CPRString}')";
             Database.SQLkommandoSet(SQLSend);
             //Modtager kundenr fra database baseret på CPR nr
-            string SQLGet = $"SELECT PK_kundenr from Kunde where CPR = '{CPRString}';";
+            string SQLGet = $"SELECT * from Kunde where CPR = '{CPRString}';";
+            //            string SQLGet = $"SELECT PK_kundenr from Kunde where CPR = '{CPRString}';";
             SQLData = Database.SQLkommandoGet(SQLGet);
+            ParseKunde(SQLData);
             //Starter kundemenu med kundenr
             //KundeMenu(int.Parse(SQLData[0]));
         }
@@ -69,8 +50,8 @@ namespace G_Unit_Windows
             switch (valg.ToString())
             {
                 case "1": // Søger efter kundenavn
-                    Console.Write("Indtast søgning på kunde: ");
-                    str = Console.ReadLine();
+                    //Console.Write("Indtast søgning på kunde: ");
+                    //str = Console.ReadLine();
                     SQLSend = $"select * from Kunde where kundenavn like '%{str}%'";
                     break;
 
@@ -83,17 +64,15 @@ namespace G_Unit_Windows
                 case "3": // Søger efter kunde på kundenummer
                     Console.Write("Indtast søgning på kundenummer: ");
                     str = Console.ReadLine();
-                    SQLSend = $"select * from Kunde where PK_kundenr like '%{str}%'";
+                    SQLSend = $"select * from Kunde where PK_kundenr like '{str}'";
                     break;
 
                 case "4": // Søger efter kunde på CPR-nummer
                     do
                     {
-                        Console.Write("Indtast CPR-nr: ");
-                        CPRString = Console.ReadLine();
-                        CPRString = CPRString.Replace("-", "").Replace("/", "");
-                    } while (CPRString.Length != 10 && int.TryParse(CPRString, out int CPRnr));
-                    SQLSend = $"select * from Kunde where CPR like '%{CPRString}%'";
+                             str = str.Replace("-", "").Replace("/", "");
+                    } while (str.Length != 10 && int.TryParse(str, out int CPRnr));
+                    SQLSend = $"select * from Kunde where CPR like '%{str}%'";
                     break;
 
                 default:
@@ -102,22 +81,25 @@ namespace G_Unit_Windows
             }
             SQLData = Database.SQLkommandoGet(SQLSend);
             ParseKunde(SQLData);
-            if (PK_kundenr.Length > 1)
-            {
-                // Console.Write("Vælg nr: ");
-                // int knr = int.Parse(Console.ReadLine());
-                // KundeMenu(PK_kundenr[knr]);
-            }
-            else KundeMenu(PK_kundenr[0]);
+            //if (PK_kundenr.Length > 1)
+            //{
+            //    // Console.Write("Vælg nr: ");
+            //    // int knr = int.Parse(Console.ReadLine());
+            //    // KundeMenu(PK_kundenr[knr]);
+            //}
+            //else KundeMenu(PK_kundenr[0]);
         }
 
         //******************* SLET KUNDE *******************
-        public static void SletKunde()
+        public static void SletKunde(string str)
         {
-            Console.Write("Indtast CPR-nr på kunde der skal slettes: ");
-            string CPRString = Console.ReadLine();
-            string SQLSend = $"UPDATE Kunde set kundeslutdato = GetDate() where CPR = '{CPR}';";
+            //Console.Write("Indtast CPR-nr på kunde der skal slettes: ");
+            //string CPRString = Console.ReadLine();
+            string SQLSend = $"UPDATE Kunde set kundeslutdato = GetDate() where PK_kundenr = '{str}';";
             Database.SQLkommandoSet(SQLSend);
+            SQLSend = $"select * from Kunde where PK_kundenr like '{str}'";
+            SQLData = Database.SQLkommandoGet(SQLSend);
+            ParseKunde(SQLData);
         }
 
         //******************* PARSE SQL KUNDE TIL C# *******************
