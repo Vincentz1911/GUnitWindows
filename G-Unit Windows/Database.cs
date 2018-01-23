@@ -9,9 +9,12 @@ namespace G_Unit_Windows
 {
     public static class Database
     {
+        public static string DataSource = "(local)";
+//        public static string DataSource = ".\\SQLEXPRESS";
+
         public static void SQLkommandoSet(string sqltext)
         {
-            string ConnectionString = @"Data Source = (LOCAL); Initial Catalog = GUNIT; Integrated Security = True";
+            string ConnectionString = $@"Data Source = {DataSource}; Initial Catalog = GUNIT; Integrated Security = True";
             var connection = new SqlConnection(ConnectionString);
             SqlCommand cmd;
             connection.Open();
@@ -39,7 +42,7 @@ namespace G_Unit_Windows
         public static string[] SQLkommandoGet(string sqltext)
         {
             string[] SQLArray = new string[0];
-            string ConnectionString = @"Data Source = (LOCAL); Initial Catalog = GUNIT; Integrated Security = True";
+            string ConnectionString = $@"Data Source = {DataSource}; Initial Catalog = GUNIT; Integrated Security = True";
             var connection = new SqlConnection(ConnectionString);
 
             connection.Open();
