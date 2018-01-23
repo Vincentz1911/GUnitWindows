@@ -68,7 +68,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.OverførTilKonto = new System.Windows.Forms.TextBox();
             this.KontoInfoBox = new System.Windows.Forms.TextBox();
             this.IndtastTransaktion = new System.Windows.Forms.TextBox();
             this.OverførKnap = new System.Windows.Forms.Button();
@@ -234,6 +234,7 @@
             // 
             // FindKundeListe
             // 
+            this.FindKundeListe.BackColor = System.Drawing.Color.Honeydew;
             this.FindKundeListe.FormattingEnabled = true;
             this.FindKundeListe.Location = new System.Drawing.Point(11, 25);
             this.FindKundeListe.Margin = new System.Windows.Forms.Padding(2);
@@ -293,6 +294,7 @@
             // 
             // KontiListe
             // 
+            this.KontiListe.BackColor = System.Drawing.Color.Honeydew;
             this.KontiListe.FormattingEnabled = true;
             this.KontiListe.Location = new System.Drawing.Point(21, 210);
             this.KontiListe.Margin = new System.Windows.Forms.Padding(2);
@@ -461,6 +463,7 @@
             // 
             // TransaktionsListe
             // 
+            this.TransaktionsListe.BackColor = System.Drawing.Color.Honeydew;
             this.TransaktionsListe.FormattingEnabled = true;
             this.TransaktionsListe.Location = new System.Drawing.Point(11, 99);
             this.TransaktionsListe.Margin = new System.Windows.Forms.Padding(2);
@@ -474,7 +477,7 @@
             this.TransaktionerGruppe.Controls.Add(this.label13);
             this.TransaktionerGruppe.Controls.Add(this.label12);
             this.TransaktionerGruppe.Controls.Add(this.label11);
-            this.TransaktionerGruppe.Controls.Add(this.textBox1);
+            this.TransaktionerGruppe.Controls.Add(this.OverførTilKonto);
             this.TransaktionerGruppe.Controls.Add(this.KontoInfoBox);
             this.TransaktionerGruppe.Controls.Add(this.IndtastTransaktion);
             this.TransaktionerGruppe.Controls.Add(this.OverførKnap);
@@ -517,13 +520,13 @@
             this.label11.TabIndex = 19;
             this.label11.Text = "Konto";
             // 
-            // textBox1
+            // OverførTilKonto
             // 
-            this.textBox1.Location = new System.Drawing.Point(277, 285);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(113, 20);
-            this.textBox1.TabIndex = 20;
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.OverførTilKonto.Location = new System.Drawing.Point(277, 285);
+            this.OverførTilKonto.Name = "OverførTilKonto";
+            this.OverførTilKonto.Size = new System.Drawing.Size(113, 20);
+            this.OverførTilKonto.TabIndex = 20;
+            this.OverførTilKonto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // KontoInfoBox
             // 
@@ -545,6 +548,7 @@
             // 
             // OverførKnap
             // 
+            this.OverførKnap.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.OverførKnap.Location = new System.Drawing.Point(315, 310);
             this.OverførKnap.Name = "OverførKnap";
             this.OverførKnap.Size = new System.Drawing.Size(75, 25);
@@ -590,7 +594,7 @@
             // 
             this.DataSourceGruppe.Controls.Add(this.radioButton2);
             this.DataSourceGruppe.Controls.Add(this.radioButton1);
-            this.DataSourceGruppe.Location = new System.Drawing.Point(20, 289);
+            this.DataSourceGruppe.Location = new System.Drawing.Point(20, 99);
             this.DataSourceGruppe.Name = "DataSourceGruppe";
             this.DataSourceGruppe.Size = new System.Drawing.Size(100, 81);
             this.DataSourceGruppe.TabIndex = 23;
@@ -604,7 +608,6 @@
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(74, 17);
             this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
             this.radioButton2.Text = "sqlexpress";
             this.radioButton2.UseVisualStyleBackColor = true;
             this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
@@ -627,7 +630,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.ClientSize = new System.Drawing.Size(844, 392);
+            this.ClientSize = new System.Drawing.Size(284, 262);
             this.Controls.Add(this.DataSourceGruppe);
             this.Controls.Add(this.KundeListeGruppe);
             this.Controls.Add(this.OpretNyKontoGruppe);
@@ -640,6 +643,7 @@
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "G-Unit Banking Systems Inc.";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.OpretNyKundeGruppe.ResumeLayout(false);
@@ -704,7 +708,7 @@
         private System.Windows.Forms.TextBox KontoInfoBox;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox OverførTilKonto;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.GroupBox KundeListeGruppe;
         private System.Windows.Forms.CheckBox AktivKunde;

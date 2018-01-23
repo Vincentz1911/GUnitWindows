@@ -17,11 +17,8 @@ namespace G_Unit_Windows
 
         public Form1()
         {
-            //form1.Size = new Size(600, 500);
-            //Form1.Size = new System.Drawing.Size(100, 100);
-            //Form Form1 = new Form();
-            //Form1.Size = new Size(600, 500);
             InitializeComponent();
+            this.Size = new Size(860, 430);
             DropDownFind.SelectedIndex = 0;
             comboBoxKontoType.SelectedIndex = 0;
             AllInvisible();
@@ -42,7 +39,43 @@ namespace G_Unit_Windows
             TransaktionerGruppe.Visible = false;
             KundeListeGruppe.Visible = false;
         }
+        private void Form1_Load(object sender, EventArgs e)
+        {
 
+        }
+        private void KundeMenuUpdate()
+        {
+            KundeNavn.Text = Kunde.kundenavn[0];
+            KundeCPR.Text = Kunde.CPR[0];
+            Kundenr.Text = Kunde.PK_kundenr[0].ToString();
+            KundeStart.Text = Kunde.kundedato[0].ToString();
+
+            if (Kunde.kundeslutdato[0] != null)
+            {
+                AktivKunde.Checked = true;
+                KundeSlut.Text = Kunde.kundeslutdato[0].ToString();
+                SletKundeMenu.Visible = false;
+                OpretKontoMenu.Visible = false;
+            }
+            else
+            {
+                AktivKunde.Checked = false;
+                SletKundeMenu.Visible = true;
+                OpretKontoMenu.Visible = true;
+                KundeSlut.Text = "";
+            }
+
+            string[] KontoArray = Konto.VælgKonto(Kunde.PK_kundenr[0]);
+            KontiListe.Items.Clear();
+            foreach (var item in KontoArray)
+            {
+                KontiListe.Items.Add(item);
+            }
+
+            //KontiListe.SetSelected(0, true);
+            //KontiListe.SelectedIndex = KontiIndex;
+
+        }
         private void NyKundeMenu_Click(object sender, EventArgs e)
         {
             AllInvisible();
@@ -99,6 +132,7 @@ namespace G_Unit_Windows
                 for (int i = 0; i < Kunde.PK_kundenr.Length; i++)
                 {
                     string str = Kunde.PK_kundenr[i] + "-" + Kunde.kundenavn[i] + "-" + Kunde.CPR[i];
+                    if (Kunde.kundeslutdato[i] != null) str += " - Slettet";
                     FindKundeListe.Items.Add(str);
                 }
 
@@ -113,39 +147,6 @@ namespace G_Unit_Windows
             AllInvisible();
             KundeMenuGruppe.Visible = true;
             KundeMenuUpdate();
-        }
-        private void KundeMenuUpdate()
-        {
-            KundeNavn.Text = Kunde.kundenavn[0];
-            KundeCPR.Text = Kunde.CPR[0];
-            Kundenr.Text = Kunde.PK_kundenr[0].ToString();
-            KundeStart.Text = Kunde.kundedato[0].ToString();
-
-            if (Kunde.kundeslutdato[0] != null)
-            {
-                AktivKunde.Checked = true;
-                KundeSlut.Text = Kunde.kundeslutdato[0].ToString();
-                SletKundeMenu.Visible = false;
-                OpretKontoMenu.Visible = false;
-            }
-            else
-            {
-                AktivKunde.Checked = false;
-                SletKundeMenu.Visible = true;
-                OpretKontoMenu.Visible = true;
-                KundeSlut.Text = "";
-            }
-
-            string[] KontoArray = Konto.VælgKonto(Kunde.PK_kundenr[0]);
-            KontiListe.Items.Clear();
-            foreach (var item in KontoArray)
-            {
-                KontiListe.Items.Add(item);
-            }
-
-            //KontiListe.SetSelected(0, true);
-            //KontiListe.SelectedIndex = KontiIndex;
-
         }
         private void SletKundeMenu_Click(object sender, EventArgs e)
         {
@@ -176,10 +177,6 @@ namespace G_Unit_Windows
         {
             Konto.SletKonto(AktivKontinr);
         }
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
         private void KontiListe_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (KontiListe.SelectedItem != null)
@@ -195,7 +192,6 @@ namespace G_Unit_Windows
                 TransaktionUpdate(AktivKontinr);
             }
         }
-
         private void IndbetalKnap_Click(object sender, EventArgs e)
         {
             //MessageBox.Show(KontiListe.SelectedItem.ToString());
@@ -236,7 +232,6 @@ namespace G_Unit_Windows
         {
             Database.DataSource = "(local)";
         }
-
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
             Database.DataSource = ".\\SQLEXPRESS";
