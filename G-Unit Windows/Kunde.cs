@@ -50,28 +50,22 @@ namespace G_Unit_Windows
             switch (valg.ToString())
             {
                 case "1": // Søger efter kundenavn
-                    //Console.Write("Indtast søgning på kunde: ");
-                    //str = Console.ReadLine();
                     SQLSend = $"select * from Kunde where kundenavn like '%{str}%'";
                     break;
 
-                case "2": // Søger efter kunde baseret på kontonummer
-                    Console.Write("Indtast søgning på konto: ");
-                    str = Console.ReadLine();
-                    SQLSend = $"select PK_kundenr, kundenavn, kundedato, kundeslutdato, CPR from Konto, Kunde where PK_kontonr = '{str}' and PK_kundenr = FK_kundenr";
-                    break;
-
-                case "3": // Søger efter kunde på kundenummer
-                    Console.Write("Indtast søgning på kundenummer: ");
-                    str = Console.ReadLine();
+                case "2": // Søger efter kunde på kundenummer
                     SQLSend = $"select * from Kunde where PK_kundenr like '{str}'";
                     break;
 
+                case "3": // Søger efter kunde baseret på kontonummer
+                    SQLSend = $"select PK_kundenr, kundenavn, kundedato, kundeslutdato, CPR from Konto, Kunde where PK_kontonr = '{str}' and PK_kundenr = FK_kundenr";
+                    break;
+
                 case "4": // Søger efter kunde på CPR-nummer
-                    do
-                    {
-                             str = str.Replace("-", "").Replace("/", "");
-                    } while (str.Length != 10 && int.TryParse(str, out int CPRnr));
+                    //do
+                    //{
+                    //         str = str.Replace("-", "").Replace("/", "");
+                    //} while (str.Length != 10 && int.TryParse(str, out int CPRnr));
                     SQLSend = $"select * from Kunde where CPR like '%{str}%'";
                     break;
 
@@ -119,7 +113,7 @@ namespace G_Unit_Windows
                 PK_kundenr[count] = int.Parse(SQLData[i]);
                 kundenavn[count] = SQLData[i + 1];
                 kundedato[count] = Convert.ToDateTime(SQLData[i + 2]);
-                if (SQLData[i + 3] != "") { kundeslutdato[count] = Convert.ToDateTime(SQLData[i + 3]); }
+                if (SQLData[i + 3] != "") { kundeslutdato[count] = Convert.ToDateTime(SQLData[i + 3]); } else kundeslutdato[count] = null;
                 CPR[count] = SQLData[i + 4];
                 count++;
             }
@@ -129,10 +123,7 @@ namespace G_Unit_Windows
                 string slutdato = "";
                 for (int i = 0; i < PK_kundenr.Length; i++)
                 {
-                    Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.Write($"({i}) ");
                     //Sikrer at hvis der ikke er slutdato, skal den ikke vises
-                    Console.ForegroundColor = ConsoleColor.White;
                     if (kundeslutdato[i] != null)
                     {
                         slutdato = $"Slutdato: {kundeslutdato[i]}";

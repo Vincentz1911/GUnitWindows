@@ -41,12 +41,12 @@
             this.DropDownFind = new System.Windows.Forms.ComboBox();
             this.FindKundeKnap = new System.Windows.Forms.Button();
             this.FindKundeSøg = new System.Windows.Forms.TextBox();
-            this.FindKundeListe = new System.Windows.Forms.ListBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.FindKundeListe = new System.Windows.Forms.ListBox();
             this.KundeMenuGruppe = new System.Windows.Forms.GroupBox();
+            this.KontiListe = new System.Windows.Forms.ListBox();
             this.OpretKontoMenu = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
-            this.comboBoxKonti = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.Kundenr = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -62,10 +62,17 @@
             this.OpretKontoKnap = new System.Windows.Forms.Button();
             this.OpretNyKontoGruppe = new System.Windows.Forms.GroupBox();
             this.TransaktionsListe = new System.Windows.Forms.ListBox();
+            this.TransaktionerGruppe = new System.Windows.Forms.GroupBox();
+            this.IndtastTransaktion = new System.Windows.Forms.TextBox();
+            this.OverførKnap = new System.Windows.Forms.Button();
+            this.UdbetalKnap = new System.Windows.Forms.Button();
+            this.IndbetalKnap = new System.Windows.Forms.Button();
+            this.SletKontoKnap = new System.Windows.Forms.Button();
             this.OpretNyKundeGruppe.SuspendLayout();
             this.FindKundeGruppe.SuspendLayout();
             this.KundeMenuGruppe.SuspendLayout();
             this.OpretNyKontoGruppe.SuspendLayout();
+            this.TransaktionerGruppe.SuspendLayout();
             this.SuspendLayout();
             // 
             // NyKundeMenu
@@ -108,7 +115,6 @@
             this.OpretKundeNavn.Name = "OpretKundeNavn";
             this.OpretKundeNavn.Size = new System.Drawing.Size(211, 22);
             this.OpretKundeNavn.TabIndex = 3;
-            this.OpretKundeNavn.TextChanged += new System.EventHandler(this.OpretKundeNavn_TextChanged);
             // 
             // OpretKundeCPR
             // 
@@ -117,7 +123,6 @@
             this.OpretKundeCPR.Name = "OpretKundeCPR";
             this.OpretKundeCPR.Size = new System.Drawing.Size(211, 22);
             this.OpretKundeCPR.TabIndex = 4;
-            this.OpretKundeCPR.TextChanged += new System.EventHandler(this.OpretKundeCPR_TextChanged);
             // 
             // label1
             // 
@@ -173,7 +178,7 @@
             this.FindKundeGruppe.Controls.Add(this.FindKundeKnap);
             this.FindKundeGruppe.Controls.Add(this.FindKundeSøg);
             this.FindKundeGruppe.Controls.Add(this.label4);
-            this.FindKundeGruppe.Location = new System.Drawing.Point(200, 250);
+            this.FindKundeGruppe.Location = new System.Drawing.Point(200, 207);
             this.FindKundeGruppe.Name = "FindKundeGruppe";
             this.FindKundeGruppe.Size = new System.Drawing.Size(350, 150);
             this.FindKundeGruppe.TabIndex = 10;
@@ -193,7 +198,6 @@
             this.DropDownFind.Name = "DropDownFind";
             this.DropDownFind.Size = new System.Drawing.Size(211, 24);
             this.DropDownFind.TabIndex = 11;
-            this.DropDownFind.SelectedIndexChanged += new System.EventHandler(this.DropDownFind_SelectedIndexChanged);
             // 
             // FindKundeKnap
             // 
@@ -213,17 +217,6 @@
             this.FindKundeSøg.Name = "FindKundeSøg";
             this.FindKundeSøg.Size = new System.Drawing.Size(211, 22);
             this.FindKundeSøg.TabIndex = 8;
-            this.FindKundeSøg.TextChanged += new System.EventHandler(this.FindKundeSøg_TextChanged);
-            // 
-            // FindKundeListe
-            // 
-            this.FindKundeListe.FormattingEnabled = true;
-            this.FindKundeListe.ItemHeight = 16;
-            this.FindKundeListe.Location = new System.Drawing.Point(967, 50);
-            this.FindKundeListe.Name = "FindKundeListe";
-            this.FindKundeListe.Size = new System.Drawing.Size(274, 340);
-            this.FindKundeListe.TabIndex = 12;
-            this.FindKundeListe.SelectedIndexChanged += new System.EventHandler(this.FindKundeListe_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -235,11 +228,22 @@
             this.label4.TabIndex = 10;
             this.label4.Text = "Søg";
             // 
+            // FindKundeListe
+            // 
+            this.FindKundeListe.FormattingEnabled = true;
+            this.FindKundeListe.ItemHeight = 16;
+            this.FindKundeListe.Location = new System.Drawing.Point(200, 363);
+            this.FindKundeListe.Name = "FindKundeListe";
+            this.FindKundeListe.Size = new System.Drawing.Size(274, 340);
+            this.FindKundeListe.TabIndex = 12;
+            this.FindKundeListe.SelectedIndexChanged += new System.EventHandler(this.FindKundeListe_SelectedIndexChanged);
+            // 
             // KundeMenuGruppe
             // 
+            this.KundeMenuGruppe.Controls.Add(this.SletKontoKnap);
+            this.KundeMenuGruppe.Controls.Add(this.KontiListe);
             this.KundeMenuGruppe.Controls.Add(this.OpretKontoMenu);
             this.KundeMenuGruppe.Controls.Add(this.label9);
-            this.KundeMenuGruppe.Controls.Add(this.comboBoxKonti);
             this.KundeMenuGruppe.Controls.Add(this.label8);
             this.KundeMenuGruppe.Controls.Add(this.Kundenr);
             this.KundeMenuGruppe.Controls.Add(this.SletKundeMenu);
@@ -253,14 +257,24 @@
             this.KundeMenuGruppe.Controls.Add(this.KundeNavn);
             this.KundeMenuGruppe.Location = new System.Drawing.Point(600, 50);
             this.KundeMenuGruppe.Name = "KundeMenuGruppe";
-            this.KundeMenuGruppe.Size = new System.Drawing.Size(350, 340);
+            this.KundeMenuGruppe.Size = new System.Drawing.Size(350, 422);
             this.KundeMenuGruppe.TabIndex = 13;
             this.KundeMenuGruppe.TabStop = false;
             this.KundeMenuGruppe.Text = "Kundemenu";
             // 
+            // KontiListe
+            // 
+            this.KontiListe.FormattingEnabled = true;
+            this.KontiListe.ItemHeight = 16;
+            this.KontiListe.Location = new System.Drawing.Point(28, 259);
+            this.KontiListe.Name = "KontiListe";
+            this.KontiListe.Size = new System.Drawing.Size(294, 116);
+            this.KontiListe.TabIndex = 17;
+            this.KontiListe.SelectedIndexChanged += new System.EventHandler(this.KontiListe_SelectedIndexChanged);
+            // 
             // OpretKontoMenu
             // 
-            this.OpretKontoMenu.Location = new System.Drawing.Point(201, 290);
+            this.OpretKontoMenu.Location = new System.Drawing.Point(201, 387);
             this.OpretKontoMenu.Margin = new System.Windows.Forms.Padding(4);
             this.OpretKontoMenu.Name = "OpretKontoMenu";
             this.OpretKontoMenu.Size = new System.Drawing.Size(121, 28);
@@ -278,16 +292,6 @@
             this.label9.Size = new System.Drawing.Size(40, 17);
             this.label9.TabIndex = 8;
             this.label9.Text = "Konti";
-            // 
-            // comboBoxKonti
-            // 
-            this.comboBoxKonti.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxKonti.FormattingEnabled = true;
-            this.comboBoxKonti.Location = new System.Drawing.Point(23, 259);
-            this.comboBoxKonti.Name = "comboBoxKonti";
-            this.comboBoxKonti.Size = new System.Drawing.Size(299, 24);
-            this.comboBoxKonti.TabIndex = 17;
-            this.comboBoxKonti.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label8
             // 
@@ -378,7 +382,6 @@
             this.KundeNavn.ReadOnly = true;
             this.KundeNavn.Size = new System.Drawing.Size(234, 22);
             this.KundeNavn.TabIndex = 0;
-            this.KundeNavn.TextChanged += new System.EventHandler(this.KundeNavn_TextChanged);
             // 
             // comboBoxKontoType
             // 
@@ -419,7 +422,7 @@
             this.OpretNyKontoGruppe.Controls.Add(this.OpretKontoKnap);
             this.OpretNyKontoGruppe.Controls.Add(this.comboBoxKontoType);
             this.OpretNyKontoGruppe.Controls.Add(this.label10);
-            this.OpretNyKontoGruppe.Location = new System.Drawing.Point(600, 400);
+            this.OpretNyKontoGruppe.Location = new System.Drawing.Point(600, 496);
             this.OpretNyKontoGruppe.Name = "OpretNyKontoGruppe";
             this.OpretNyKontoGruppe.Size = new System.Drawing.Size(350, 150);
             this.OpretNyKontoGruppe.TabIndex = 15;
@@ -431,17 +434,84 @@
             // 
             this.TransaktionsListe.FormattingEnabled = true;
             this.TransaktionsListe.ItemHeight = 16;
-            this.TransaktionsListe.Location = new System.Drawing.Point(967, 400);
+            this.TransaktionsListe.Location = new System.Drawing.Point(6, 21);
             this.TransaktionsListe.Name = "TransaktionsListe";
-            this.TransaktionsListe.Size = new System.Drawing.Size(274, 340);
+            this.TransaktionsListe.Size = new System.Drawing.Size(338, 436);
             this.TransaktionsListe.TabIndex = 16;
+            // 
+            // TransaktionerGruppe
+            // 
+            this.TransaktionerGruppe.Controls.Add(this.IndtastTransaktion);
+            this.TransaktionerGruppe.Controls.Add(this.OverførKnap);
+            this.TransaktionerGruppe.Controls.Add(this.UdbetalKnap);
+            this.TransaktionerGruppe.Controls.Add(this.IndbetalKnap);
+            this.TransaktionerGruppe.Controls.Add(this.TransaktionsListe);
+            this.TransaktionerGruppe.Location = new System.Drawing.Point(967, 49);
+            this.TransaktionerGruppe.Name = "TransaktionerGruppe";
+            this.TransaktionerGruppe.Size = new System.Drawing.Size(350, 583);
+            this.TransaktionerGruppe.TabIndex = 17;
+            this.TransaktionerGruppe.TabStop = false;
+            this.TransaktionerGruppe.Text = "Transaktioner";
+            // 
+            // IndtastTransaktion
+            // 
+            this.IndtastTransaktion.Location = new System.Drawing.Point(7, 518);
+            this.IndtastTransaktion.Margin = new System.Windows.Forms.Padding(4);
+            this.IndtastTransaktion.Name = "IndtastTransaktion";
+            this.IndtastTransaktion.Size = new System.Drawing.Size(336, 22);
+            this.IndtastTransaktion.TabIndex = 8;
+            this.IndtastTransaktion.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // OverførKnap
+            // 
+            this.OverførKnap.Location = new System.Drawing.Point(244, 548);
+            this.OverførKnap.Margin = new System.Windows.Forms.Padding(4);
+            this.OverførKnap.Name = "OverførKnap";
+            this.OverførKnap.Size = new System.Drawing.Size(100, 28);
+            this.OverførKnap.TabIndex = 18;
+            this.OverførKnap.Text = "Overfør";
+            this.OverførKnap.UseVisualStyleBackColor = true;
+            // 
+            // UdbetalKnap
+            // 
+            this.UdbetalKnap.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.UdbetalKnap.Location = new System.Drawing.Point(125, 548);
+            this.UdbetalKnap.Margin = new System.Windows.Forms.Padding(4);
+            this.UdbetalKnap.Name = "UdbetalKnap";
+            this.UdbetalKnap.Size = new System.Drawing.Size(100, 28);
+            this.UdbetalKnap.TabIndex = 17;
+            this.UdbetalKnap.Text = "Udbetal";
+            this.UdbetalKnap.UseVisualStyleBackColor = true;
+            this.UdbetalKnap.Click += new System.EventHandler(this.UdbetalKnap_Click);
+            // 
+            // IndbetalKnap
+            // 
+            this.IndbetalKnap.Location = new System.Drawing.Point(6, 548);
+            this.IndbetalKnap.Margin = new System.Windows.Forms.Padding(4);
+            this.IndbetalKnap.Name = "IndbetalKnap";
+            this.IndbetalKnap.Size = new System.Drawing.Size(100, 28);
+            this.IndbetalKnap.TabIndex = 8;
+            this.IndbetalKnap.Text = "Indbetal";
+            this.IndbetalKnap.UseVisualStyleBackColor = true;
+            this.IndbetalKnap.Click += new System.EventHandler(this.IndbetalKnap_Click);
+            // 
+            // SletKontoKnap
+            // 
+            this.SletKontoKnap.Location = new System.Drawing.Point(28, 387);
+            this.SletKontoKnap.Margin = new System.Windows.Forms.Padding(4);
+            this.SletKontoKnap.Name = "SletKontoKnap";
+            this.SletKontoKnap.Size = new System.Drawing.Size(121, 28);
+            this.SletKontoKnap.TabIndex = 18;
+            this.SletKontoKnap.Text = "Slet Konto";
+            this.SletKontoKnap.UseVisualStyleBackColor = true;
+            this.SletKontoKnap.Click += new System.EventHandler(this.SletKontoKnap_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1344, 690);
-            this.Controls.Add(this.TransaktionsListe);
+            this.ClientSize = new System.Drawing.Size(1371, 690);
+            this.Controls.Add(this.TransaktionerGruppe);
             this.Controls.Add(this.OpretNyKontoGruppe);
             this.Controls.Add(this.KundeMenuGruppe);
             this.Controls.Add(this.FindKundeGruppe);
@@ -462,6 +532,8 @@
             this.KundeMenuGruppe.PerformLayout();
             this.OpretNyKontoGruppe.ResumeLayout(false);
             this.OpretNyKontoGruppe.PerformLayout();
+            this.TransaktionerGruppe.ResumeLayout(false);
+            this.TransaktionerGruppe.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -495,13 +567,19 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox KundeSlut;
         private System.Windows.Forms.TextBox KundeStart;
-        private System.Windows.Forms.ComboBox comboBoxKonti;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox comboBoxKontoType;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button OpretKontoKnap;
         private System.Windows.Forms.GroupBox OpretNyKontoGruppe;
         private System.Windows.Forms.ListBox TransaktionsListe;
+        private System.Windows.Forms.ListBox KontiListe;
+        private System.Windows.Forms.GroupBox TransaktionerGruppe;
+        private System.Windows.Forms.Button OverførKnap;
+        private System.Windows.Forms.Button UdbetalKnap;
+        private System.Windows.Forms.Button IndbetalKnap;
+        private System.Windows.Forms.TextBox IndtastTransaktion;
+        private System.Windows.Forms.Button SletKontoKnap;
     }
 }
 

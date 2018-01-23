@@ -16,39 +16,8 @@ namespace G_Unit_Windows
 
         public static void KontoMenu()
         {
-            Console.Clear();
-            Console.WriteLine("**********\n*Kontomenu*\n***********");
 
-            Console.Write("1) Indsæt\n2) Hæv\n3) Overfør\n4) Slet konto\n5) Vis transaktioner\n6) Find transaktioner\n7) Afslut\n\nIndtast valg: ");
-            string valg = Console.ReadLine();
-
-            switch (valg)
-            {
-                case "1":
-                    IndsætBeløb();
-                    break;
-                case "2":
-                    HævBeløb();
-                    break;
-                case "3":
-                    OverførBeløb();
-                    break;
-                case "4":
-                    SletKonto();
-                    break;
-                case "5":
-                    VisTransaktion();
-                    break;
-                case "6":
-                    FindTransaktion();
-                    break;
-                case "7":
-                    Environment.Exit(0);
-                    break;
-                default:
-                    KontoMenu();
-                    break;
-            }
+         
         }
 
         private static void FindTransaktion()
@@ -91,39 +60,36 @@ namespace G_Unit_Windows
 
         }
 
-        private static void VisTransaktion()
-        {
-            Console.Clear();
-            TransaktionSøger($"select * from Transaktion where FK_kontonr = '{_kontoNummer}';");
-
-            Console.Write("\nTryk tast.");
-            Console.ReadKey();
-            KontoMenu();
-
+        public static string[] VisTransaktion(int _kontoNummer)
+        {           
+            return TransaktionSøger($"select * from Transaktion where FK_kontonr = '{_kontoNummer}';");                      
         }
 
         // Hjælpefunktion til transaktion søgning.
-        private static void TransaktionSøger(string sql)
+        private static string[] TransaktionSøger(string sql)
         {
             string SQLGet = sql;
             string[] transArr = Database.SQLkommandoGet(SQLGet);
+            
 
             if (transArr.Length == 0)
             {
                 Console.Write("Ingen transaktioner fundet!");
-                return;
+                return null;
             }
 
             int count = 0;
-
+            string[] transArray = new string[transArr.Length/4];
             for (int i = 0; i < transArr.Length / 4; i++)
             {
-                Console.WriteLine($"Transaktions ID: {transArr[0 + count]}, Trans. dato: {transArr[1 + count]}, Beløb: {transArr[2 + count]}, Kunde nummer: {transArr[3 + count]}");
+                //Console.WriteLine($"Transaktions ID: {transArr[0 + count]}, Trans. dato: {transArr[1 + count]}, Beløb: {transArr[2 + count]}, Kunde nummer: {transArr[3 + count]}");
+                transArray[i]=($"ID: {transArr[0 + count]}, Beløb: {transArr[2 + count]}, {transArr[1 + count]},  Kunde nummer: {transArr[3 + count]}");
+
                 count += 4;
             }
+
+            return transArray;
         }
-
-
 
         public static void OpretKonto(int kundenr, int kontoType)
         {
@@ -177,123 +143,67 @@ namespace G_Unit_Windows
 //            KontoMenu();
         }
 
-        public static void VælgKonto(int kundenr)
+        public static string[] VælgKonto(int kundenr)
         {
-            Console.Clear();
+            //Console.Clear();
 
             // Find Konti
             string SQLGet = $"select PK_kontonr, saldo, kontodato, kontoslutdato, FK_kontotypeID from Konto where FK_kundenr = {kundenr};";
             string[] kontoArr = Database.SQLkommandoGet(SQLGet);
 
             // Retunerer hvis ingen konti er tilknyttet.
-            if (kontoArr.Length == 0)
-            {
-                Console.Write("Ingen konti tilknyttet bruger, tryk tast for at retunerer");
-                Console.ReadKey();
-                Kunde.KundeMenu(kundenr);
-            }
+            //if (kontoArr.Length == 0)
+            //{
+            //    Console.Write("Ingen konti tilknyttet bruger, tryk tast for at retunerer");
+            //    //Console.ReadKey();
+            //    Kunde.KundeMenu(kundenr);
+            //}
 
             int count = 0;
+            string[] KontoArray = new string[kontoArr.Length];
 
-            for (int i = 0; i < kontoArr.Length / 5; i++)
+            for (int i = 0; i < kontoArr.Length/5; i ++)
             {
 
+                Array.Resize(ref KontoArray, i + 1);
                 // Check om oprettelses dato er null, erstatter med "Ingen".
                 string slutdato = kontoArr[3 + count] == "" ? "Ingen" : kontoArr[3 + count];
 
-                // Ændre konto type nr til "lån", "opsparing" etc.
-                string kontotype = kontoTypeNavne[int.Parse(kontoArr[4 + count]) - 1];
 
-                Console.WriteLine($"Kontonr: {kontoArr[0 + count]}, Saldo: {kontoArr[1 + count]}, Oprettelses dato: {kontoArr[2 + count]}, Konto slut dato: {slutdato}, Konto Type: {kontotype}");
+                // Ændre konto type nr til "lån", "opsparing" etc.
+                //string kontotype = kontoTypeNavne[int.Parse(kontoArr[4 + count]) - 1];
+                KontoArray[i] = $"{kontoArr[0 + count]}, Saldo: {kontoArr[1 + count]}, Oprettelses dato: {kontoArr[2 + count]}, Konto slut dato: {slutdato}, Konto Type: {kontoArr[4 + count]}";
+                //Console.WriteLine($"Kontonr: {kontoArr[0 + count]}, Saldo: {kontoArr[1 + count]}, Oprettelses dato: {kontoArr[2 + count]}, Konto slut dato: {slutdato}, Konto Type: {kontotype}");
                 count += 5;
             }
+            return KontoArray;
 
-            //TODO : Error Handling.
-
-            Console.Write("Indtast konto nummer: ");
-            string valg = Console.ReadLine();
-
-            int.TryParse(valg, out var kontoNummer);
-
-            // Vigtig, gemmer kontonummer i lokal variabel.
-            _kontoNummer = kontoNummer;
-            KontoMenu();
         }
 
-        public static void SletKonto()
+        public static void SletKonto(int _kontoNummer)
         {
-            //string kontoNummer = IndtastKontonummer();
-            Console.Clear();
-
             string SQLSend = $"if exists (select 1 from Konto where PK_kontonr = '{_kontoNummer}')  update Konto set kontoslutdato = GETDATE() where PK_kontonr = '{_kontoNummer}';";
-
             Database.SQLkommandoSet(SQLSend);
-
-            Console.Write($"Konto nummer {_kontoNummer} slettet!");
-
-            Console.Write("\nTryk tast for afslut.");
-            Console.ReadKey();
-            Console.Clear();
-
-            KontoMenu();
         }
 
 
-        public static void IndsætBeløb()
+        public static void IndsætBeløb(string strBeløb, int _kontoNummer)
         {
-            //string kontoNummer = IndtastKontonummer();
-            Console.Clear();
-
-            string strBeløb = IndtastBeløb();
-
-            string SQLSend = $"if exists (select 1 from Konto where PK_kontonr = '{_kontoNummer}')  update Konto set saldo = saldo + {strBeløb} where PK_kontonr = '{_kontoNummer}';";
+            string SQLSend = $"if exists (select 1 from Konto where PK_kontonr = {_kontoNummer})  update Konto set saldo = saldo + {strBeløb} where PK_kontonr = {_kontoNummer};";
             Database.SQLkommandoSet(SQLSend);
-
-            string SQLGet = $"SELECT saldo from Konto where PK_kontonr = '{_kontoNummer}';";
-            string[] sum = Database.SQLkommandoGet(SQLGet);
-
-            Console.WriteLine($"{strBeløb} indsat på kontonummer '{_kontoNummer}', ny saldo: {sum[0]}");
-
-            // Opret af transaktion.
             OpretTransaktion(strBeløb, _kontoNummer);
-
-            Console.Write("Tryk tast for afslut.");
-            Console.ReadKey();
-            Console.Clear();
-
-            KontoMenu();
         }
 
-        public static void HævBeløb()
+        public static void HævBeløb(string strBeløb, int _kontoNummer)
         {
-            //string kontoNummer = IndtastKontonummer();
-            Console.Clear();
-
-            string strBeløb = IndtastBeløb();
-
-            string SQLSend = $"if exists (select 1 from Konto where PK_kontonr = '{_kontoNummer}')  update Konto set saldo = saldo - {strBeløb} where PK_kontonr = '{_kontoNummer}';";
+            string SQLSend = $"if exists (select 1 from Konto where PK_kontonr = {_kontoNummer})  update Konto set saldo = saldo - {strBeløb} where PK_kontonr = {_kontoNummer};";
             Database.SQLkommandoSet(SQLSend);
-
-            string SQLGet = $"SELECT saldo from Konto where PK_kontonr = '{_kontoNummer}';";
-            string[] sum = Database.SQLkommandoGet(SQLGet);
-
-            Console.WriteLine($"{strBeløb} hævet på kontonummer '{_kontoNummer}', ny saldo: {sum[0]}");
-
-            // Opret af transaktion.
             OpretTransaktion($"-{strBeløb}", _kontoNummer);
-
-            Console.Write("Tryk tast for afslut.");
-            Console.ReadKey();
-            Console.Clear();
-
-            KontoMenu();
         }
 
         public static void OverførBeløb()
         {
-            Console.Clear();
-
-            int fraKonto = _kontoNummer;
+            /*int fraKonto = _kontoNummer;
             string tilKonto = IndtastKontonummer();
             string strBeløb = IndtastBeløb();
 
@@ -314,6 +224,7 @@ namespace G_Unit_Windows
             Console.Clear();
 
             KontoMenu();
+            */
         }
 
         // Hjælpefunktion til bruger input.
@@ -338,14 +249,12 @@ namespace G_Unit_Windows
         }
 
         // Hjælpefunktion til bruger input.
-        public static string IndtastBeløb()
+        public static string IndtastBeløb(string strBeløb)
         {
-            string strBeløb;
+//            string ;
 
             while (true)
             {
-                Console.Write("Indtast Beløb: ");
-                strBeløb = Console.ReadLine();
 
                 // Normalisering af beløb.
                 strBeløb = strBeløb.Replace("-", "").Replace("+", "").Replace(",", ".");
@@ -362,7 +271,7 @@ namespace G_Unit_Windows
 
         public static void OpretTransaktion(string beløb, int kontoNummer)
         {
-            string SQLSend = $"insert into Transaktion values (GETDATE(), {beløb}, {kontoNummer}); ";
+            string SQLSend = $"insert into Transaktion values (GETDATE(), '{beløb}', {kontoNummer}); ";
             Database.SQLkommandoSet(SQLSend);
         }
     }
