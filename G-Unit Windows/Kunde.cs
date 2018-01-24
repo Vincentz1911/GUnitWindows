@@ -32,7 +32,7 @@ namespace G_Unit_Windows
         //******** CHECKER OM DER ER EKSISTERENDE CPR NR *********
         public static bool CheckCPR(string str)
         {
-            SQLSend = $"select CPR from Kunde where CPR = {str}";
+            SQLSend = $"select CPR from Kunde where CPR = '{str}'";
             SQLData = Database.SQLkommandoGet(SQLSend);
             if (SQLData.Length == 0) return true;
             else return false;
@@ -81,6 +81,16 @@ namespace G_Unit_Windows
             SQLData = Database.SQLkommandoGet(SQLSend);
             ParseKunde(SQLData);
         }
+
+        public static void AktiverKunde(int kundenr)
+        {
+            SQLSend = $"UPDATE Kunde set kundeslutdato = '' where PK_kundenr = '{kundenr}';";
+            Database.SQLkommandoSet(SQLSend);
+            SQLSend = $"select * from Kunde where PK_kundenr like '{kundenr}'";
+            SQLData = Database.SQLkommandoGet(SQLSend);
+            ParseKunde(SQLData);
+        }
+
 
         public static void RetKunde(string nytnavn, string str)
         {

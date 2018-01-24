@@ -58,7 +58,7 @@ namespace G_Unit_Windows
         private static string[] TransaktionSøger(string SQLSend)
         {
             //string SQLGet = sql;
-            string[] SQLData = Database.SQLkommandoGet(SQLSend);
+            SQLData = Database.SQLkommandoGet(SQLSend);
 
             if (SQLData.Length == 0)
             {
@@ -82,38 +82,36 @@ namespace G_Unit_Windows
             int kontoNummer;
 
             // Opretter konto.
-            string SQLSend = $"IF exists (select 1 from Kunde where PK_kundenr = '{kundenr}') insert into Konto values(0, GETDATE(), null, (select PK_kundenr from Kunde where PK_kundenr = '{kundenr}') , '{kontoType}');";
+            SQLSend = $"IF exists (select 1 from Kunde where PK_kundenr = '{kundenr}') insert into Konto values(0, GETDATE(), null, (select PK_kundenr from Kunde where PK_kundenr = '{kundenr}') , '{kontoType}');";
             Database.SQLkommandoSet(SQLSend);
 
             // Finder senest oprettet kontonr til brug i kontomenu.
-            string SQLGet = $"select PK_kontonr from Konto where FK_kundenr = '{kundenr}' order by PK_kontonr desc;";
-            string strKontonummer = Database.SQLkommandoGet(SQLGet)[0];
-            kontoNummer = int.Parse(strKontonummer);
+            SQLSend = $"select PK_kontonr from Konto where FK_kundenr = '{kundenr}' order by PK_kontonr desc;";
+            SQLData = Database.SQLkommandoGet(SQLSend);
+            kontoNummer = int.Parse(SQLData[0]);
             _kontoNummer = kontoNummer;
         }
 
         public static string[] VælgKonto(int kundenr)
         {
             // Find Konti
-            string SQLGet = $"select PK_kontonr, saldo, kontodato, kontoslutdato, FK_kontotypeID, kontotypenavn, rente from Konto, KontoType where FK_kundenr = {kundenr} and PK_kontotypeID = FK_kontotypeID;";
-            string[] kontoArr = Database.SQLkommandoGet(SQLGet);
+            SQLSend = $"select PK_kontonr, saldo, kontodato, kontoslutdato, FK_kontotypeID, kontotypenavn, rente from Konto, KontoType where FK_kundenr = {kundenr} and PK_kontotypeID = FK_kontotypeID;";
+            SQLData = Database.SQLkommandoGet(SQLSend);
 
             int count = 0;
-            string[] KontoArray = new string[kontoArr.Length];
+            string[] KontoArray = new string[SQLData.Length];
 
-            ParseKonto(kontoArr);
+            ParseKonto(SQLData);
 
-            for (int i = 0; i < kontoArr.Length / 7; i++)
+            for (int i = 0; i < SQLData.Length / 7; i++)
             {
                 Array.Resize(ref KontoArray, i + 1);
                 // Check om oprettelses dato er null, erstatter med "Ingen".
-                string slutdato = kontoArr[3 + count] == "" ? "Ingen" : kontoArr[3 + count];
+                string slutdato = SQLData[3 + count] == "" ? "Ingen" : SQLData[3 + count];
 
                 // Ændre konto type nr til "lån", "opsparing" etc.
-                string kontotype = kontoTypeNavne[int.Parse(kontoArr[4 + count]) - 1];
-                KontoArray[i] = $"{kontoArr[0 + count]}, Saldo: kr. {kontoArr[1 + count]} -- Type: {kontoArr[5 + count]} Rente: {kontoArr[6 + count]}% -- \n Oprettet: {kontoArr[2 + count]} -- Konto slutdato: {slutdato}";
-                //                KontoArray[i] = $"{kontoArr[0 + count]}, Saldo: {kontoArr[1 + count]}, Oprettelses dato: {kontoArr[2 + count]}, Konto slut dato: {slutdato}, Konto Type: {kontoArr[4 + count]}";
-                //Console.WriteLine($"Kontonr: {kontoArr[0 + count]}, Saldo: {kontoArr[1 + count]}, Oprettelses dato: {kontoArr[2 + count]}, Konto slut dato: {slutdato}, Konto Type: {kontotype}");
+                string kontotype = kontoTypeNavne[int.Parse(SQLData[4 + count]) - 1];
+                KontoArray[i] = $"{SQLData[0 + count]}, Saldo: kr. {SQLData[1 + count]} -- Type: {SQLData[5 + count]} Rente: {SQLData[6 + count]}% -- \n Oprettet: {SQLData[2 + count]} -- Konto slutdato: {slutdato}";
                 count += 7;
             }
             return KontoArray;
@@ -155,92 +153,47 @@ namespace G_Unit_Windows
 
         public static void SletKonto(int _kontoNummer)
         {
-            string SQLSend = $"if exists (select 1 from Konto where PK_kontonr = '{_kontoNummer}')  update Konto set kontoslutdato = GETDATE() where PK_kontonr = '{_kontoNummer}';";
+            SQLSend = $"if exists (select 1 from Konto where PK_kontonr = '{_kontoNummer}')  update Konto set kontoslutdato = GETDATE() where PK_kontonr = '{_kontoNummer}';";
             Database.SQLkommandoSet(SQLSend);
         }
 
         public static void IndsætBeløb(string strBeløb, int _kontoNummer)
         {
-            string SQLSend = $"if exists (select 1 from Konto where PK_kontonr = {_kontoNummer})  update Konto set saldo = saldo + {strBeløb} where PK_kontonr = {_kontoNummer};";
+            SQLSend = $"if exists (select 1 from Konto where PK_kontonr = {_kontoNummer})  update Konto set saldo = saldo + {strBeløb} where PK_kontonr = {_kontoNummer};";
             Database.SQLkommandoSet(SQLSend);
             OpretTransaktion(strBeløb, _kontoNummer);
         }
 
         public static void HævBeløb(string strBeløb, int _kontoNummer)
         {
-            string SQLSend = $"if exists (select 1 from Konto where PK_kontonr = {_kontoNummer})  update Konto set saldo = saldo - {strBeløb} where PK_kontonr = {_kontoNummer};";
+            SQLSend = $"if exists (select 1 from Konto where PK_kontonr = {_kontoNummer})  update Konto set saldo = saldo - {strBeløb} where PK_kontonr = {_kontoNummer};";
             Database.SQLkommandoSet(SQLSend);
             OpretTransaktion($"-{strBeløb}", _kontoNummer);
         }
 
         public static void OverførBeløb(int fraKonto, string tilKonto, string strBeløb)
         {
-            string SQLSend = $"update Konto set saldo = saldo - {strBeløb} where PK_kontonr = '{fraKonto}';";
+            SQLSend = $"update Konto set saldo = saldo - {strBeløb} where PK_kontonr = '{fraKonto}';";
             Database.SQLkommandoSet(SQLSend);
 
-            string SQLGet = $"select 1 from Konto where PK_kontonr = {tilKonto};";
-            string[] checkifkontoexists = Database.SQLkommandoGet(SQLGet);
+            SQLSend = $"select 1 from Konto where PK_kontonr = {tilKonto};";
+            SQLData = Database.SQLkommandoGet(SQLSend);
 
-            if (checkifkontoexists.Length != 0)
+            if (SQLData.Length != 0)
             {
                 SQLSend = $"update Konto set saldo = saldo + {strBeløb} where PK_kontonr = {tilKonto};";
                 Database.SQLkommandoSet(SQLSend);
                 SQLSend = $"insert into Transaktion values (GETDATE(), '{strBeløb}', {tilKonto}); ";
                 Database.SQLkommandoSet(SQLSend);
             }
-
             else
             {
                 SQLSend = $"insert into Transaktion values (GETDATE(), '{strBeløb}', null); ";
                 Database.SQLkommandoSet(SQLSend);
-
-
             }
             //Opret af transaktion. 
             OpretTransaktion($"-{strBeløb}", fraKonto);
             //OpretTransaktion($"{strBeløb}", int.Parse(tilKonto));
-        }
-
-        // Hjælpefunktion til bruger input.
-        public static string IndtastKontonummer()
-        {
-            string kontoNummer;
-
-            while (true)
-            {
-                Console.Write("Indtast Konto Nummer: ");
-                kontoNummer = Console.ReadLine();
-
-                if (!int.TryParse(kontoNummer, out var x))
-                {
-                    Console.Write($"\nUgyldigt Kontonummer {x}.\n");
-                    continue;
-                }
-                break;
-            }
-
-            return kontoNummer;
-        }
-
-        // Hjælpefunktion til bruger input.
-        public static string IndtastBeløb(string strBeløb)
-        {
-            //            string ;
-
-            while (true)
-            {
-
-                // Normalisering af beløb.
-                strBeløb = strBeløb.Replace("-", "").Replace("+", "").Replace(",", ".");
-
-                if (!float.TryParse(strBeløb, out var x))
-                {
-                    Console.Write($"\nUgyldigt beløb {x}.\n");
-                    continue;
-                }
-                break;
-            }
-            return strBeløb;
         }
 
         public static float CheckSaldo(int str)

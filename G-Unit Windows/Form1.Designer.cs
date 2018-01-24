@@ -29,9 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.NyKundeMenu = new System.Windows.Forms.Button();
+            this.OpretKundeMenu = new System.Windows.Forms.Button();
             this.FindKundeMenu = new System.Windows.Forms.Button();
-            this.SletKundeMenu = new System.Windows.Forms.Button();
             this.OpretKundeNavn = new System.Windows.Forms.TextBox();
             this.OpretKundeCPR = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -88,6 +87,8 @@
             this.RetKundeNavn = new System.Windows.Forms.TextBox();
             this.RetKundeKnap = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
+            this.DigiClockTextBox = new System.Windows.Forms.TextBox();
+            this.Music = new System.Windows.Forms.CheckBox();
             this.OpretNyKundeGruppe.SuspendLayout();
             this.FindKundeGruppe.SuspendLayout();
             this.KundeMenuGruppe.SuspendLayout();
@@ -98,16 +99,16 @@
             this.RetKundeGruppe.SuspendLayout();
             this.SuspendLayout();
             // 
-            // NyKundeMenu
+            // OpretKundeMenu
             // 
-            this.NyKundeMenu.Location = new System.Drawing.Point(25, 25);
-            this.NyKundeMenu.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.NyKundeMenu.Name = "NyKundeMenu";
-            this.NyKundeMenu.Size = new System.Drawing.Size(155, 35);
-            this.NyKundeMenu.TabIndex = 0;
-            this.NyKundeMenu.Text = "Ny kunde";
-            this.NyKundeMenu.UseVisualStyleBackColor = true;
-            this.NyKundeMenu.Click += new System.EventHandler(this.NyKundeMenu_Click);
+            this.OpretKundeMenu.Location = new System.Drawing.Point(25, 25);
+            this.OpretKundeMenu.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.OpretKundeMenu.Name = "OpretKundeMenu";
+            this.OpretKundeMenu.Size = new System.Drawing.Size(155, 35);
+            this.OpretKundeMenu.TabIndex = 0;
+            this.OpretKundeMenu.Text = "Ny kunde";
+            this.OpretKundeMenu.UseVisualStyleBackColor = true;
+            this.OpretKundeMenu.Click += new System.EventHandler(this.OpretKundeMenu_Click);
             // 
             // FindKundeMenu
             // 
@@ -119,17 +120,6 @@
             this.FindKundeMenu.Text = "Find kunde";
             this.FindKundeMenu.UseVisualStyleBackColor = true;
             this.FindKundeMenu.Click += new System.EventHandler(this.FindKundeMenu_Click);
-            // 
-            // SletKundeMenu
-            // 
-            this.SletKundeMenu.Location = new System.Drawing.Point(204, 239);
-            this.SletKundeMenu.Margin = new System.Windows.Forms.Padding(10, 10, 25, 25);
-            this.SletKundeMenu.Name = "SletKundeMenu";
-            this.SletKundeMenu.Size = new System.Drawing.Size(101, 35);
-            this.SletKundeMenu.TabIndex = 2;
-            this.SletKundeMenu.Text = "Slet kunde";
-            this.SletKundeMenu.UseVisualStyleBackColor = true;
-            this.SletKundeMenu.Click += new System.EventHandler(this.SletKundeMenu_Click);
             // 
             // OpretKundeNavn
             // 
@@ -303,7 +293,6 @@
             this.KundeMenuGruppe.Controls.Add(this.label9);
             this.KundeMenuGruppe.Controls.Add(this.label8);
             this.KundeMenuGruppe.Controls.Add(this.Kundenr);
-            this.KundeMenuGruppe.Controls.Add(this.SletKundeMenu);
             this.KundeMenuGruppe.Controls.Add(this.label7);
             this.KundeMenuGruppe.Controls.Add(this.label6);
             this.KundeMenuGruppe.Controls.Add(this.KundeSlut);
@@ -323,36 +312,37 @@
             // 
             // RetKundeMenu
             // 
-            this.RetKundeMenu.Location = new System.Drawing.Point(28, 239);
+            this.RetKundeMenu.Font = new System.Drawing.Font("Wingdings", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.RetKundeMenu.Location = new System.Drawing.Point(66, 84);
             this.RetKundeMenu.Margin = new System.Windows.Forms.Padding(25, 10, 25, 25);
             this.RetKundeMenu.Name = "RetKundeMenu";
-            this.RetKundeMenu.Size = new System.Drawing.Size(101, 35);
+            this.RetKundeMenu.Size = new System.Drawing.Size(24, 23);
             this.RetKundeMenu.TabIndex = 22;
-            this.RetKundeMenu.Text = "Ret kunde";
+            this.RetKundeMenu.Text = "@";
             this.RetKundeMenu.UseVisualStyleBackColor = true;
             this.RetKundeMenu.Click += new System.EventHandler(this.RetKundeMenu_Click);
             // 
             // AktivKunde
             // 
             this.AktivKunde.AutoSize = true;
-            this.AktivKunde.Enabled = false;
-            this.AktivKunde.Location = new System.Drawing.Point(235, 44);
+            this.AktivKunde.Location = new System.Drawing.Point(209, 46);
             this.AktivKunde.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.AktivKunde.Name = "AktivKunde";
-            this.AktivKunde.Size = new System.Drawing.Size(67, 22);
+            this.AktivKunde.Size = new System.Drawing.Size(97, 22);
             this.AktivKunde.TabIndex = 21;
-            this.AktivKunde.Text = "Slettet";
+            this.AktivKunde.Text = "Deaktiveret";
             this.AktivKunde.UseVisualStyleBackColor = true;
+            this.AktivKunde.CheckedChanged += new System.EventHandler(this.AktivKunde_CheckedChanged);
             // 
             // KontiListe
             // 
             this.KontiListe.BackColor = System.Drawing.Color.Honeydew;
             this.KontiListe.FormattingEnabled = true;
             this.KontiListe.ItemHeight = 18;
-            this.KontiListe.Location = new System.Drawing.Point(28, 319);
+            this.KontiListe.Location = new System.Drawing.Point(30, 284);
             this.KontiListe.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.KontiListe.Name = "KontiListe";
-            this.KontiListe.Size = new System.Drawing.Size(278, 166);
+            this.KontiListe.Size = new System.Drawing.Size(276, 202);
             this.KontiListe.TabIndex = 17;
             this.KontiListe.SelectedIndexChanged += new System.EventHandler(this.KontiListe_SelectedIndexChanged);
             // 
@@ -370,7 +360,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(25, 299);
+            this.label9.Location = new System.Drawing.Point(27, 264);
             this.label9.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(40, 18);
@@ -393,7 +383,7 @@
             this.Kundenr.Margin = new System.Windows.Forms.Padding(3, 15, 25, 2);
             this.Kundenr.Name = "Kundenr";
             this.Kundenr.ReadOnly = true;
-            this.Kundenr.Size = new System.Drawing.Size(121, 23);
+            this.Kundenr.Size = new System.Drawing.Size(94, 23);
             this.Kundenr.TabIndex = 15;
             // 
             // label7
@@ -402,9 +392,9 @@
             this.label7.Location = new System.Drawing.Point(27, 207);
             this.label7.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(32, 18);
+            this.label7.Size = new System.Drawing.Size(59, 18);
             this.label7.TabIndex = 14;
-            this.label7.Text = "Slut";
+            this.label7.Text = "Slutdato";
             // 
             // label6
             // 
@@ -412,9 +402,9 @@
             this.label6.Location = new System.Drawing.Point(27, 167);
             this.label6.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(38, 18);
+            this.label6.Size = new System.Drawing.Size(60, 18);
             this.label6.TabIndex = 13;
-            this.label6.Text = "Start";
+            this.label6.Text = "Oprettet";
             // 
             // KundeSlut
             // 
@@ -440,9 +430,9 @@
             this.label5.Location = new System.Drawing.Point(27, 127);
             this.label5.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(32, 18);
+            this.label5.Size = new System.Drawing.Size(51, 18);
             this.label5.TabIndex = 10;
-            this.label5.Text = "CPR";
+            this.label5.Text = "CPR-nr";
             // 
             // KundeCPR
             // 
@@ -474,7 +464,7 @@
             // 
             // SletKontoKnap
             // 
-            this.SletKontoKnap.Location = new System.Drawing.Point(404, 28);
+            this.SletKontoKnap.Location = new System.Drawing.Point(404, 37);
             this.SletKontoKnap.Margin = new System.Windows.Forms.Padding(25, 10, 25, 25);
             this.SletKontoKnap.Name = "SletKontoKnap";
             this.SletKontoKnap.Size = new System.Drawing.Size(101, 35);
@@ -529,7 +519,7 @@
             this.OpretKontoGruppe.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.OpretKontoGruppe.Name = "OpretKontoGruppe";
             this.OpretKontoGruppe.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.OpretKontoGruppe.Size = new System.Drawing.Size(155, 215);
+            this.OpretKontoGruppe.Size = new System.Drawing.Size(155, 225);
             this.OpretKontoGruppe.TabIndex = 15;
             this.OpretKontoGruppe.TabStop = false;
             this.OpretKontoGruppe.Text = "Opret konto";
@@ -537,7 +527,7 @@
             // 
             // FortrydOpretKontoKnap
             // 
-            this.FortrydOpretKontoKnap.Location = new System.Drawing.Point(26, 162);
+            this.FortrydOpretKontoKnap.Location = new System.Drawing.Point(27, 163);
             this.FortrydOpretKontoKnap.Margin = new System.Windows.Forms.Padding(25, 10, 25, 25);
             this.FortrydOpretKontoKnap.Name = "FortrydOpretKontoKnap";
             this.FortrydOpretKontoKnap.Size = new System.Drawing.Size(101, 35);
@@ -783,12 +773,38 @@
             this.label16.TabIndex = 5;
             this.label16.Text = "Nyt navn";
             // 
+            // DigiClockTextBox
+            // 
+            this.DigiClockTextBox.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.DigiClockTextBox.Enabled = false;
+            this.DigiClockTextBox.Location = new System.Drawing.Point(25, 562);
+            this.DigiClockTextBox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.DigiClockTextBox.Name = "DigiClockTextBox";
+            this.DigiClockTextBox.ReadOnly = true;
+            this.DigiClockTextBox.Size = new System.Drawing.Size(155, 23);
+            this.DigiClockTextBox.TabIndex = 0;
+            this.DigiClockTextBox.TabStop = false;
+            this.DigiClockTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // Music
+            // 
+            this.Music.AutoSize = true;
+            this.Music.Location = new System.Drawing.Point(52, 523);
+            this.Music.Name = "Music";
+            this.Music.Size = new System.Drawing.Size(92, 22);
+            this.Music.TabIndex = 24;
+            this.Music.Text = "In Da Bank";
+            this.Music.UseVisualStyleBackColor = true;
+            this.Music.CheckedChanged += new System.EventHandler(this.Music_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.ClientSize = new System.Drawing.Size(1130, 1028);
+            this.Controls.Add(this.Music);
+            this.Controls.Add(this.DigiClockTextBox);
             this.Controls.Add(this.KundeListeGruppe);
             this.Controls.Add(this.RetKundeGruppe);
             this.Controls.Add(this.DataSourceGruppe);
@@ -796,7 +812,7 @@
             this.Controls.Add(this.TransaktionerGruppe);
             this.Controls.Add(this.OpretNyKundeGruppe);
             this.Controls.Add(this.FindKundeMenu);
-            this.Controls.Add(this.NyKundeMenu);
+            this.Controls.Add(this.OpretKundeMenu);
             this.Controls.Add(this.KundeMenuGruppe);
             this.Controls.Add(this.FindKundeGruppe);
             this.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -823,14 +839,14 @@
             this.RetKundeGruppe.ResumeLayout(false);
             this.RetKundeGruppe.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button NyKundeMenu;
+        private System.Windows.Forms.Button OpretKundeMenu;
         private System.Windows.Forms.Button FindKundeMenu;
-        private System.Windows.Forms.Button SletKundeMenu;
         private System.Windows.Forms.TextBox OpretKundeNavn;
         private System.Windows.Forms.TextBox OpretKundeCPR;
         private System.Windows.Forms.Label label1;
@@ -887,6 +903,8 @@
         private System.Windows.Forms.Button RetKundeMenu;
         private System.Windows.Forms.Button FortrydOpretKontoKnap;
         private System.Windows.Forms.Button FortrydNavnKnap;
+        private System.Windows.Forms.TextBox DigiClockTextBox;
+        private System.Windows.Forms.CheckBox Music;
     }
 }
 
