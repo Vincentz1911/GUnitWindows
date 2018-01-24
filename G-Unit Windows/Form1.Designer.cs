@@ -46,6 +46,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.FindKundeListe = new System.Windows.Forms.ListBox();
             this.KundeMenuGruppe = new System.Windows.Forms.GroupBox();
+            this.RetKundeMenu = new System.Windows.Forms.Button();
             this.AktivKunde = new System.Windows.Forms.CheckBox();
             this.KontiListe = new System.Windows.Forms.ListBox();
             this.OpretKontoMenu = new System.Windows.Forms.Button();
@@ -64,7 +65,8 @@
             this.comboBoxKontoType = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.OpretKontoKnap = new System.Windows.Forms.Button();
-            this.OpretNyKontoGruppe = new System.Windows.Forms.GroupBox();
+            this.OpretKontoGruppe = new System.Windows.Forms.GroupBox();
+            this.FortrydOpretKontoKnap = new System.Windows.Forms.Button();
             this.TransaktionsListe = new System.Windows.Forms.ListBox();
             this.TransaktionerGruppe = new System.Windows.Forms.GroupBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -84,11 +86,10 @@
             this.RetKundeNavn = new System.Windows.Forms.TextBox();
             this.RetKundeKnap = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
-            this.RetKundeMenu = new System.Windows.Forms.Button();
             this.OpretNyKundeGruppe.SuspendLayout();
             this.FindKundeGruppe.SuspendLayout();
             this.KundeMenuGruppe.SuspendLayout();
-            this.OpretNyKontoGruppe.SuspendLayout();
+            this.OpretKontoGruppe.SuspendLayout();
             this.TransaktionerGruppe.SuspendLayout();
             this.KundeListeGruppe.SuspendLayout();
             this.DataSourceGruppe.SuspendLayout();
@@ -100,7 +101,7 @@
             this.NyKundeMenu.Location = new System.Drawing.Point(27, 25);
             this.NyKundeMenu.Margin = new System.Windows.Forms.Padding(4);
             this.NyKundeMenu.Name = "NyKundeMenu";
-            this.NyKundeMenu.Size = new System.Drawing.Size(133, 31);
+            this.NyKundeMenu.Size = new System.Drawing.Size(154, 31);
             this.NyKundeMenu.TabIndex = 0;
             this.NyKundeMenu.Text = "Ny kunde";
             this.NyKundeMenu.UseVisualStyleBackColor = true;
@@ -111,7 +112,7 @@
             this.FindKundeMenu.Location = new System.Drawing.Point(27, 63);
             this.FindKundeMenu.Margin = new System.Windows.Forms.Padding(4);
             this.FindKundeMenu.Name = "FindKundeMenu";
-            this.FindKundeMenu.Size = new System.Drawing.Size(133, 31);
+            this.FindKundeMenu.Size = new System.Drawing.Size(154, 31);
             this.FindKundeMenu.TabIndex = 1;
             this.FindKundeMenu.Text = "Find kunde";
             this.FindKundeMenu.UseVisualStyleBackColor = true;
@@ -318,6 +319,17 @@
             this.KundeMenuGruppe.TabStop = false;
             this.KundeMenuGruppe.Text = "Kundemenu";
             // 
+            // RetKundeMenu
+            // 
+            this.RetKundeMenu.Location = new System.Drawing.Point(23, 185);
+            this.RetKundeMenu.Margin = new System.Windows.Forms.Padding(4);
+            this.RetKundeMenu.Name = "RetKundeMenu";
+            this.RetKundeMenu.Size = new System.Drawing.Size(100, 31);
+            this.RetKundeMenu.TabIndex = 22;
+            this.RetKundeMenu.Text = "Ret kunde";
+            this.RetKundeMenu.UseVisualStyleBackColor = true;
+            this.RetKundeMenu.Click += new System.EventHandler(this.RetKundeMenu_Click);
+            // 
             // AktivKunde
             // 
             this.AktivKunde.AutoSize = true;
@@ -477,16 +489,16 @@
             "Løn",
             "Opsparing",
             "Lån"});
-            this.comboBoxKontoType.Location = new System.Drawing.Point(29, 64);
+            this.comboBoxKontoType.Location = new System.Drawing.Point(23, 54);
             this.comboBoxKontoType.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBoxKontoType.Name = "comboBoxKontoType";
-            this.comboBoxKontoType.Size = new System.Drawing.Size(280, 24);
+            this.comboBoxKontoType.Size = new System.Drawing.Size(100, 24);
             this.comboBoxKontoType.TabIndex = 18;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(25, 43);
+            this.label10.Location = new System.Drawing.Point(25, 33);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(76, 17);
@@ -495,7 +507,7 @@
             // 
             // OpretKontoKnap
             // 
-            this.OpretKontoKnap.Location = new System.Drawing.Point(211, 96);
+            this.OpretKontoKnap.Location = new System.Drawing.Point(23, 107);
             this.OpretKontoKnap.Margin = new System.Windows.Forms.Padding(4);
             this.OpretKontoKnap.Name = "OpretKontoKnap";
             this.OpretKontoKnap.Size = new System.Drawing.Size(100, 31);
@@ -504,21 +516,33 @@
             this.OpretKontoKnap.UseVisualStyleBackColor = true;
             this.OpretKontoKnap.Click += new System.EventHandler(this.OpretKontoKnap_Click);
             // 
-            // OpretNyKontoGruppe
+            // OpretKontoGruppe
             // 
-            this.OpretNyKontoGruppe.BackColor = System.Drawing.Color.Transparent;
-            this.OpretNyKontoGruppe.Controls.Add(this.OpretKontoKnap);
-            this.OpretNyKontoGruppe.Controls.Add(this.comboBoxKontoType);
-            this.OpretNyKontoGruppe.Controls.Add(this.label10);
-            this.OpretNyKontoGruppe.Location = new System.Drawing.Point(200, 793);
-            this.OpretNyKontoGruppe.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.OpretNyKontoGruppe.Name = "OpretNyKontoGruppe";
-            this.OpretNyKontoGruppe.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.OpretNyKontoGruppe.Size = new System.Drawing.Size(333, 148);
-            this.OpretNyKontoGruppe.TabIndex = 15;
-            this.OpretNyKontoGruppe.TabStop = false;
-            this.OpretNyKontoGruppe.Text = "Opret konto";
-            this.OpretNyKontoGruppe.Visible = false;
+            this.OpretKontoGruppe.BackColor = System.Drawing.Color.Transparent;
+            this.OpretKontoGruppe.Controls.Add(this.FortrydOpretKontoKnap);
+            this.OpretKontoGruppe.Controls.Add(this.OpretKontoKnap);
+            this.OpretKontoGruppe.Controls.Add(this.comboBoxKontoType);
+            this.OpretKontoGruppe.Controls.Add(this.label10);
+            this.OpretKontoGruppe.Location = new System.Drawing.Point(27, 265);
+            this.OpretKontoGruppe.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.OpretKontoGruppe.Name = "OpretKontoGruppe";
+            this.OpretKontoGruppe.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.OpretKontoGruppe.Size = new System.Drawing.Size(154, 191);
+            this.OpretKontoGruppe.TabIndex = 15;
+            this.OpretKontoGruppe.TabStop = false;
+            this.OpretKontoGruppe.Text = "Opret konto";
+            this.OpretKontoGruppe.Visible = false;
+            // 
+            // FortrydOpretKontoKnap
+            // 
+            this.FortrydOpretKontoKnap.Location = new System.Drawing.Point(23, 146);
+            this.FortrydOpretKontoKnap.Margin = new System.Windows.Forms.Padding(4);
+            this.FortrydOpretKontoKnap.Name = "FortrydOpretKontoKnap";
+            this.FortrydOpretKontoKnap.Size = new System.Drawing.Size(100, 31);
+            this.FortrydOpretKontoKnap.TabIndex = 21;
+            this.FortrydOpretKontoKnap.Text = "Fortryd";
+            this.FortrydOpretKontoKnap.UseVisualStyleBackColor = true;
+            this.FortrydOpretKontoKnap.Click += new System.EventHandler(this.FortrydOpretKontoKnap_Click);
             // 
             // TransaktionsListe
             // 
@@ -669,7 +693,7 @@
             this.DataSourceGruppe.Margin = new System.Windows.Forms.Padding(4);
             this.DataSourceGruppe.Name = "DataSourceGruppe";
             this.DataSourceGruppe.Padding = new System.Windows.Forms.Padding(4);
-            this.DataSourceGruppe.Size = new System.Drawing.Size(133, 100);
+            this.DataSourceGruppe.Size = new System.Drawing.Size(154, 100);
             this.DataSourceGruppe.TabIndex = 23;
             this.DataSourceGruppe.TabStop = false;
             this.DataSourceGruppe.Text = "Data Source";
@@ -706,7 +730,7 @@
             this.RetKundeGruppe.Controls.Add(this.RetKundeNavn);
             this.RetKundeGruppe.Controls.Add(this.RetKundeKnap);
             this.RetKundeGruppe.Controls.Add(this.label16);
-            this.RetKundeGruppe.Location = new System.Drawing.Point(560, 772);
+            this.RetKundeGruppe.Location = new System.Drawing.Point(200, 795);
             this.RetKundeGruppe.Margin = new System.Windows.Forms.Padding(4);
             this.RetKundeGruppe.Name = "RetKundeGruppe";
             this.RetKundeGruppe.Padding = new System.Windows.Forms.Padding(4);
@@ -745,17 +769,6 @@
             this.label16.TabIndex = 5;
             this.label16.Text = "Nyt navn";
             // 
-            // RetKundeMenu
-            // 
-            this.RetKundeMenu.Location = new System.Drawing.Point(23, 185);
-            this.RetKundeMenu.Margin = new System.Windows.Forms.Padding(4);
-            this.RetKundeMenu.Name = "RetKundeMenu";
-            this.RetKundeMenu.Size = new System.Drawing.Size(100, 31);
-            this.RetKundeMenu.TabIndex = 22;
-            this.RetKundeMenu.Text = "Ret kunde";
-            this.RetKundeMenu.UseVisualStyleBackColor = true;
-            this.RetKundeMenu.Click += new System.EventHandler(this.RetKundeMenu_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -765,7 +778,7 @@
             this.Controls.Add(this.RetKundeGruppe);
             this.Controls.Add(this.DataSourceGruppe);
             this.Controls.Add(this.KundeListeGruppe);
-            this.Controls.Add(this.OpretNyKontoGruppe);
+            this.Controls.Add(this.OpretKontoGruppe);
             this.Controls.Add(this.TransaktionerGruppe);
             this.Controls.Add(this.FindKundeGruppe);
             this.Controls.Add(this.OpretNyKundeGruppe);
@@ -785,8 +798,8 @@
             this.FindKundeGruppe.PerformLayout();
             this.KundeMenuGruppe.ResumeLayout(false);
             this.KundeMenuGruppe.PerformLayout();
-            this.OpretNyKontoGruppe.ResumeLayout(false);
-            this.OpretNyKontoGruppe.PerformLayout();
+            this.OpretKontoGruppe.ResumeLayout(false);
+            this.OpretKontoGruppe.PerformLayout();
             this.TransaktionerGruppe.ResumeLayout(false);
             this.TransaktionerGruppe.PerformLayout();
             this.KundeListeGruppe.ResumeLayout(false);
@@ -831,7 +844,7 @@
         private System.Windows.Forms.ComboBox comboBoxKontoType;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button OpretKontoKnap;
-        private System.Windows.Forms.GroupBox OpretNyKontoGruppe;
+        private System.Windows.Forms.GroupBox OpretKontoGruppe;
         private System.Windows.Forms.ListBox TransaktionsListe;
         private System.Windows.Forms.ListBox KontiListe;
         private System.Windows.Forms.GroupBox TransaktionerGruppe;
@@ -857,6 +870,7 @@
         private System.Windows.Forms.Button RetKundeKnap;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Button RetKundeMenu;
+        private System.Windows.Forms.Button FortrydOpretKontoKnap;
     }
 }
 

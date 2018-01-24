@@ -27,7 +27,7 @@ namespace G_Unit_Windows
             OpretNyKundeGruppe.Location = new Point(150, 20);
             FindKundeGruppe.Location = new Point(150, 20);
             KundeMenuGruppe.Location = new Point(150, 20);
-            OpretNyKontoGruppe.Location = new Point(420, 20);
+            //OpretKontoGruppe.Location = new Point(27, 265);
             TransaktionerGruppe.Location = new Point(420, 20);
             KundeListeGruppe.Location = new Point(420, 20);
 
@@ -38,7 +38,7 @@ namespace G_Unit_Windows
             OpretNyKundeGruppe.Visible = false;
             FindKundeGruppe.Visible = false;
             KundeMenuGruppe.Visible = false;
-            OpretNyKontoGruppe.Visible = false;
+            OpretKontoGruppe.Visible = false;
             TransaktionerGruppe.Visible = false;
             KundeListeGruppe.Visible = false;
             RetKundeGruppe.Visible = false;
@@ -200,13 +200,13 @@ namespace G_Unit_Windows
         private void OpretKontoMenu_Click(object sender, EventArgs e)
         {
             TransaktionerGruppe.Visible = false;
-            OpretNyKontoGruppe.Visible = true;
+            OpretKontoGruppe.Visible = true;
         }
         private void OpretKontoKnap_Click(object sender, EventArgs e)
         {
             Konto.OpretKonto(Kunde.PK_kundenr[0], comboBoxKontoType.SelectedIndex + 1);
             KundeMenuUpdate();
-            OpretNyKontoGruppe.Visible = false;
+            OpretKontoGruppe.Visible = false;
         }
         private void SletKontoKnap_Click(object sender, EventArgs e)
         {
@@ -326,6 +326,11 @@ namespace G_Unit_Windows
             Kunde.RetKunde(RetKundeNavn.Text, Kunde.PK_kundenr[0].ToString());
             RetKundeGruppe.Visible = false;
             KundeMenuUpdate();
+        }
+
+        private void FortrydOpretKontoKnap_Click(object sender, EventArgs e)
+        {
+            OpretKontoGruppe.Visible = false;
         }
     }
 }
