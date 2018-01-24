@@ -115,6 +115,7 @@ namespace G_Unit_Windows
         }
         private void OpretKundeKnap_Click(object sender, EventArgs e)
         {
+
             if (OpretKundeNavn.Text == "")
             {
                 MessageBox.Show("Navnet mangler. Prøv igen.");
@@ -127,12 +128,21 @@ namespace G_Unit_Windows
                 return;
             }
 
+            bool checkCPR = Kunde.CheckCPR(OpretKundeCPR.Text);
+            if (!checkCPR)
+            {
+                MessageBox.Show("CPR nummeret eksisterer allerede!");
+                OpretKundeCPR.Clear();
+                return;
+            }
+
             Kunde.OpretKunde(OpretKundeNavn.Text, OpretKundeCPR.Text);
             OpretKundeNavn.Clear(); OpretKundeCPR.Clear();
             AllInvisible();
             KundeMenuGruppe.Visible = true;
             KundeMenuUpdate();
         }
+
         private void FindKundeKnap_Click(object sender, EventArgs e)
         {
             FindKundeListe.Items.Clear();
@@ -210,6 +220,8 @@ namespace G_Unit_Windows
         }
         private void SletKontoKnap_Click(object sender, EventArgs e)
         {
+            //if (Konto.saldo)
+
             DialogResult dialogResult = MessageBox.Show("Er du sikker på at du vil slette kontoen??", "Slet konto?", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {

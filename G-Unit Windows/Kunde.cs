@@ -43,6 +43,14 @@ namespace G_Unit_Windows
             //KundeMenu(int.Parse(SQLData[0]));
         }
 
+        public static bool CheckCPR(string str)
+        {
+            string SQLGet = $"select CPR from Kunde where CPR = {str}";
+            string[] check = Database.SQLkommandoGet(SQLGet);
+            if (check.Length == 0) return true;
+            else return false;
+        }
+
         //******************* FIND KUNDE *******************
         public static void FindKunde(string str, int valg, int sorter)
         {
@@ -60,8 +68,8 @@ namespace G_Unit_Windows
                     break;
 
                 case "3": // Søger efter kunde baseret på kontonummer
-                    if (sorter == 1) SQLSend = $"select PK_kundenr, kundenavn, kundedato, kundeslutdato, CPR from Konto, Kunde where PK_kontonr = '%{str}%' and PK_kundenr = FK_kundenr";
-                    else SQLSend = $"select PK_kundenr, kundenavn, kundedato, kundeslutdato, CPR from Konto, Kunde where PK_kontonr = '%{str}%' and PK_kundenr = FK_kundenr order by kundenavn";
+                    if (sorter == 1) SQLSend = $"select PK_kundenr, kundenavn, kundedato, kundeslutdato, CPR from Konto, Kunde where PK_kontonr = '{str}' and PK_kundenr = FK_kundenr";
+                    else SQLSend = $"select PK_kundenr, kundenavn, kundedato, kundeslutdato, CPR from Konto, Kunde where PK_kontonr = '{str}' and PK_kundenr = FK_kundenr order by kundenavn";
                     break;
 
                 case "4": // Søger efter kunde på CPR-nummer
