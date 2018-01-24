@@ -44,13 +44,14 @@ namespace G_Unit_Windows
         }
 
         //******************* FIND KUNDE *******************
-        public static void FindKunde(string str, int valg)
+        public static void FindKunde(string str, int valg, int sorter)
         {
             //string str;
             switch (valg.ToString())
             {
                 case "1": // Søger efter kundenavn
-                    SQLSend = $"select * from Kunde where kundenavn like '%{str}%'";
+                    if (sorter == 1) SQLSend = $"select * from Kunde where kundenavn like '%{str}%'";
+                    else SQLSend = $"select * from Kunde where kundenavn like '%{str}%' order by kundenavn";
                     break;
 
                 case "2": // Søger efter kunde på kundenummer

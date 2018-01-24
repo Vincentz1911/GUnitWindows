@@ -38,6 +38,8 @@
             this.OpretKundeKnap = new System.Windows.Forms.Button();
             this.OpretNyKundeGruppe = new System.Windows.Forms.GroupBox();
             this.FindKundeGruppe = new System.Windows.Forms.GroupBox();
+            this.DropDownSorter = new System.Windows.Forms.ComboBox();
+            this.label14 = new System.Windows.Forms.Label();
             this.DropDownFind = new System.Windows.Forms.ComboBox();
             this.FindKundeKnap = new System.Windows.Forms.Button();
             this.FindKundeSøg = new System.Windows.Forms.TextBox();
@@ -90,7 +92,7 @@
             // NyKundeMenu
             // 
             this.NyKundeMenu.Location = new System.Drawing.Point(27, 25);
-            this.NyKundeMenu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.NyKundeMenu.Margin = new System.Windows.Forms.Padding(4);
             this.NyKundeMenu.Name = "NyKundeMenu";
             this.NyKundeMenu.Size = new System.Drawing.Size(133, 31);
             this.NyKundeMenu.TabIndex = 0;
@@ -101,7 +103,7 @@
             // FindKundeMenu
             // 
             this.FindKundeMenu.Location = new System.Drawing.Point(27, 63);
-            this.FindKundeMenu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.FindKundeMenu.Margin = new System.Windows.Forms.Padding(4);
             this.FindKundeMenu.Name = "FindKundeMenu";
             this.FindKundeMenu.Size = new System.Drawing.Size(133, 31);
             this.FindKundeMenu.TabIndex = 1;
@@ -112,7 +114,7 @@
             // SletKundeMenu
             // 
             this.SletKundeMenu.Location = new System.Drawing.Point(201, 185);
-            this.SletKundeMenu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SletKundeMenu.Margin = new System.Windows.Forms.Padding(4);
             this.SletKundeMenu.Name = "SletKundeMenu";
             this.SletKundeMenu.Size = new System.Drawing.Size(100, 31);
             this.SletKundeMenu.TabIndex = 2;
@@ -123,7 +125,7 @@
             // OpretKundeNavn
             // 
             this.OpretKundeNavn.Location = new System.Drawing.Point(99, 43);
-            this.OpretKundeNavn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.OpretKundeNavn.Margin = new System.Windows.Forms.Padding(4);
             this.OpretKundeNavn.Name = "OpretKundeNavn";
             this.OpretKundeNavn.Size = new System.Drawing.Size(211, 22);
             this.OpretKundeNavn.TabIndex = 3;
@@ -131,7 +133,7 @@
             // OpretKundeCPR
             // 
             this.OpretKundeCPR.Location = new System.Drawing.Point(99, 75);
-            this.OpretKundeCPR.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.OpretKundeCPR.Margin = new System.Windows.Forms.Padding(4);
             this.OpretKundeCPR.Name = "OpretKundeCPR";
             this.OpretKundeCPR.Size = new System.Drawing.Size(211, 22);
             this.OpretKundeCPR.TabIndex = 4;
@@ -159,7 +161,7 @@
             // OpretKundeKnap
             // 
             this.OpretKundeKnap.Location = new System.Drawing.Point(211, 106);
-            this.OpretKundeKnap.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.OpretKundeKnap.Margin = new System.Windows.Forms.Padding(4);
             this.OpretKundeKnap.Name = "OpretKundeKnap";
             this.OpretKundeKnap.Size = new System.Drawing.Size(100, 31);
             this.OpretKundeKnap.TabIndex = 7;
@@ -176,9 +178,9 @@
             this.OpretNyKundeGruppe.Controls.Add(this.label2);
             this.OpretNyKundeGruppe.Controls.Add(this.label1);
             this.OpretNyKundeGruppe.Location = new System.Drawing.Point(200, 462);
-            this.OpretNyKundeGruppe.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.OpretNyKundeGruppe.Margin = new System.Windows.Forms.Padding(4);
             this.OpretNyKundeGruppe.Name = "OpretNyKundeGruppe";
-            this.OpretNyKundeGruppe.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.OpretNyKundeGruppe.Padding = new System.Windows.Forms.Padding(4);
             this.OpretNyKundeGruppe.Size = new System.Drawing.Size(333, 148);
             this.OpretNyKundeGruppe.TabIndex = 8;
             this.OpretNyKundeGruppe.TabStop = false;
@@ -188,6 +190,8 @@
             // FindKundeGruppe
             // 
             this.FindKundeGruppe.BackColor = System.Drawing.Color.Transparent;
+            this.FindKundeGruppe.Controls.Add(this.DropDownSorter);
+            this.FindKundeGruppe.Controls.Add(this.label14);
             this.FindKundeGruppe.Controls.Add(this.DropDownFind);
             this.FindKundeGruppe.Controls.Add(this.FindKundeKnap);
             this.FindKundeGruppe.Controls.Add(this.FindKundeSøg);
@@ -196,10 +200,33 @@
             this.FindKundeGruppe.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.FindKundeGruppe.Name = "FindKundeGruppe";
             this.FindKundeGruppe.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.FindKundeGruppe.Size = new System.Drawing.Size(333, 148);
+            this.FindKundeGruppe.Size = new System.Drawing.Size(333, 174);
             this.FindKundeGruppe.TabIndex = 10;
             this.FindKundeGruppe.TabStop = false;
             this.FindKundeGruppe.Text = "Find kunde";
+            // 
+            // DropDownSorter
+            // 
+            this.DropDownSorter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.DropDownSorter.FormattingEnabled = true;
+            this.DropDownSorter.Items.AddRange(new object[] {
+            "Kundenr",
+            "Navn"});
+            this.DropDownSorter.Location = new System.Drawing.Point(99, 71);
+            this.DropDownSorter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.DropDownSorter.Name = "DropDownSorter";
+            this.DropDownSorter.Size = new System.Drawing.Size(211, 24);
+            this.DropDownSorter.TabIndex = 13;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(12, 74);
+            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(80, 17);
+            this.label14.TabIndex = 12;
+            this.label14.Text = "Sortér efter";
             // 
             // DropDownFind
             // 
@@ -218,8 +245,8 @@
             // 
             // FindKundeKnap
             // 
-            this.FindKundeKnap.Location = new System.Drawing.Point(211, 107);
-            this.FindKundeKnap.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.FindKundeKnap.Location = new System.Drawing.Point(211, 131);
+            this.FindKundeKnap.Margin = new System.Windows.Forms.Padding(4);
             this.FindKundeKnap.Name = "FindKundeKnap";
             this.FindKundeKnap.Size = new System.Drawing.Size(100, 31);
             this.FindKundeKnap.TabIndex = 8;
@@ -229,8 +256,8 @@
             // 
             // FindKundeSøg
             // 
-            this.FindKundeSøg.Location = new System.Drawing.Point(99, 75);
-            this.FindKundeSøg.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.FindKundeSøg.Location = new System.Drawing.Point(98, 101);
+            this.FindKundeSøg.Margin = new System.Windows.Forms.Padding(4);
             this.FindKundeSøg.Name = "FindKundeSøg";
             this.FindKundeSøg.Size = new System.Drawing.Size(211, 22);
             this.FindKundeSøg.TabIndex = 8;
@@ -261,7 +288,6 @@
             // 
             this.KundeMenuGruppe.BackColor = System.Drawing.Color.Transparent;
             this.KundeMenuGruppe.Controls.Add(this.AktivKunde);
-            this.KundeMenuGruppe.Controls.Add(this.SletKontoKnap);
             this.KundeMenuGruppe.Controls.Add(this.KontiListe);
             this.KundeMenuGruppe.Controls.Add(this.OpretKontoMenu);
             this.KundeMenuGruppe.Controls.Add(this.label9);
@@ -290,7 +316,7 @@
             this.AktivKunde.AutoSize = true;
             this.AktivKunde.Enabled = false;
             this.AktivKunde.Location = new System.Drawing.Point(235, 44);
-            this.AktivKunde.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.AktivKunde.Margin = new System.Windows.Forms.Padding(4);
             this.AktivKunde.Name = "AktivKunde";
             this.AktivKunde.Size = new System.Drawing.Size(70, 21);
             this.AktivKunde.TabIndex = 21;
@@ -299,8 +325,8 @@
             // 
             // SletKontoKnap
             // 
-            this.SletKontoKnap.Location = new System.Drawing.Point(201, 382);
-            this.SletKontoKnap.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SletKontoKnap.Location = new System.Drawing.Point(418, 27);
+            this.SletKontoKnap.Margin = new System.Windows.Forms.Padding(4);
             this.SletKontoKnap.Name = "SletKontoKnap";
             this.SletKontoKnap.Size = new System.Drawing.Size(100, 31);
             this.SletKontoKnap.TabIndex = 18;
@@ -322,8 +348,8 @@
             // 
             // OpretKontoMenu
             // 
-            this.OpretKontoMenu.Location = new System.Drawing.Point(28, 382);
-            this.OpretKontoMenu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.OpretKontoMenu.Location = new System.Drawing.Point(200, 380);
+            this.OpretKontoMenu.Margin = new System.Windows.Forms.Padding(4);
             this.OpretKontoMenu.Name = "OpretKontoMenu";
             this.OpretKontoMenu.Size = new System.Drawing.Size(100, 31);
             this.OpretKontoMenu.TabIndex = 15;
@@ -463,7 +489,7 @@
             // OpretKontoKnap
             // 
             this.OpretKontoKnap.Location = new System.Drawing.Point(211, 96);
-            this.OpretKontoKnap.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.OpretKontoKnap.Margin = new System.Windows.Forms.Padding(4);
             this.OpretKontoKnap.Name = "OpretKontoKnap";
             this.OpretKontoKnap.Size = new System.Drawing.Size(100, 31);
             this.OpretKontoKnap.TabIndex = 20;
@@ -477,7 +503,7 @@
             this.OpretNyKontoGruppe.Controls.Add(this.OpretKontoKnap);
             this.OpretNyKontoGruppe.Controls.Add(this.comboBoxKontoType);
             this.OpretNyKontoGruppe.Controls.Add(this.label10);
-            this.OpretNyKontoGruppe.Location = new System.Drawing.Point(200, 768);
+            this.OpretNyKontoGruppe.Location = new System.Drawing.Point(200, 860);
             this.OpretNyKontoGruppe.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.OpretNyKontoGruppe.Name = "OpretNyKontoGruppe";
             this.OpretNyKontoGruppe.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -502,6 +528,7 @@
             // 
             this.TransaktionerGruppe.BackColor = System.Drawing.Color.Transparent;
             this.TransaktionerGruppe.Controls.Add(this.label13);
+            this.TransaktionerGruppe.Controls.Add(this.SletKontoKnap);
             this.TransaktionerGruppe.Controls.Add(this.label12);
             this.TransaktionerGruppe.Controls.Add(this.label11);
             this.TransaktionerGruppe.Controls.Add(this.OverførTilKonto);
@@ -553,7 +580,7 @@
             // OverførTilKonto
             // 
             this.OverførTilKonto.Location = new System.Drawing.Point(369, 351);
-            this.OverførTilKonto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.OverførTilKonto.Margin = new System.Windows.Forms.Padding(4);
             this.OverførTilKonto.Name = "OverførTilKonto";
             this.OverførTilKonto.Size = new System.Drawing.Size(149, 22);
             this.OverførTilKonto.TabIndex = 20;
@@ -568,22 +595,22 @@
             this.KontoInfoBox.ReadOnly = true;
             this.KontoInfoBox.Size = new System.Drawing.Size(504, 46);
             this.KontoInfoBox.TabIndex = 19;
-            this.KontoInfoBox.TextChanged += new System.EventHandler(this.KontoInfoBox_TextChanged);
             // 
             // IndtastTransaktion
             // 
             this.IndtastTransaktion.Location = new System.Drawing.Point(15, 351);
-            this.IndtastTransaktion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.IndtastTransaktion.Margin = new System.Windows.Forms.Padding(4);
             this.IndtastTransaktion.Name = "IndtastTransaktion";
             this.IndtastTransaktion.Size = new System.Drawing.Size(303, 22);
             this.IndtastTransaktion.TabIndex = 8;
             this.IndtastTransaktion.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.IndtastTransaktion.TextChanged += new System.EventHandler(this.IndtastTransaktion_TextChanged);
             // 
             // OverførKnap
             // 
             this.OverførKnap.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.OverførKnap.Location = new System.Drawing.Point(420, 382);
-            this.OverførKnap.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.OverførKnap.Margin = new System.Windows.Forms.Padding(4);
             this.OverførKnap.Name = "OverførKnap";
             this.OverførKnap.Size = new System.Drawing.Size(100, 31);
             this.OverførKnap.TabIndex = 18;
@@ -595,7 +622,7 @@
             // 
             this.UdbetalKnap.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.UdbetalKnap.Location = new System.Drawing.Point(219, 382);
-            this.UdbetalKnap.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.UdbetalKnap.Margin = new System.Windows.Forms.Padding(4);
             this.UdbetalKnap.Name = "UdbetalKnap";
             this.UdbetalKnap.Size = new System.Drawing.Size(100, 31);
             this.UdbetalKnap.TabIndex = 17;
@@ -606,7 +633,7 @@
             // IndbetalKnap
             // 
             this.IndbetalKnap.Location = new System.Drawing.Point(15, 382);
-            this.IndbetalKnap.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.IndbetalKnap.Margin = new System.Windows.Forms.Padding(4);
             this.IndbetalKnap.Name = "IndbetalKnap";
             this.IndbetalKnap.Size = new System.Drawing.Size(100, 31);
             this.IndbetalKnap.TabIndex = 8;
@@ -619,9 +646,9 @@
             this.KundeListeGruppe.BackColor = System.Drawing.Color.Transparent;
             this.KundeListeGruppe.Controls.Add(this.FindKundeListe);
             this.KundeListeGruppe.Location = new System.Drawing.Point(560, 462);
-            this.KundeListeGruppe.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.KundeListeGruppe.Margin = new System.Windows.Forms.Padding(4);
             this.KundeListeGruppe.Name = "KundeListeGruppe";
-            this.KundeListeGruppe.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.KundeListeGruppe.Padding = new System.Windows.Forms.Padding(4);
             this.KundeListeGruppe.Size = new System.Drawing.Size(333, 302);
             this.KundeListeGruppe.TabIndex = 9;
             this.KundeListeGruppe.TabStop = false;
@@ -633,9 +660,9 @@
             this.DataSourceGruppe.Controls.Add(this.radioButton2);
             this.DataSourceGruppe.Controls.Add(this.radioButton1);
             this.DataSourceGruppe.Location = new System.Drawing.Point(27, 122);
-            this.DataSourceGruppe.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DataSourceGruppe.Margin = new System.Windows.Forms.Padding(4);
             this.DataSourceGruppe.Name = "DataSourceGruppe";
-            this.DataSourceGruppe.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DataSourceGruppe.Padding = new System.Windows.Forms.Padding(4);
             this.DataSourceGruppe.Size = new System.Drawing.Size(133, 100);
             this.DataSourceGruppe.TabIndex = 23;
             this.DataSourceGruppe.TabStop = false;
@@ -645,7 +672,7 @@
             // 
             this.radioButton2.AutoSize = true;
             this.radioButton2.Location = new System.Drawing.Point(23, 60);
-            this.radioButton2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButton2.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(96, 21);
             this.radioButton2.TabIndex = 1;
@@ -658,7 +685,7 @@
             this.radioButton1.AutoSize = true;
             this.radioButton1.Checked = true;
             this.radioButton1.Location = new System.Drawing.Point(23, 31);
-            this.radioButton1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButton1.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(73, 21);
             this.radioButton1.TabIndex = 0;
@@ -682,7 +709,7 @@
             this.Controls.Add(this.OpretNyKundeGruppe);
             this.Controls.Add(this.FindKundeMenu);
             this.Controls.Add(this.NyKundeMenu);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.ShowIcon = false;
@@ -758,6 +785,8 @@
         private System.Windows.Forms.GroupBox DataSourceGruppe;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.ComboBox DropDownSorter;
+        private System.Windows.Forms.Label label14;
     }
 }
 

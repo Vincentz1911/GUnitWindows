@@ -54,6 +54,8 @@ namespace G_Unit_Windows
 
         }
 
+        //public static 
+
         public static string[] VisTransaktion(int _kontoNummer)
         {           
             return TransaktionSøger($"select * from Transaktion where FK_kontonr = '{_kontoNummer}';");                      
@@ -101,7 +103,7 @@ namespace G_Unit_Windows
         public static string[] VælgKonto(int kundenr)
         {
             // Find Konti
-            string SQLGet = $"select PK_kontonr, saldo, kontodato, kontoslutdato, FK_kontotypeID from Konto where FK_kundenr = {kundenr};";
+            string SQLGet = $"select PK_kontonr, saldo, kontodato, kontoslutdato, FK_kontotypeID, kontotypenavn, rente from Konto, KontoType where FK_kundenr = {kundenr} and PK_kontotypeID = FK_kontotypeID;";
             string[] kontoArr = Database.SQLkommandoGet(SQLGet);
 
             int count = 0;
@@ -109,7 +111,7 @@ namespace G_Unit_Windows
 
             ParseKonto(kontoArr);
 
-            for (int i = 0; i < kontoArr.Length/5; i ++)
+            for (int i = 0; i < kontoArr.Length/7; i ++)
             {
                 Array.Resize(ref KontoArray, i + 1);
                 // Check om oprettelses dato er null, erstatter med "Ingen".
@@ -117,22 +119,24 @@ namespace G_Unit_Windows
 
                 // Ændre konto type nr til "lån", "opsparing" etc.
                 string kontotype = kontoTypeNavne[int.Parse(kontoArr[4 + count]) - 1];
-                KontoArray[i] = $"{kontoArr[0 + count]}, Saldo: kr. {kontoArr[1 + count]} -- Type: {kontotype} -- Oprettet: {kontoArr[2 + count]} -- Konto slutdato: {slutdato}";
+                KontoArray[i] = $"{kontoArr[0 + count]}, Saldo: kr. {kontoArr[1 + count]} -- Type: {kontoArr[5 + count]} Rente: {kontoArr[6 + count]}% -- \n Oprettet: {kontoArr[2 + count]} -- Konto slutdato: {slutdato}";
 //                KontoArray[i] = $"{kontoArr[0 + count]}, Saldo: {kontoArr[1 + count]}, Oprettelses dato: {kontoArr[2 + count]}, Konto slut dato: {slutdato}, Konto Type: {kontoArr[4 + count]}";
                 //Console.WriteLine($"Kontonr: {kontoArr[0 + count]}, Saldo: {kontoArr[1 + count]}, Oprettelses dato: {kontoArr[2 + count]}, Konto slut dato: {slutdato}, Konto Type: {kontotype}");
-                count += 5;
+                count += 7;
             }
             return KontoArray;
         }
 
+        public static decimal[] rente;
         public static float[] saldo;
         public static int[] PK_kontonr, FK_kontotypeID;
         public static DateTime?[] kontodato, kontoslutdato;
+        public static string[] kontotypenavn;
 
         static void ParseKonto(string[] SQLData)
         {
             int count = 0;
-            for (int i = 0; i < SQLData.Length; i += 5)
+            for (int i = 0; i < SQLData.Length; i += 7)
             {
                 //PK_kontonr, saldo, kontodato, kontoslutdato, FK_kontotypeID
                 //Forøger arrays med 1
@@ -141,6 +145,8 @@ namespace G_Unit_Windows
                 Array.Resize(ref kontodato, count + 1);
                 Array.Resize(ref kontoslutdato, count + 1);
                 Array.Resize(ref FK_kontotypeID, count + 1);
+                Array.Resize(ref kontotypenavn, count + 1);
+                Array.Resize(ref rente, count + 1);
 
                 //Tager datastrømmen fra SQL og parser den med trinstørrelse af antal variabler
                 PK_kontonr[count] = int.Parse(SQLData[i]);
@@ -148,6 +154,9 @@ namespace G_Unit_Windows
                 kontodato[count] = Convert.ToDateTime(SQLData[i + 2]);
                 if (SQLData[i + 3] != "") { kontoslutdato[count] = Convert.ToDateTime(SQLData[i + 3]); } else kontoslutdato[count] = null;
                 FK_kontotypeID[count] = int.Parse(SQLData[i + 4]);
+                kontotypenavn[count] = SQLData[i + 5];
+                rente[count] = decimal.Parse(SQLData[i + 6]);
+
                 count++;
             }
         }

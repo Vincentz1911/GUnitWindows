@@ -21,6 +21,7 @@ namespace G_Unit_Windows
             Size = new Size(860, 430);
             DropDownFind.SelectedIndex = 0;
             comboBoxKontoType.SelectedIndex = 0;
+            DropDownSorter.SelectedIndex = 0;
             AllInvisible();
             OpretNyKundeGruppe.Location = new Point(150, 20);
             FindKundeGruppe.Location = new Point(150, 20);
@@ -74,14 +75,16 @@ namespace G_Unit_Windows
                 {
                     KontiListe.Items.Add(KontoArray[i]);
                 }
-                if (KontiListe.Items == null)
-                {
-                    SletKontoKnap.Visible = false;
-                }
-                else
-                {
-                    SletKontoKnap.Visible = true;
-                }
+ 
+            }
+
+            if (AktivKontinr == 0)
+            {
+                TransaktionerGruppe.Visible = false;
+            }
+            else
+            {
+                TransaktionerGruppe.Visible = true;
             }
 
             //foreach (var item in KontoArray)
@@ -128,7 +131,7 @@ namespace G_Unit_Windows
         private void FindKundeKnap_Click(object sender, EventArgs e)
         {
             FindKundeListe.Items.Clear();
-            Kunde.FindKunde(FindKundeSøg.Text, DropDownFind.SelectedIndex + 1);
+            Kunde.FindKunde(FindKundeSøg.Text, DropDownFind.SelectedIndex + 1, DropDownSorter.SelectedIndex + 1);
 
             if (Kunde.PK_kundenr == null)
             {
@@ -160,7 +163,7 @@ namespace G_Unit_Windows
         private void FindKundeListe_SelectedIndexChanged(object sender, EventArgs e)
         {
             string[] FindKundeSplitArray = FindKundeListe.SelectedItem.ToString().Split('-');
-            Kunde.FindKunde(FindKundeSplitArray[0], 2);
+            Kunde.FindKunde(FindKundeSplitArray[0], 2, 1);
             FindKundeListe.Items.Clear();
             AllInvisible();
             KundeMenuGruppe.Visible = true;
@@ -168,7 +171,7 @@ namespace G_Unit_Windows
         }
         private void SletKundeMenu_Click(object sender, EventArgs e)
         {
-            if (KontiListe.Items != null)
+            if (KontiListe.Items.Count > 0)
             {
                 MessageBox.Show("Kunden kan ikke slettes da der stadig er aktive konti.");
                 return;
@@ -203,10 +206,11 @@ namespace G_Unit_Windows
             if (dialogResult == DialogResult.Yes)
             {
                 Konto.SletKonto(AktivKontinr);
-                KundeMenuUpdate();
-                
+                //KundeMenuUpdate();
+
+                AktivKontinr = 0;
                 TransaktionUpdate(AktivKontinr);
-                //KontoInfoBox.Clear();
+                KontoInfoBox.Clear();
 
             }
             else if (dialogResult == DialogResult.No)
@@ -219,7 +223,6 @@ namespace G_Unit_Windows
         }
         private void KontiListe_SelectedIndexChanged(object sender, EventArgs e)
         {
-            TransaktionUpdate(AktivKontinr);
             if (KontiListe.SelectedItem != null)
             {
                 TransaktionerGruppe.Visible = true;
@@ -232,29 +235,19 @@ namespace G_Unit_Windows
                 Konto.VisTransaktion(AktivKontinr);
                 TransaktionUpdate(AktivKontinr);
 
-                //    if (KontoInfo != "")
-                //    { KontoInfoBox.Text = KontoInfo; }
-                //    else
-                //    { KontoInfoBox.Clear(); }
-                //    Konto.VisTransaktion(AktivKontinr);
-                //    TransaktionUpdate(AktivKontinr);
-                //}
-                //else
-                //{
-                //    KontoInfoBox.Clear();
             }
         }
         private void IndbetalKnap_Click(object sender, EventArgs e)
         {
             //MessageBox.Show(KontiListe.SelectedItem.ToString());
             //string[] KontoSplitArray = KontiListe.SelectedItem.ToString().Split(',');
-            Konto.IndsætBeløb(IndtastTransaktion.Text, AktivKontinr);
+            Konto.IndsætBeløb(IndtastTransaktion.Text.Replace(",","."), AktivKontinr);
             TransaktionUpdate(AktivKontinr);
         }
         private void UdbetalKnap_Click(object sender, EventArgs e)
         {
             //string[] KontoSplitArray = KontiListe.SelectedItem.ToString().Split(',');
-            Konto.HævBeløb(IndtastTransaktion.Text, AktivKontinr);
+            Konto.HævBeløb(IndtastTransaktion.Text.Replace(",", "."), AktivKontinr);
             TransaktionUpdate(AktivKontinr);
         }
         private void TransaktionUpdate(int KontiIndex)
@@ -289,7 +282,7 @@ namespace G_Unit_Windows
             Database.DataSource = ".\\SQLEXPRESS";
         }
 
-        private void KontoInfoBox_TextChanged(object sender, EventArgs e)
+        private void IndtastTransaktion_TextChanged(object sender, EventArgs e)
         {
 
         }
