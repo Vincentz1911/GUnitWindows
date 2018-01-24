@@ -47,7 +47,6 @@
             this.FindKundeListe = new System.Windows.Forms.ListBox();
             this.KundeMenuGruppe = new System.Windows.Forms.GroupBox();
             this.AktivKunde = new System.Windows.Forms.CheckBox();
-            this.SletKontoKnap = new System.Windows.Forms.Button();
             this.KontiListe = new System.Windows.Forms.ListBox();
             this.OpretKontoMenu = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
@@ -61,6 +60,7 @@
             this.KundeCPR = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.KundeNavn = new System.Windows.Forms.TextBox();
+            this.SletKontoKnap = new System.Windows.Forms.Button();
             this.comboBoxKontoType = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.OpretKontoKnap = new System.Windows.Forms.Button();
@@ -80,6 +80,11 @@
             this.DataSourceGruppe = new System.Windows.Forms.GroupBox();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.RetKundeGruppe = new System.Windows.Forms.GroupBox();
+            this.RetKundeNavn = new System.Windows.Forms.TextBox();
+            this.RetKundeKnap = new System.Windows.Forms.Button();
+            this.label16 = new System.Windows.Forms.Label();
+            this.RetKundeMenu = new System.Windows.Forms.Button();
             this.OpretNyKundeGruppe.SuspendLayout();
             this.FindKundeGruppe.SuspendLayout();
             this.KundeMenuGruppe.SuspendLayout();
@@ -87,6 +92,7 @@
             this.TransaktionerGruppe.SuspendLayout();
             this.KundeListeGruppe.SuspendLayout();
             this.DataSourceGruppe.SuspendLayout();
+            this.RetKundeGruppe.SuspendLayout();
             this.SuspendLayout();
             // 
             // NyKundeMenu
@@ -287,6 +293,7 @@
             // KundeMenuGruppe
             // 
             this.KundeMenuGruppe.BackColor = System.Drawing.Color.Transparent;
+            this.KundeMenuGruppe.Controls.Add(this.RetKundeMenu);
             this.KundeMenuGruppe.Controls.Add(this.AktivKunde);
             this.KundeMenuGruppe.Controls.Add(this.KontiListe);
             this.KundeMenuGruppe.Controls.Add(this.OpretKontoMenu);
@@ -322,17 +329,6 @@
             this.AktivKunde.TabIndex = 21;
             this.AktivKunde.Text = "Slettet";
             this.AktivKunde.UseVisualStyleBackColor = true;
-            // 
-            // SletKontoKnap
-            // 
-            this.SletKontoKnap.Location = new System.Drawing.Point(418, 27);
-            this.SletKontoKnap.Margin = new System.Windows.Forms.Padding(4);
-            this.SletKontoKnap.Name = "SletKontoKnap";
-            this.SletKontoKnap.Size = new System.Drawing.Size(100, 31);
-            this.SletKontoKnap.TabIndex = 18;
-            this.SletKontoKnap.Text = "Slet Konto";
-            this.SletKontoKnap.UseVisualStyleBackColor = true;
-            this.SletKontoKnap.Click += new System.EventHandler(this.SletKontoKnap_Click);
             // 
             // KontiListe
             // 
@@ -462,6 +458,17 @@
             this.KundeNavn.Size = new System.Drawing.Size(212, 22);
             this.KundeNavn.TabIndex = 0;
             // 
+            // SletKontoKnap
+            // 
+            this.SletKontoKnap.Location = new System.Drawing.Point(418, 27);
+            this.SletKontoKnap.Margin = new System.Windows.Forms.Padding(4);
+            this.SletKontoKnap.Name = "SletKontoKnap";
+            this.SletKontoKnap.Size = new System.Drawing.Size(100, 31);
+            this.SletKontoKnap.TabIndex = 18;
+            this.SletKontoKnap.Text = "Slet Konto";
+            this.SletKontoKnap.UseVisualStyleBackColor = true;
+            this.SletKontoKnap.Click += new System.EventHandler(this.SletKontoKnap_Click);
+            // 
             // comboBoxKontoType
             // 
             this.comboBoxKontoType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -503,7 +510,7 @@
             this.OpretNyKontoGruppe.Controls.Add(this.OpretKontoKnap);
             this.OpretNyKontoGruppe.Controls.Add(this.comboBoxKontoType);
             this.OpretNyKontoGruppe.Controls.Add(this.label10);
-            this.OpretNyKontoGruppe.Location = new System.Drawing.Point(200, 860);
+            this.OpretNyKontoGruppe.Location = new System.Drawing.Point(200, 793);
             this.OpretNyKontoGruppe.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.OpretNyKontoGruppe.Name = "OpretNyKontoGruppe";
             this.OpretNyKontoGruppe.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -604,7 +611,6 @@
             this.IndtastTransaktion.Size = new System.Drawing.Size(303, 22);
             this.IndtastTransaktion.TabIndex = 8;
             this.IndtastTransaktion.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.IndtastTransaktion.TextChanged += new System.EventHandler(this.IndtastTransaktion_TextChanged);
             // 
             // OverførKnap
             // 
@@ -694,21 +700,78 @@
             this.radioButton1.UseVisualStyleBackColor = true;
             this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
+            // RetKundeGruppe
+            // 
+            this.RetKundeGruppe.BackColor = System.Drawing.Color.Transparent;
+            this.RetKundeGruppe.Controls.Add(this.RetKundeNavn);
+            this.RetKundeGruppe.Controls.Add(this.RetKundeKnap);
+            this.RetKundeGruppe.Controls.Add(this.label16);
+            this.RetKundeGruppe.Location = new System.Drawing.Point(560, 772);
+            this.RetKundeGruppe.Margin = new System.Windows.Forms.Padding(4);
+            this.RetKundeGruppe.Name = "RetKundeGruppe";
+            this.RetKundeGruppe.Padding = new System.Windows.Forms.Padding(4);
+            this.RetKundeGruppe.Size = new System.Drawing.Size(333, 148);
+            this.RetKundeGruppe.TabIndex = 9;
+            this.RetKundeGruppe.TabStop = false;
+            this.RetKundeGruppe.Text = "Ret Kundenavn";
+            this.RetKundeGruppe.Visible = false;
+            // 
+            // RetKundeNavn
+            // 
+            this.RetKundeNavn.Location = new System.Drawing.Point(107, 55);
+            this.RetKundeNavn.Margin = new System.Windows.Forms.Padding(4);
+            this.RetKundeNavn.Name = "RetKundeNavn";
+            this.RetKundeNavn.Size = new System.Drawing.Size(211, 22);
+            this.RetKundeNavn.TabIndex = 3;
+            // 
+            // RetKundeKnap
+            // 
+            this.RetKundeKnap.Location = new System.Drawing.Point(218, 85);
+            this.RetKundeKnap.Margin = new System.Windows.Forms.Padding(4);
+            this.RetKundeKnap.Name = "RetKundeKnap";
+            this.RetKundeKnap.Size = new System.Drawing.Size(100, 31);
+            this.RetKundeKnap.TabIndex = 7;
+            this.RetKundeKnap.Text = "Ret Kunde";
+            this.RetKundeKnap.UseVisualStyleBackColor = true;
+            this.RetKundeKnap.Click += new System.EventHandler(this.RetKundeKnap_Click);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(35, 58);
+            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(64, 17);
+            this.label16.TabIndex = 5;
+            this.label16.Text = "Nyt navn";
+            // 
+            // RetKundeMenu
+            // 
+            this.RetKundeMenu.Location = new System.Drawing.Point(23, 185);
+            this.RetKundeMenu.Margin = new System.Windows.Forms.Padding(4);
+            this.RetKundeMenu.Name = "RetKundeMenu";
+            this.RetKundeMenu.Size = new System.Drawing.Size(100, 31);
+            this.RetKundeMenu.TabIndex = 22;
+            this.RetKundeMenu.Text = "Ret kunde";
+            this.RetKundeMenu.UseVisualStyleBackColor = true;
+            this.RetKundeMenu.Click += new System.EventHandler(this.RetKundeMenu_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.ClientSize = new System.Drawing.Size(1144, 1032);
+            this.Controls.Add(this.RetKundeGruppe);
             this.Controls.Add(this.DataSourceGruppe);
             this.Controls.Add(this.KundeListeGruppe);
             this.Controls.Add(this.OpretNyKontoGruppe);
             this.Controls.Add(this.TransaktionerGruppe);
-            this.Controls.Add(this.KundeMenuGruppe);
             this.Controls.Add(this.FindKundeGruppe);
             this.Controls.Add(this.OpretNyKundeGruppe);
             this.Controls.Add(this.FindKundeMenu);
             this.Controls.Add(this.NyKundeMenu);
+            this.Controls.Add(this.KundeMenuGruppe);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "Form1";
@@ -729,6 +792,8 @@
             this.KundeListeGruppe.ResumeLayout(false);
             this.DataSourceGruppe.ResumeLayout(false);
             this.DataSourceGruppe.PerformLayout();
+            this.RetKundeGruppe.ResumeLayout(false);
+            this.RetKundeGruppe.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -787,6 +852,11 @@
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.ComboBox DropDownSorter;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.GroupBox RetKundeGruppe;
+        private System.Windows.Forms.TextBox RetKundeNavn;
+        private System.Windows.Forms.Button RetKundeKnap;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Button RetKundeMenu;
     }
 }
 

@@ -44,21 +44,21 @@ namespace G_Unit_Windows
                     TransaktionSøger($"select * from Transaktion where FK_kontonr = '{_kontoNummer}' and beloeb > '{min}' and beloeb < '{max}';");
                     break;
                 default:
-                    
+
                     break;
             }
 
             Console.Write("\nTryk tast.");
             Console.ReadKey();
-            
+
 
         }
 
         //public static 
 
         public static string[] VisTransaktion(int _kontoNummer)
-        {           
-            return TransaktionSøger($"select * from Transaktion where FK_kontonr = '{_kontoNummer}';");                      
+        {
+            return TransaktionSøger($"select * from Transaktion where FK_kontonr = '{_kontoNummer}';");
         }
 
         // Hjælpefunktion til transaktion søgning.
@@ -66,7 +66,7 @@ namespace G_Unit_Windows
         {
             string SQLGet = sql;
             string[] transArr = Database.SQLkommandoGet(SQLGet);
-            
+
             if (transArr.Length == 0)
             {
                 Console.Write("Ingen transaktioner fundet!");
@@ -74,11 +74,11 @@ namespace G_Unit_Windows
             }
 
             int count = 0;
-            string[] transArray = new string[transArr.Length/4];
+            string[] transArray = new string[transArr.Length / 4];
             for (int i = 0; i < transArr.Length / 4; i++)
             {
                 //Console.WriteLine($"Transaktions ID: {transArr[0 + count]}, Trans. dato: {transArr[1 + count]}, Beløb: {transArr[2 + count]}, Kunde nummer: {transArr[3 + count]}");
-                transArray[i]=($"ID: {transArr[0 + count]}, Beløb: {transArr[2 + count]}, {transArr[1 + count]},  Kunde nummer: {transArr[3 + count]}");
+                transArray[i] = ($"ID: {transArr[0 + count]}, Beløb: {transArr[2 + count]}, {transArr[1 + count]},  Kontonr: {transArr[3 + count]}");
                 count += 4;
             }
 
@@ -111,7 +111,7 @@ namespace G_Unit_Windows
 
             ParseKonto(kontoArr);
 
-            for (int i = 0; i < kontoArr.Length/7; i ++)
+            for (int i = 0; i < kontoArr.Length / 7; i++)
             {
                 Array.Resize(ref KontoArray, i + 1);
                 // Check om oprettelses dato er null, erstatter med "Ingen".
@@ -120,7 +120,7 @@ namespace G_Unit_Windows
                 // Ændre konto type nr til "lån", "opsparing" etc.
                 string kontotype = kontoTypeNavne[int.Parse(kontoArr[4 + count]) - 1];
                 KontoArray[i] = $"{kontoArr[0 + count]}, Saldo: kr. {kontoArr[1 + count]} -- Type: {kontoArr[5 + count]} Rente: {kontoArr[6 + count]}% -- \n Oprettet: {kontoArr[2 + count]} -- Konto slutdato: {slutdato}";
-//                KontoArray[i] = $"{kontoArr[0 + count]}, Saldo: {kontoArr[1 + count]}, Oprettelses dato: {kontoArr[2 + count]}, Konto slut dato: {slutdato}, Konto Type: {kontoArr[4 + count]}";
+                //                KontoArray[i] = $"{kontoArr[0 + count]}, Saldo: {kontoArr[1 + count]}, Oprettelses dato: {kontoArr[2 + count]}, Konto slut dato: {slutdato}, Konto Type: {kontoArr[4 + count]}";
                 //Console.WriteLine($"Kontonr: {kontoArr[0 + count]}, Saldo: {kontoArr[1 + count]}, Oprettelses dato: {kontoArr[2 + count]}, Konto slut dato: {slutdato}, Konto Type: {kontotype}");
                 count += 7;
             }
@@ -181,30 +181,32 @@ namespace G_Unit_Windows
             OpretTransaktion($"-{strBeløb}", _kontoNummer);
         }
 
-        public static void OverførBeløb()
+        public static void OverførBeløb(int fraKonto, string tilKonto, string strBeløb)
         {
-            /*int fraKonto = _kontoNummer;
-            string tilKonto = IndtastKontonummer();
-            string strBeløb = IndtastBeløb();
-
             string SQLSend = $"update Konto set saldo = saldo - {strBeløb} where PK_kontonr = '{fraKonto}';";
             Database.SQLkommandoSet(SQLSend);
 
-            SQLSend = $"update Konto set saldo = saldo + {strBeløb} where PK_kontonr = {tilKonto};";
-            Database.SQLkommandoSet(SQLSend);
+            string SQLGet = $"select 1 from Konto where PK_kontonr = {tilKonto};";
+            string[] checkifkontoexists = Database.SQLkommandoGet(SQLGet);
 
-            Console.WriteLine($"{strBeløb} overført fra kontonummer '{fraKonto}' til {tilKonto};");
+            if (checkifkontoexists.Length != 0)
+            {
+                SQLSend = $"update Konto set saldo = saldo + {strBeløb} where PK_kontonr = {tilKonto};";
+                Database.SQLkommandoSet(SQLSend);
+                SQLSend = $"insert into Transaktion values (GETDATE(), '{strBeløb}', {tilKonto}); ";
+                Database.SQLkommandoSet(SQLSend);
+            }
 
-            // Opret af transaktion. 
+            else
+            {
+                SQLSend = $"insert into Transaktion values (GETDATE(), '{strBeløb}', null); ";
+                Database.SQLkommandoSet(SQLSend);
+
+
+            }
+            //Opret af transaktion. 
             OpretTransaktion($"-{strBeløb}", fraKonto);
-            OpretTransaktion($"{strBeløb}", int.Parse(tilKonto));
-
-            Console.Write("Tryk tast for afslut.");
-            Console.ReadKey();
-            Console.Clear();
-
-            KontoMenu();
-            */
+            //OpretTransaktion($"{strBeløb}", int.Parse(tilKonto));
         }
 
         // Hjælpefunktion til bruger input.
@@ -231,7 +233,7 @@ namespace G_Unit_Windows
         // Hjælpefunktion til bruger input.
         public static string IndtastBeløb(string strBeløb)
         {
-//            string ;
+            //            string ;
 
             while (true)
             {

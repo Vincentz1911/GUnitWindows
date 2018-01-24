@@ -23,12 +23,14 @@ namespace G_Unit_Windows
             comboBoxKontoType.SelectedIndex = 0;
             DropDownSorter.SelectedIndex = 0;
             AllInvisible();
+            RetKundeGruppe.Location = new Point(150, 100);
             OpretNyKundeGruppe.Location = new Point(150, 20);
             FindKundeGruppe.Location = new Point(150, 20);
             KundeMenuGruppe.Location = new Point(150, 20);
             OpretNyKontoGruppe.Location = new Point(420, 20);
             TransaktionerGruppe.Location = new Point(420, 20);
             KundeListeGruppe.Location = new Point(420, 20);
+
         }
 
         private void AllInvisible()
@@ -39,6 +41,7 @@ namespace G_Unit_Windows
             OpretNyKontoGruppe.Visible = false;
             TransaktionerGruppe.Visible = false;
             KundeListeGruppe.Visible = false;
+            RetKundeGruppe.Visible = false;
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -162,12 +165,15 @@ namespace G_Unit_Windows
         }
         private void FindKundeListe_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string[] FindKundeSplitArray = FindKundeListe.SelectedItem.ToString().Split('-');
-            Kunde.FindKunde(FindKundeSplitArray[0], 2, 1);
-            FindKundeListe.Items.Clear();
-            AllInvisible();
-            KundeMenuGruppe.Visible = true;
-            KundeMenuUpdate();
+            if (FindKundeListe.SelectedItem != null)
+            {
+                string[] FindKundeSplitArray = FindKundeListe.SelectedItem.ToString().Split('-');
+                Kunde.FindKunde(FindKundeSplitArray[0], 2, 1);
+                FindKundeListe.Items.Clear();
+                AllInvisible();
+                KundeMenuGruppe.Visible = true;
+                KundeMenuUpdate();
+            }
         }
         private void SletKundeMenu_Click(object sender, EventArgs e)
         {
@@ -270,7 +276,8 @@ namespace G_Unit_Windows
 
         private void OverførKnap_Click(object sender, EventArgs e)
         {
-
+            Konto.OverførBeløb(AktivKontinr, OverførTilKonto.Text, IndtastTransaktion.Text);
+            TransaktionUpdate(AktivKontinr);
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
@@ -282,9 +289,17 @@ namespace G_Unit_Windows
             Database.DataSource = ".\\SQLEXPRESS";
         }
 
-        private void IndtastTransaktion_TextChanged(object sender, EventArgs e)
+        private void RetKundeMenu_Click(object sender, EventArgs e)
         {
+            RetKundeNavn.Text = Kunde.kundenavn[0];
+            RetKundeGruppe.Visible = true;
+        }
 
+        private void RetKundeKnap_Click(object sender, EventArgs e)
+        {
+            Kunde.RetKunde(RetKundeNavn.Text, Kunde.PK_kundenr[0].ToString());
+            RetKundeGruppe.Visible = false;
+            KundeMenuUpdate();
         }
     }
 }

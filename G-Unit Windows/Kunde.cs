@@ -97,6 +97,15 @@ namespace G_Unit_Windows
             ParseKunde(SQLData);
         }
 
+        public static void RetKunde(string nytnavn, string str)
+        {
+            string SQLSend = $"UPDATE Kunde set kundenavn = '{nytnavn}' where PK_kundenr = '{str}';";
+            Database.SQLkommandoSet(SQLSend);
+            SQLSend = $"select * from Kunde where PK_kundenr like '{str}'";
+            SQLData = Database.SQLkommandoGet(SQLSend);
+            ParseKunde(SQLData);
+        }
+
         //******************* PARSE SQL KUNDE TIL C# *******************
         static void ParseKunde(string[] SQLData)
         {
