@@ -107,6 +107,8 @@ namespace G_Unit_Windows
             int count = 0;
             string[] KontoArray = new string[kontoArr.Length];
 
+            ParseKonto(kontoArr);
+
             for (int i = 0; i < kontoArr.Length/5; i ++)
             {
                 Array.Resize(ref KontoArray, i + 1);
@@ -121,6 +123,33 @@ namespace G_Unit_Windows
                 count += 5;
             }
             return KontoArray;
+        }
+
+        public static float[] saldo;
+        public static int[] PK_kontonr, FK_kontotypeID;
+        public static DateTime?[] kontodato, kontoslutdato;
+
+        static void ParseKonto(string[] SQLData)
+        {
+            int count = 0;
+            for (int i = 0; i < SQLData.Length; i += 5)
+            {
+                //PK_kontonr, saldo, kontodato, kontoslutdato, FK_kontotypeID
+                //Forøger arrays med 1
+                Array.Resize(ref PK_kontonr, count + 1);
+                Array.Resize(ref saldo, count + 1);
+                Array.Resize(ref kontodato, count + 1);
+                Array.Resize(ref kontoslutdato, count + 1);
+                Array.Resize(ref FK_kontotypeID, count + 1);
+
+                //Tager datastrømmen fra SQL og parser den med trinstørrelse af antal variabler
+                PK_kontonr[count] = int.Parse(SQLData[i]);
+                saldo[count] = float.Parse(SQLData[i + 1]);
+                kontodato[count] = Convert.ToDateTime(SQLData[i + 2]);
+                if (SQLData[i + 3] != "") { kontoslutdato[count] = Convert.ToDateTime(SQLData[i + 3]); } else kontoslutdato[count] = null;
+                FK_kontotypeID[count] = int.Parse(SQLData[i + 4]);
+                count++;
+            }
         }
 
         public static void SletKonto(int _kontoNummer)

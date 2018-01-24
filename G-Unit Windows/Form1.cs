@@ -18,7 +18,7 @@ namespace G_Unit_Windows
         public Form1()
         {
             InitializeComponent();
-            this.Size = new Size(860, 430);
+            Size = new Size(860, 430);
             DropDownFind.SelectedIndex = 0;
             comboBoxKontoType.SelectedIndex = 0;
             AllInvisible();
@@ -67,10 +67,28 @@ namespace G_Unit_Windows
 
             string[] KontoArray = Konto.VælgKonto(Kunde.PK_kundenr[0]);
             KontiListe.Items.Clear();
-            foreach (var item in KontoArray)
+
+            for (int i = 0; i < KontoArray.Length; i++)
             {
-                KontiListe.Items.Add(item);
+                if (Konto.kontoslutdato[i] == null)
+                {
+                    KontiListe.Items.Add(KontoArray[i]);
+                }
+                if (KontiListe.Items == null)
+                {
+                    SletKontoKnap.Visible = false;
+                }
+                else
+                {
+                    SletKontoKnap.Visible = true;
+                }
             }
+
+            //foreach (var item in KontoArray)
+            //{
+            //    if (Konto.kontoslutdato[count])
+            //    KontiListe.Items.Add(item);
+            //}
 
             //KontiListe.SetSelected(0, true);
             //KontiListe.SelectedIndex = KontiIndex;
@@ -89,7 +107,7 @@ namespace G_Unit_Windows
         }
         private void OpretKundeKnap_Click(object sender, EventArgs e)
         {
-            if (OpretKundeNavn.Text =="")
+            if (OpretKundeNavn.Text == "")
             {
                 MessageBox.Show("Navnet mangler. Prøv igen.");
                 return;
@@ -150,6 +168,12 @@ namespace G_Unit_Windows
         }
         private void SletKundeMenu_Click(object sender, EventArgs e)
         {
+            if (KontiListe.Items != null)
+            {
+                MessageBox.Show("Kunden kan ikke slettes da der stadig er aktive konti.");
+                return;
+            }
+
             DialogResult dialogResult = MessageBox.Show("Ønsker du at slette kunden " + Kunde.kundenavn[0] + " (kundenr: " + Kunde.PK_kundenr[0] + ")?", "Slet kunde?", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
@@ -175,10 +199,27 @@ namespace G_Unit_Windows
         }
         private void SletKontoKnap_Click(object sender, EventArgs e)
         {
-            Konto.SletKonto(AktivKontinr);
+            DialogResult dialogResult = MessageBox.Show("Er du sikker på at du vil slette kontoen??", "Slet konto?", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                Konto.SletKonto(AktivKontinr);
+                KundeMenuUpdate();
+                
+                TransaktionUpdate(AktivKontinr);
+                //KontoInfoBox.Clear();
+
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                //do something else
+            }
+
+
+            KundeMenuUpdate();
         }
         private void KontiListe_SelectedIndexChanged(object sender, EventArgs e)
         {
+            TransaktionUpdate(AktivKontinr);
             if (KontiListe.SelectedItem != null)
             {
                 TransaktionerGruppe.Visible = true;
@@ -190,6 +231,17 @@ namespace G_Unit_Windows
                 KontoInfoBox.Text = KontoInfo;
                 Konto.VisTransaktion(AktivKontinr);
                 TransaktionUpdate(AktivKontinr);
+
+                //    if (KontoInfo != "")
+                //    { KontoInfoBox.Text = KontoInfo; }
+                //    else
+                //    { KontoInfoBox.Clear(); }
+                //    Konto.VisTransaktion(AktivKontinr);
+                //    TransaktionUpdate(AktivKontinr);
+                //}
+                //else
+                //{
+                //    KontoInfoBox.Clear();
             }
         }
         private void IndbetalKnap_Click(object sender, EventArgs e)
@@ -237,5 +289,9 @@ namespace G_Unit_Windows
             Database.DataSource = ".\\SQLEXPRESS";
         }
 
+        private void KontoInfoBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
