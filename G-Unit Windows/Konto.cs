@@ -1,18 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 
 namespace G_Unit_Windows
 {
     class Konto
     {
-
         public static string[] kontoTypeNavne = { "Løn", "Opsparing", "Lån" };
         public static int _kontoNummer;
+        static string SQLSend;
+        static string[] SQLData;
 
         private static void FindTransaktion()
         {
@@ -54,31 +49,28 @@ namespace G_Unit_Windows
 
         }
 
-        //public static 
-
         public static string[] VisTransaktion(int _kontoNummer)
         {
             return TransaktionSøger($"select * from Transaktion where FK_kontonr = '{_kontoNummer}';");
         }
 
         // Hjælpefunktion til transaktion søgning.
-        private static string[] TransaktionSøger(string sql)
+        private static string[] TransaktionSøger(string SQLSend)
         {
-            string SQLGet = sql;
-            string[] transArr = Database.SQLkommandoGet(SQLGet);
+            //string SQLGet = sql;
+            string[] SQLData = Database.SQLkommandoGet(SQLSend);
 
-            if (transArr.Length == 0)
+            if (SQLData.Length == 0)
             {
-                Console.Write("Ingen transaktioner fundet!");
                 return null;
             }
 
             int count = 0;
-            string[] transArray = new string[transArr.Length / 4];
-            for (int i = 0; i < transArr.Length / 4; i++)
+            string[] transArray = new string[SQLData.Length / 4];
+            for (int i = 0; i < SQLData.Length / 4; i++)
             {
                 //Console.WriteLine($"Transaktions ID: {transArr[0 + count]}, Trans. dato: {transArr[1 + count]}, Beløb: {transArr[2 + count]}, Kunde nummer: {transArr[3 + count]}");
-                transArray[i] = ($"ID: {transArr[0 + count]}, Beløb: {transArr[2 + count]}, {transArr[1 + count]},  Kontonr: {transArr[3 + count]}");
+                transArray[i] = ($"ID: {SQLData[0 + count]}, Beløb: {SQLData[2 + count]}, {SQLData[1 + count]},  Kontonr: {SQLData[3 + count]}");
                 count += 4;
             }
 

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace G_Unit_Windows
 {
@@ -11,12 +7,12 @@ namespace G_Unit_Windows
         public static int[] PK_kundenr;
         public static string[] kundenavn, CPR, SQLData;
         public static DateTime?[] kundedato, kundeslutdato;
-        public static string SQLSend, CPRString;
+        public static string SQLSend;
 
         //******************* KUNDEMENU *******************
         public static void KundeMenu(int kundenr)
         {
-            SQLSend = "select * from Kunde where PK_kundenr like '" + kundenr + "'";
+            SQLSend = $"select * from Kunde where PK_kundenr like '{kundenr}'";
             SQLData = Database.SQLkommandoGet(SQLSend);
             ParseKunde(SQLData);
         }
@@ -24,30 +20,21 @@ namespace G_Unit_Windows
         //******************* OPRET KUNDE *******************
         public static void OpretKunde(string navn, string CPRString)
         {
-            //do //Checker for om CPR nummeret er på 10 tal og kun numerisk
-            //{
-            //    Console.Write("Indtast CPR-nr: ");
-            //    CPRString = Console.ReadLine();
-            //    CPRString = CPRString.Replace("-", "").Replace("/", "");
-            //} while (CPRString.Length != 10 || !(Int64.TryParse(CPRString, out Int64 CPRnr)));
-
             //Sender data til database
-            string SQLSend = $"INSERT INTO Kunde values('{navn}', GetDate(), '','{CPRString}')";
+            SQLSend = $"INSERT INTO Kunde values('{navn}', GetDate(), '','{CPRString}')";
             Database.SQLkommandoSet(SQLSend);
             //Modtager kundenr fra database baseret på CPR nr
             string SQLGet = $"SELECT * from Kunde where CPR = '{CPRString}';";
-            //            string SQLGet = $"SELECT PK_kundenr from Kunde where CPR = '{CPRString}';";
             SQLData = Database.SQLkommandoGet(SQLGet);
             ParseKunde(SQLData);
-            //Starter kundemenu med kundenr
-            //KundeMenu(int.Parse(SQLData[0]));
         }
 
+        //******** CHECKER OM DER ER EKSISTERENDE CPR NR *********
         public static bool CheckCPR(string str)
         {
-            string SQLGet = $"select CPR from Kunde where CPR = {str}";
-            string[] check = Database.SQLkommandoGet(SQLGet);
-            if (check.Length == 0) return true;
+            SQLSend = $"select CPR from Kunde where CPR = {str}";
+            SQLData = Database.SQLkommandoGet(SQLSend);
+            if (SQLData.Length == 0) return true;
             else return false;
         }
 
@@ -83,21 +70,12 @@ namespace G_Unit_Windows
             }
             SQLData = Database.SQLkommandoGet(SQLSend);
             ParseKunde(SQLData);
-            //if (PK_kundenr.Length > 1)
-            //{
-            //    // Console.Write("Vælg nr: ");
-            //    // int knr = int.Parse(Console.ReadLine());
-            //    // KundeMenu(PK_kundenr[knr]);
-            //}
-            //else KundeMenu(PK_kundenr[0]);
         }
 
         //******************* SLET KUNDE *******************
         public static void SletKunde(string str)
         {
-            //Console.Write("Indtast CPR-nr på kunde der skal slettes: ");
-            //string CPRString = Console.ReadLine();
-            string SQLSend = $"UPDATE Kunde set kundeslutdato = GetDate() where PK_kundenr = '{str}';";
+            SQLSend = $"UPDATE Kunde set kundeslutdato = GetDate() where PK_kundenr = '{str}';";
             Database.SQLkommandoSet(SQLSend);
             SQLSend = $"select * from Kunde where PK_kundenr like '{str}'";
             SQLData = Database.SQLkommandoGet(SQLSend);
@@ -106,7 +84,7 @@ namespace G_Unit_Windows
 
         public static void RetKunde(string nytnavn, string str)
         {
-            string SQLSend = $"UPDATE Kunde set kundenavn = '{nytnavn}' where PK_kundenr = '{str}';";
+            SQLSend = $"UPDATE Kunde set kundenavn = '{nytnavn}' where PK_kundenr = '{str}';";
             Database.SQLkommandoSet(SQLSend);
             SQLSend = $"select * from Kunde where PK_kundenr like '{str}'";
             SQLData = Database.SQLkommandoGet(SQLSend);
@@ -117,42 +95,27 @@ namespace G_Unit_Windows
         static void ParseKunde(string[] SQLData)
         {
             int count = 0;
-            for (int i = 0; i < SQLData.Length; i += 5)
-            {
-                //Forøger arrays med 1
-                Array.Resize(ref PK_kundenr, count + 1);
-                Array.Resize(ref kundenavn, count + 1);
-                Array.Resize(ref kundedato, count + 1);
-                Array.Resize(ref kundeslutdato, count + 1);
-                Array.Resize(ref CPR, count + 1);
-
-                //Tager datastrømmen fra SQL og parser den med trinstørrelse af antal variabler
-                PK_kundenr[count] = int.Parse(SQLData[i]);
-                kundenavn[count] = SQLData[i + 1];
-                kundedato[count] = Convert.ToDateTime(SQLData[i + 2]);
-                if (SQLData[i + 3] != "") { kundeslutdato[count] = Convert.ToDateTime(SQLData[i + 3]); } else kundeslutdato[count] = null;
-                CPR[count] = SQLData[i + 4];
-                count++;
-            }
+            PK_kundenr = null;
 
             if (SQLData.Length != 0) //Checker at datastrømmen ikke er tom
             {
-                string slutdato = "";
-                for (int i = 0; i < PK_kundenr.Length; i++)
+                for (int i = 0; i < SQLData.Length; i += 5)
                 {
-                    //Sikrer at hvis der ikke er slutdato, skal den ikke vises
-                    if (kundeslutdato[i] != null)
-                    {
-                        slutdato = $"Slutdato: {kundeslutdato[i]}";
-                        Console.ForegroundColor = ConsoleColor.Gray;
-                    }
-                    else { slutdato = ""; }
-                    Console.WriteLine($"Kundenr: {PK_kundenr[i]} - Kundenavn: {kundenavn[i]} - CPR: {CPR[i]} \nStartdato: {kundedato[i]} " + slutdato);
+                    //Forøger arrays med 1
+                    Array.Resize(ref PK_kundenr, count + 1);
+                    Array.Resize(ref kundenavn, count + 1);
+                    Array.Resize(ref kundedato, count + 1);
+                    Array.Resize(ref kundeslutdato, count + 1);
+                    Array.Resize(ref CPR, count + 1);
+
+                    //Tager datastrømmen fra SQL og parser den med trinstørrelse af antal variabler
+                    PK_kundenr[count] = int.Parse(SQLData[i]);
+                    kundenavn[count] = SQLData[i + 1];
+                    kundedato[count] = Convert.ToDateTime(SQLData[i + 2]);
+                    if (SQLData[i + 3] != "") { kundeslutdato[count] = Convert.ToDateTime(SQLData[i + 3]); } else kundeslutdato[count] = null;
+                    CPR[count] = SQLData[i + 4];
+                    count++;
                 }
-            }
-            else
-            {
-                Console.WriteLine("Ingen resultater fundet.");
             }
         }
     }

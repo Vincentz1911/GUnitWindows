@@ -1,38 +1,34 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace G_Unit_Windows
 {
     public partial class Form1 : Form
     {
-        static int AktivKontinr = 0;
+        static int AktivKontonr = 0;
         static string KontoInfo = "";
 
         public Form1()
         {
             InitializeComponent();
-            Size = new Size(860, 430);
+            Size = new Size(1150, 650);
             DropDownFind.SelectedIndex = 0;
             comboBoxKontoType.SelectedIndex = 0;
             DropDownSorter.SelectedIndex = 0;
             AllInvisible();
-            RetKundeGruppe.Location = new Point(150, 100);
-            OpretNyKundeGruppe.Location = new Point(150, 20);
-            FindKundeGruppe.Location = new Point(150, 20);
-            KundeMenuGruppe.Location = new Point(150, 20);
-            //OpretKontoGruppe.Location = new Point(27, 265);
-            TransaktionerGruppe.Location = new Point(420, 20);
-            KundeListeGruppe.Location = new Point(420, 20);
+
+            int posX = 210, posX2 = 570;
+
+            RetKundeGruppe.Location = new Point(posX, 100);
+            OpretNyKundeGruppe.Location = new Point(posX, 20);
+            FindKundeGruppe.Location = new Point(posX, 20);
+            KundeMenuGruppe.Location = new Point(posX, 20);
+            OpretKontoGruppe.Location = new Point(25, 273);
+            TransaktionerGruppe.Location = new Point(posX2, 20);
+            KundeListeGruppe.Location = new Point(posX2, 20);
 
         }
-
         private void AllInvisible()
         {
             OpretNyKundeGruppe.Visible = false;
@@ -43,10 +39,7 @@ namespace G_Unit_Windows
             KundeListeGruppe.Visible = false;
             RetKundeGruppe.Visible = false;
         }
-        private void Form1_Load(object sender, EventArgs e)
-        {
 
-        }
         private void KundeMenuUpdate()
         {
             KundeNavn.Text = Kunde.kundenavn[0];
@@ -81,7 +74,7 @@ namespace G_Unit_Windows
 
             }
 
-            if (AktivKontinr == 0)
+            if (AktivKontonr == 0)
             {
                 TransaktionerGruppe.Visible = false;
             }
@@ -104,14 +97,7 @@ namespace G_Unit_Windows
         {
             AllInvisible();
             OpretNyKundeGruppe.Visible = true;
-            AktivKontinr = 0;
-        }
-        private void FindKundeMenu_Click(object sender, EventArgs e)
-        {
-            AllInvisible();
-            FindKundeGruppe.Visible = true;
-            FindKundeListe.Items.Clear();
-            AktivKontinr = 0;
+            AktivKontonr = 0;
         }
         private void OpretKundeKnap_Click(object sender, EventArgs e)
         {
@@ -142,7 +128,53 @@ namespace G_Unit_Windows
             KundeMenuGruppe.Visible = true;
             KundeMenuUpdate();
         }
+        private void SletKundeMenu_Click(object sender, EventArgs e)
+        {
+            if (KontiListe.Items.Count > 0)
+            {
+                MessageBox.Show("Kunden kan ikke slettes da der stadig er aktive konti.");
+                return;
+            }
 
+            DialogResult dialogResult = MessageBox.Show("Ønsker du at slette kunden " + Kunde.kundenavn[0] + " (kundenr: " + Kunde.PK_kundenr[0] + ")?", "Slet kunde?", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                Kunde.SletKunde(Kunde.PK_kundenr[0].ToString());
+                KundeMenuUpdate();
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                //do something else
+            }
+
+        }
+        private void RetKundeMenu_Click(object sender, EventArgs e)
+        {
+            RetKundeNavn.Text = Kunde.kundenavn[0];
+            RetKundeGruppe.Visible = true;
+        }
+        private void RetKundeKnap_Click(object sender, EventArgs e)
+        {
+            if (RetKundeNavn.Text != "")
+            {
+                Kunde.RetKunde(RetKundeNavn.Text, Kunde.PK_kundenr[0].ToString());
+                RetKundeGruppe.Visible = false;
+                KundeMenuUpdate();
+            }
+            else MessageBox.Show("Navn kan ikke være tomt! Prøv igen.");
+        }
+        private void FortrydNavnKnap_Click(object sender, EventArgs e)
+        {
+            RetKundeGruppe.Visible = false;
+        }
+
+        private void FindKundeMenu_Click(object sender, EventArgs e)
+        {
+            AllInvisible();
+            FindKundeGruppe.Visible = true;
+            FindKundeListe.Items.Clear();
+            AktivKontonr = 0;
+        }
         private void FindKundeKnap_Click(object sender, EventArgs e)
         {
             FindKundeListe.Items.Clear();
@@ -187,29 +219,9 @@ namespace G_Unit_Windows
                 KundeMenuUpdate();
             }
         }
-        private void SletKundeMenu_Click(object sender, EventArgs e)
-        {
-            if (KontiListe.Items.Count > 0)
-            {
-                MessageBox.Show("Kunden kan ikke slettes da der stadig er aktive konti.");
-                return;
-            }
 
-            DialogResult dialogResult = MessageBox.Show("Ønsker du at slette kunden " + Kunde.kundenavn[0] + " (kundenr: " + Kunde.PK_kundenr[0] + ")?", "Slet kunde?", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
-            {
-                Kunde.SletKunde(Kunde.PK_kundenr[0].ToString());
-                KundeMenuUpdate();
-            }
-            else if (dialogResult == DialogResult.No)
-            {
-                //do something else
-            }
-
-        }
         private void OpretKontoMenu_Click(object sender, EventArgs e)
-        {
-            TransaktionerGruppe.Visible = false;
+        {            
             OpretKontoGruppe.Visible = true;
         }
         private void OpretKontoKnap_Click(object sender, EventArgs e)
@@ -218,10 +230,14 @@ namespace G_Unit_Windows
             KundeMenuUpdate();
             OpretKontoGruppe.Visible = false;
         }
+        private void FortrydOpretKontoKnap_Click(object sender, EventArgs e)
+        {
+            OpretKontoGruppe.Visible = false;
+        }
         private void SletKontoKnap_Click(object sender, EventArgs e)
         {
             //if (Konto.saldo[])
-            float saldo = Konto.CheckSaldo(AktivKontinr);
+            float saldo = Konto.CheckSaldo(AktivKontonr);
             if (saldo != 0)
             {
                 MessageBox.Show("Saldoen er ikke i nul, og kan derfor ikke slettes.");
@@ -231,11 +247,11 @@ namespace G_Unit_Windows
             DialogResult dialogResult = MessageBox.Show("Er du sikker på at du vil slette kontoen??", "Slet konto?", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                Konto.SletKonto(AktivKontinr);
+                Konto.SletKonto(AktivKontonr);
                 //KundeMenuUpdate();
 
-                AktivKontinr = 0;
-                TransaktionUpdate(AktivKontinr);
+                AktivKontonr = 0;
+                TransaktionUpdate(AktivKontonr);
                 KontoInfoBox.Clear();
 
             }
@@ -256,11 +272,11 @@ namespace G_Unit_Windows
                 KontoInfo = KontiListe.SelectedItem.ToString();
                 string[] KontoSplitArray = KontoInfo.Split(',');
 
-                AktivKontinr = int.Parse(KontoSplitArray[0]);
+                AktivKontonr = int.Parse(KontoSplitArray[0]);
                 
-                Konto.VisTransaktion(AktivKontinr);
+                Konto.VisTransaktion(AktivKontonr);
                 KontoInfoBox.Text = KontoInfo;
-                TransaktionUpdate(AktivKontinr);
+                TransaktionUpdate(AktivKontonr);
 
             }
         }
@@ -270,8 +286,8 @@ namespace G_Unit_Windows
             IndtastTransaktion.Text.Replace("+", "").Replace("-", "").Replace("*", "").Replace("/", "");
             if (IndtastTransaktion.Text != "" && decimal.TryParse(IndtastTransaktion.Text, out decimal deci) && deci > 0)
             {
-                Konto.IndsætBeløb(IndtastTransaktion.Text.Replace(",", "."), AktivKontinr);
-                TransaktionUpdate(AktivKontinr);
+                Konto.IndsætBeløb(IndtastTransaktion.Text.Replace(",", "."), AktivKontonr);
+                TransaktionUpdate(AktivKontonr);
             }
             else
             {
@@ -284,8 +300,8 @@ namespace G_Unit_Windows
             //IndtastTransaktion.Text.Replace("-", "");
             if (IndtastTransaktion.Text != "" && decimal.TryParse(IndtastTransaktion.Text, out decimal deci) && deci > 0)
             {
-                Konto.HævBeløb(IndtastTransaktion.Text.Replace(",", "."), AktivKontinr);
-                TransaktionUpdate(AktivKontinr);
+                Konto.HævBeløb(IndtastTransaktion.Text.Replace(",", "."), AktivKontonr);
+                TransaktionUpdate(AktivKontonr);
             }
             else
             {
@@ -299,8 +315,8 @@ namespace G_Unit_Windows
             IndtastTransaktion.Text.Replace("+", "").Replace("-", "").Replace("*", "").Replace("/", "");
             if (OverførTilKonto.Text != "" && decimal.TryParse(OverførTilKonto.Text, out decimal deci) && IndtastTransaktion.Text != "" && decimal.TryParse(IndtastTransaktion.Text, out deci) && deci > 0)
             {
-                Konto.OverførBeløb(AktivKontinr, OverførTilKonto.Text, IndtastTransaktion.Text);
-                TransaktionUpdate(AktivKontinr);
+                Konto.OverførBeløb(AktivKontonr, OverførTilKonto.Text, IndtastTransaktion.Text);
+                TransaktionUpdate(AktivKontonr);
             }
             else
             {
@@ -328,7 +344,6 @@ namespace G_Unit_Windows
             //KontiListe.SetSelected(0, true);
         }
 
-
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
             Database.DataSource = "(local)";
@@ -337,31 +352,5 @@ namespace G_Unit_Windows
         {
             Database.DataSource = ".\\SQLEXPRESS";
         }
-
-        private void RetKundeMenu_Click(object sender, EventArgs e)
-        {
-            RetKundeNavn.Text = Kunde.kundenavn[0];
-            RetKundeGruppe.Visible = true;
-        }
-        private void RetKundeKnap_Click(object sender, EventArgs e)
-        {
-            if (RetKundeNavn.Text != "")
-            {
-                Kunde.RetKunde(RetKundeNavn.Text, Kunde.PK_kundenr[0].ToString());
-                RetKundeGruppe.Visible = false;
-                KundeMenuUpdate();
-            }
-            else MessageBox.Show("Navn kan ikke være tomt! Prøv igen.");
-        }
-        private void FortrydOpretKontoKnap_Click(object sender, EventArgs e)
-        {
-            OpretKontoGruppe.Visible = false;
-        }
-        private void FortrydNavnKnap_Click(object sender, EventArgs e)
-        {
-            RetKundeGruppe.Visible = false;
-        }
-
-
     }
 }

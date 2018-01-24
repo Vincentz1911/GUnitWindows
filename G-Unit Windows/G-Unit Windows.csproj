@@ -54,7 +54,6 @@
     </Compile>
     <Compile Include="Konto.cs" />
     <Compile Include="Kunde.cs" />
-    <Compile Include="Metoder.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">

@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace G_Unit_Windows
 {
     public static class Database
     {
-        public static string DataSource = "(local)";
-//        public static string DataSource = ".\\SQLEXPRESS";
+//        public static string DataSource = "(local)";
+        public static string DataSource = ".\\SQLEXPRESS";
 
         public static void SQLkommandoSet(string sqltext)
         {
@@ -58,9 +54,7 @@ namespace G_Unit_Windows
                             Array.Resize(ref SQLArray, count + 1); // Udvider arrayet med en pr. gennemgang af felter
                             SQLArray[count] = reader.GetValue(i).ToString();
                             count++;
-                            //Console.Write(reader.GetValue(i));
                         }
-                        //Console.WriteLine();
                     }
                 }
             }
