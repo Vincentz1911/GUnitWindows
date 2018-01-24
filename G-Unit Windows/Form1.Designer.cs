@@ -83,6 +83,7 @@
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.RetKundeGruppe = new System.Windows.Forms.GroupBox();
+            this.FortrydNavnKnap = new System.Windows.Forms.Button();
             this.RetKundeNavn = new System.Windows.Forms.TextBox();
             this.RetKundeKnap = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
@@ -727,6 +728,7 @@
             // RetKundeGruppe
             // 
             this.RetKundeGruppe.BackColor = System.Drawing.Color.Transparent;
+            this.RetKundeGruppe.Controls.Add(this.FortrydNavnKnap);
             this.RetKundeGruppe.Controls.Add(this.RetKundeNavn);
             this.RetKundeGruppe.Controls.Add(this.RetKundeKnap);
             this.RetKundeGruppe.Controls.Add(this.label16);
@@ -740,12 +742,23 @@
             this.RetKundeGruppe.Text = "Ret Kundenavn";
             this.RetKundeGruppe.Visible = false;
             // 
+            // FortrydNavnKnap
+            // 
+            this.FortrydNavnKnap.Location = new System.Drawing.Point(38, 85);
+            this.FortrydNavnKnap.Margin = new System.Windows.Forms.Padding(4);
+            this.FortrydNavnKnap.Name = "FortrydNavnKnap";
+            this.FortrydNavnKnap.Size = new System.Drawing.Size(100, 31);
+            this.FortrydNavnKnap.TabIndex = 22;
+            this.FortrydNavnKnap.Text = "Fortryd";
+            this.FortrydNavnKnap.UseVisualStyleBackColor = true;
+            this.FortrydNavnKnap.Click += new System.EventHandler(this.FortrydNavnKnap_Click);
+            // 
             // RetKundeNavn
             // 
-            this.RetKundeNavn.Location = new System.Drawing.Point(107, 55);
+            this.RetKundeNavn.Location = new System.Drawing.Point(40, 55);
             this.RetKundeNavn.Margin = new System.Windows.Forms.Padding(4);
             this.RetKundeNavn.Name = "RetKundeNavn";
-            this.RetKundeNavn.Size = new System.Drawing.Size(211, 22);
+            this.RetKundeNavn.Size = new System.Drawing.Size(278, 22);
             this.RetKundeNavn.TabIndex = 3;
             // 
             // RetKundeKnap
@@ -762,7 +775,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(35, 58);
+            this.label16.Location = new System.Drawing.Point(37, 34);
             this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(64, 17);
@@ -871,6 +884,7 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Button RetKundeMenu;
         private System.Windows.Forms.Button FortrydOpretKontoKnap;
+        private System.Windows.Forms.Button FortrydNavnKnap;
     }
 }
 

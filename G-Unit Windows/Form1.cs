@@ -220,7 +220,13 @@ namespace G_Unit_Windows
         }
         private void SletKontoKnap_Click(object sender, EventArgs e)
         {
-            //if (Konto.saldo)
+            //if (Konto.saldo[])
+            float saldo = Konto.CheckSaldo(AktivKontinr);
+            if (saldo != 0)
+            {
+                MessageBox.Show("Saldoen er ikke i nul, og kan derfor ikke slettes.");
+                return;
+            }
 
             DialogResult dialogResult = MessageBox.Show("Er du sikker på at du vil slette kontoen??", "Slet konto?", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
@@ -251,15 +257,18 @@ namespace G_Unit_Windows
                 string[] KontoSplitArray = KontoInfo.Split(',');
 
                 AktivKontinr = int.Parse(KontoSplitArray[0]);
-                KontoInfoBox.Text = KontoInfo;
+                
                 Konto.VisTransaktion(AktivKontinr);
+                KontoInfoBox.Text = KontoInfo;
                 TransaktionUpdate(AktivKontinr);
 
             }
         }
+
         private void IndbetalKnap_Click(object sender, EventArgs e)
         {
-            if (IndtastTransaktion.Text != "" && decimal.TryParse(IndtastTransaktion.Text, out decimal deci))
+            IndtastTransaktion.Text.Replace("+", "").Replace("-", "").Replace("*", "").Replace("/", "");
+            if (IndtastTransaktion.Text != "" && decimal.TryParse(IndtastTransaktion.Text, out decimal deci) && deci > 0)
             {
                 Konto.IndsætBeløb(IndtastTransaktion.Text.Replace(",", "."), AktivKontinr);
                 TransaktionUpdate(AktivKontinr);
@@ -272,7 +281,8 @@ namespace G_Unit_Windows
         }
         private void UdbetalKnap_Click(object sender, EventArgs e)
         {
-            if (IndtastTransaktion.Text != "" && decimal.TryParse(IndtastTransaktion.Text, out decimal deci))
+            //IndtastTransaktion.Text.Replace("-", "");
+            if (IndtastTransaktion.Text != "" && decimal.TryParse(IndtastTransaktion.Text, out decimal deci) && deci > 0)
             {
                 Konto.HævBeløb(IndtastTransaktion.Text.Replace(",", "."), AktivKontinr);
                 TransaktionUpdate(AktivKontinr);
@@ -280,6 +290,21 @@ namespace G_Unit_Windows
             else
             {
                 MessageBox.Show("Ukendt beløb. Prøv igen");
+                OverførTilKonto.Clear();
+            }
+
+        }
+        private void OverførKnap_Click(object sender, EventArgs e)
+        {
+            IndtastTransaktion.Text.Replace("+", "").Replace("-", "").Replace("*", "").Replace("/", "");
+            if (OverførTilKonto.Text != "" && decimal.TryParse(OverførTilKonto.Text, out decimal deci) && IndtastTransaktion.Text != "" && decimal.TryParse(IndtastTransaktion.Text, out deci) && deci > 0)
+            {
+                Konto.OverførBeløb(AktivKontinr, OverførTilKonto.Text, IndtastTransaktion.Text);
+                TransaktionUpdate(AktivKontinr);
+            }
+            else
+            {
+                MessageBox.Show("Ukendt beløb eller kontonr. Prøv igen");
                 OverførTilKonto.Clear();
             }
 
@@ -297,26 +322,12 @@ namespace G_Unit_Windows
                     TransaktionsListe.Items.Add(item);
                 }
             }
-
+            
+            KontoInfoBox.Text = KontoInfo;
             KundeMenuUpdate();
             //KontiListe.SetSelected(0, true);
         }
 
-        private void OverførKnap_Click(object sender, EventArgs e)
-        {
-
-            if (OverførTilKonto.Text != "" && decimal.TryParse(OverførTilKonto.Text, out decimal deci) && IndtastTransaktion.Text != "" && decimal.TryParse(IndtastTransaktion.Text, out deci))
-            {
-                Konto.OverførBeløb(AktivKontinr, OverførTilKonto.Text, IndtastTransaktion.Text);
-                TransaktionUpdate(AktivKontinr);
-            }
-            else
-            {
-                MessageBox.Show("Ukendt beløb eller kontonr. Prøv igen");
-                OverførTilKonto.Clear();
-            }
-
-        }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
@@ -332,17 +343,25 @@ namespace G_Unit_Windows
             RetKundeNavn.Text = Kunde.kundenavn[0];
             RetKundeGruppe.Visible = true;
         }
-
         private void RetKundeKnap_Click(object sender, EventArgs e)
         {
-            Kunde.RetKunde(RetKundeNavn.Text, Kunde.PK_kundenr[0].ToString());
-            RetKundeGruppe.Visible = false;
-            KundeMenuUpdate();
+            if (RetKundeNavn.Text != "")
+            {
+                Kunde.RetKunde(RetKundeNavn.Text, Kunde.PK_kundenr[0].ToString());
+                RetKundeGruppe.Visible = false;
+                KundeMenuUpdate();
+            }
+            else MessageBox.Show("Navn kan ikke være tomt! Prøv igen.");
         }
-
         private void FortrydOpretKontoKnap_Click(object sender, EventArgs e)
         {
             OpretKontoGruppe.Visible = false;
         }
+        private void FortrydNavnKnap_Click(object sender, EventArgs e)
+        {
+            RetKundeGruppe.Visible = false;
+        }
+
+
     }
 }

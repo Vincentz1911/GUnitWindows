@@ -251,6 +251,14 @@ namespace G_Unit_Windows
             return strBeløb;
         }
 
+        public static float CheckSaldo(int str)
+        {
+            string SQLGet = $"select saldo from Konto where PK_Kontonr = {str}";
+            string[] saldo = Database.SQLkommandoGet(SQLGet);
+            float floatSaldo = float.Parse(saldo[0]);
+            return floatSaldo;
+        }
+
         public static void OpretTransaktion(string beløb, int kontoNummer)
         {
             string SQLSend = $"insert into Transaktion values (GETDATE(), '{beløb}', {kontoNummer}); ";
