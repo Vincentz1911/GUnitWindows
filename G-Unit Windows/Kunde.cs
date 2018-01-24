@@ -55,19 +55,18 @@ namespace G_Unit_Windows
                     break;
 
                 case "2": // Søger efter kunde på kundenummer
-                    SQLSend = $"select * from Kunde where PK_kundenr like '{str}'";
+                    if (sorter == 1) SQLSend = $"select * from Kunde where PK_kundenr like '%{str}%'";
+                    else SQLSend = $"select * from Kunde where PK_kundenr like '%{str}%' order by kundenavn";
                     break;
 
                 case "3": // Søger efter kunde baseret på kontonummer
-                    SQLSend = $"select PK_kundenr, kundenavn, kundedato, kundeslutdato, CPR from Konto, Kunde where PK_kontonr = '{str}' and PK_kundenr = FK_kundenr";
+                    if (sorter == 1) SQLSend = $"select PK_kundenr, kundenavn, kundedato, kundeslutdato, CPR from Konto, Kunde where PK_kontonr = '%{str}%' and PK_kundenr = FK_kundenr";
+                    else SQLSend = $"select PK_kundenr, kundenavn, kundedato, kundeslutdato, CPR from Konto, Kunde where PK_kontonr = '%{str}%' and PK_kundenr = FK_kundenr order by kundenavn";
                     break;
 
                 case "4": // Søger efter kunde på CPR-nummer
-                    //do
-                    //{
-                    //         str = str.Replace("-", "").Replace("/", "");
-                    //} while (str.Length != 10 && int.TryParse(str, out int CPRnr));
-                    SQLSend = $"select * from Kunde where CPR like '%{str}%'";
+                    if (sorter == 1) SQLSend = $"select * from Kunde where CPR like '%{str}%'";
+                    else SQLSend = $"select * from Kunde where CPR like '%{str}%' order by kundenavn";
                     break;
 
                 default:

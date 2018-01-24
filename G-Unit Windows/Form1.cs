@@ -78,7 +78,7 @@ namespace G_Unit_Windows
                 {
                     KontiListe.Items.Add(KontoArray[i]);
                 }
- 
+
             }
 
             if (AktivKontinr == 0)
@@ -104,12 +104,14 @@ namespace G_Unit_Windows
         {
             AllInvisible();
             OpretNyKundeGruppe.Visible = true;
+            AktivKontinr = 0;
         }
         private void FindKundeMenu_Click(object sender, EventArgs e)
         {
             AllInvisible();
             FindKundeGruppe.Visible = true;
             FindKundeListe.Items.Clear();
+            AktivKontinr = 0;
         }
         private void OpretKundeKnap_Click(object sender, EventArgs e)
         {
@@ -245,16 +247,30 @@ namespace G_Unit_Windows
         }
         private void IndbetalKnap_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show(KontiListe.SelectedItem.ToString());
-            //string[] KontoSplitArray = KontiListe.SelectedItem.ToString().Split(',');
-            Konto.IndsætBeløb(IndtastTransaktion.Text.Replace(",","."), AktivKontinr);
-            TransaktionUpdate(AktivKontinr);
+            if (IndtastTransaktion.Text != "" && decimal.TryParse(IndtastTransaktion.Text, out decimal deci))
+            {
+                Konto.IndsætBeløb(IndtastTransaktion.Text.Replace(",", "."), AktivKontinr);
+                TransaktionUpdate(AktivKontinr);
+            }
+            else
+            {
+                MessageBox.Show("Ukendt beløb. Prøv igen");
+                OverførTilKonto.Clear();
+            }
         }
         private void UdbetalKnap_Click(object sender, EventArgs e)
         {
-            //string[] KontoSplitArray = KontiListe.SelectedItem.ToString().Split(',');
-            Konto.HævBeløb(IndtastTransaktion.Text.Replace(",", "."), AktivKontinr);
-            TransaktionUpdate(AktivKontinr);
+            if (IndtastTransaktion.Text != "" && decimal.TryParse(IndtastTransaktion.Text, out decimal deci))
+            {
+                Konto.HævBeløb(IndtastTransaktion.Text.Replace(",", "."), AktivKontinr);
+                TransaktionUpdate(AktivKontinr);
+            }
+            else
+            {
+                MessageBox.Show("Ukendt beløb. Prøv igen");
+                OverførTilKonto.Clear();
+            }
+
         }
         private void TransaktionUpdate(int KontiIndex)
         {
@@ -276,8 +292,18 @@ namespace G_Unit_Windows
 
         private void OverførKnap_Click(object sender, EventArgs e)
         {
-            Konto.OverførBeløb(AktivKontinr, OverførTilKonto.Text, IndtastTransaktion.Text);
-            TransaktionUpdate(AktivKontinr);
+
+            if (OverførTilKonto.Text != "" && decimal.TryParse(OverførTilKonto.Text, out decimal deci) && IndtastTransaktion.Text != "" && decimal.TryParse(IndtastTransaktion.Text, out deci))
+            {
+                Konto.OverførBeløb(AktivKontinr, OverførTilKonto.Text, IndtastTransaktion.Text);
+                TransaktionUpdate(AktivKontinr);
+            }
+            else
+            {
+                MessageBox.Show("Ukendt beløb eller kontonr. Prøv igen");
+                OverførTilKonto.Clear();
+            }
+
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
