@@ -5,8 +5,8 @@ namespace G_Unit_Windows
 {
     public static class Database
     {
-//        public static string DataSource = "(local)";
-        public static string DataSource = ".\\SQLEXPRESS";
+        public static string DataSource = "(local)";
+//        public static string DataSource = ".\\SQLEXPRESS";
 
         public static void SQLkommandoSet(string sqltext)
         {

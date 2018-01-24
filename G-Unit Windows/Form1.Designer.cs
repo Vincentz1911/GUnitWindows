@@ -79,7 +79,6 @@
             this.UdbetalKnap = new System.Windows.Forms.Button();
             this.IndbetalKnap = new System.Windows.Forms.Button();
             this.KundeListeGruppe = new System.Windows.Forms.GroupBox();
-            this.DataSourceGruppe = new System.Windows.Forms.GroupBox();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.RetKundeGruppe = new System.Windows.Forms.GroupBox();
@@ -89,22 +88,34 @@
             this.label16 = new System.Windows.Forms.Label();
             this.DigiClockTextBox = new System.Windows.Forms.TextBox();
             this.Music = new System.Windows.Forms.CheckBox();
+            this.LoginBox = new System.Windows.Forms.GroupBox();
+            this.Opret = new System.Windows.Forms.Button();
+            this.Login = new System.Windows.Forms.Button();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.Brugerpassword = new System.Windows.Forms.TextBox();
+            this.Brugernavn = new System.Windows.Forms.TextBox();
+            this.MainMenu = new System.Windows.Forms.GroupBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.OpretNyKundeGruppe.SuspendLayout();
             this.FindKundeGruppe.SuspendLayout();
             this.KundeMenuGruppe.SuspendLayout();
             this.OpretKontoGruppe.SuspendLayout();
             this.TransaktionerGruppe.SuspendLayout();
             this.KundeListeGruppe.SuspendLayout();
-            this.DataSourceGruppe.SuspendLayout();
             this.RetKundeGruppe.SuspendLayout();
+            this.LoginBox.SuspendLayout();
+            this.MainMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // OpretKundeMenu
             // 
-            this.OpretKundeMenu.Location = new System.Drawing.Point(25, 25);
+            this.OpretKundeMenu.Location = new System.Drawing.Point(24, 32);
             this.OpretKundeMenu.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.OpretKundeMenu.Name = "OpretKundeMenu";
-            this.OpretKundeMenu.Size = new System.Drawing.Size(155, 35);
+            this.OpretKundeMenu.Size = new System.Drawing.Size(100, 35);
             this.OpretKundeMenu.TabIndex = 0;
             this.OpretKundeMenu.Text = "Ny kunde";
             this.OpretKundeMenu.UseVisualStyleBackColor = true;
@@ -112,10 +123,10 @@
             // 
             // FindKundeMenu
             // 
-            this.FindKundeMenu.Location = new System.Drawing.Point(25, 72);
+            this.FindKundeMenu.Location = new System.Drawing.Point(24, 85);
             this.FindKundeMenu.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.FindKundeMenu.Name = "FindKundeMenu";
-            this.FindKundeMenu.Size = new System.Drawing.Size(155, 35);
+            this.FindKundeMenu.Size = new System.Drawing.Size(100, 35);
             this.FindKundeMenu.TabIndex = 1;
             this.FindKundeMenu.Text = "Find kunde";
             this.FindKundeMenu.UseVisualStyleBackColor = true;
@@ -159,10 +170,10 @@
             // 
             // OpretKundeKnap
             // 
-            this.OpretKundeKnap.Location = new System.Drawing.Point(202, 137);
+            this.OpretKundeKnap.Location = new System.Drawing.Point(203, 137);
             this.OpretKundeKnap.Margin = new System.Windows.Forms.Padding(25, 10, 25, 25);
             this.OpretKundeKnap.Name = "OpretKundeKnap";
-            this.OpretKundeKnap.Size = new System.Drawing.Size(101, 35);
+            this.OpretKundeKnap.Size = new System.Drawing.Size(100, 35);
             this.OpretKundeKnap.TabIndex = 7;
             this.OpretKundeKnap.Text = "Opret kunde";
             this.OpretKundeKnap.UseVisualStyleBackColor = true;
@@ -247,7 +258,7 @@
             this.FindKundeKnap.Location = new System.Drawing.Point(204, 188);
             this.FindKundeKnap.Margin = new System.Windows.Forms.Padding(25, 10, 25, 25);
             this.FindKundeKnap.Name = "FindKundeKnap";
-            this.FindKundeKnap.Size = new System.Drawing.Size(101, 35);
+            this.FindKundeKnap.Size = new System.Drawing.Size(100, 35);
             this.FindKundeKnap.TabIndex = 8;
             this.FindKundeKnap.Text = "Find Kunde";
             this.FindKundeKnap.UseVisualStyleBackColor = true;
@@ -351,7 +362,7 @@
             this.OpretKontoMenu.Location = new System.Drawing.Point(204, 498);
             this.OpretKontoMenu.Margin = new System.Windows.Forms.Padding(10, 10, 25, 25);
             this.OpretKontoMenu.Name = "OpretKontoMenu";
-            this.OpretKontoMenu.Size = new System.Drawing.Size(101, 35);
+            this.OpretKontoMenu.Size = new System.Drawing.Size(100, 35);
             this.OpretKontoMenu.TabIndex = 15;
             this.OpretKontoMenu.Text = "Opret Konto";
             this.OpretKontoMenu.UseVisualStyleBackColor = true;
@@ -464,10 +475,10 @@
             // 
             // SletKontoKnap
             // 
-            this.SletKontoKnap.Location = new System.Drawing.Point(404, 37);
+            this.SletKontoKnap.Location = new System.Drawing.Point(405, 39);
             this.SletKontoKnap.Margin = new System.Windows.Forms.Padding(25, 10, 25, 25);
             this.SletKontoKnap.Name = "SletKontoKnap";
-            this.SletKontoKnap.Size = new System.Drawing.Size(101, 35);
+            this.SletKontoKnap.Size = new System.Drawing.Size(100, 35);
             this.SletKontoKnap.TabIndex = 18;
             this.SletKontoKnap.Text = "Slet Konto";
             this.SletKontoKnap.UseVisualStyleBackColor = true;
@@ -502,7 +513,7 @@
             this.OpretKontoKnap.Location = new System.Drawing.Point(27, 110);
             this.OpretKontoKnap.Margin = new System.Windows.Forms.Padding(25, 10, 25, 25);
             this.OpretKontoKnap.Name = "OpretKontoKnap";
-            this.OpretKontoKnap.Size = new System.Drawing.Size(101, 35);
+            this.OpretKontoKnap.Size = new System.Drawing.Size(100, 35);
             this.OpretKontoKnap.TabIndex = 20;
             this.OpretKontoKnap.Text = "Opret Konto";
             this.OpretKontoKnap.UseVisualStyleBackColor = true;
@@ -515,7 +526,7 @@
             this.OpretKontoGruppe.Controls.Add(this.OpretKontoKnap);
             this.OpretKontoGruppe.Controls.Add(this.comboBoxKontoType);
             this.OpretKontoGruppe.Controls.Add(this.label10);
-            this.OpretKontoGruppe.Location = new System.Drawing.Point(25, 273);
+            this.OpretKontoGruppe.Location = new System.Drawing.Point(25, 287);
             this.OpretKontoGruppe.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.OpretKontoGruppe.Name = "OpretKontoGruppe";
             this.OpretKontoGruppe.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -530,7 +541,7 @@
             this.FortrydOpretKontoKnap.Location = new System.Drawing.Point(27, 163);
             this.FortrydOpretKontoKnap.Margin = new System.Windows.Forms.Padding(25, 10, 25, 25);
             this.FortrydOpretKontoKnap.Name = "FortrydOpretKontoKnap";
-            this.FortrydOpretKontoKnap.Size = new System.Drawing.Size(101, 35);
+            this.FortrydOpretKontoKnap.Size = new System.Drawing.Size(100, 35);
             this.FortrydOpretKontoKnap.TabIndex = 21;
             this.FortrydOpretKontoKnap.Text = "Fortryd";
             this.FortrydOpretKontoKnap.UseVisualStyleBackColor = true;
@@ -634,7 +645,7 @@
             this.OverførKnap.Location = new System.Drawing.Point(404, 498);
             this.OverførKnap.Margin = new System.Windows.Forms.Padding(25, 10, 25, 25);
             this.OverførKnap.Name = "OverførKnap";
-            this.OverførKnap.Size = new System.Drawing.Size(101, 35);
+            this.OverførKnap.Size = new System.Drawing.Size(100, 35);
             this.OverførKnap.TabIndex = 18;
             this.OverførKnap.Text = "Overfør";
             this.OverførKnap.UseVisualStyleBackColor = true;
@@ -646,7 +657,7 @@
             this.UdbetalKnap.Location = new System.Drawing.Point(218, 498);
             this.UdbetalKnap.Margin = new System.Windows.Forms.Padding(25, 10, 25, 25);
             this.UdbetalKnap.Name = "UdbetalKnap";
-            this.UdbetalKnap.Size = new System.Drawing.Size(101, 35);
+            this.UdbetalKnap.Size = new System.Drawing.Size(100, 35);
             this.UdbetalKnap.TabIndex = 17;
             this.UdbetalKnap.Text = "Udbetal";
             this.UdbetalKnap.UseVisualStyleBackColor = true;
@@ -657,7 +668,7 @@
             this.IndbetalKnap.Location = new System.Drawing.Point(28, 498);
             this.IndbetalKnap.Margin = new System.Windows.Forms.Padding(25, 10, 25, 25);
             this.IndbetalKnap.Name = "IndbetalKnap";
-            this.IndbetalKnap.Size = new System.Drawing.Size(101, 35);
+            this.IndbetalKnap.Size = new System.Drawing.Size(100, 35);
             this.IndbetalKnap.TabIndex = 8;
             this.IndbetalKnap.Text = "Indbetal";
             this.IndbetalKnap.UseVisualStyleBackColor = true;
@@ -677,23 +688,10 @@
             this.KundeListeGruppe.Text = "Resultat af søgning";
             this.KundeListeGruppe.Visible = false;
             // 
-            // DataSourceGruppe
-            // 
-            this.DataSourceGruppe.Controls.Add(this.radioButton2);
-            this.DataSourceGruppe.Controls.Add(this.radioButton1);
-            this.DataSourceGruppe.Location = new System.Drawing.Point(25, 137);
-            this.DataSourceGruppe.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.DataSourceGruppe.Name = "DataSourceGruppe";
-            this.DataSourceGruppe.Padding = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.DataSourceGruppe.Size = new System.Drawing.Size(155, 111);
-            this.DataSourceGruppe.TabIndex = 23;
-            this.DataSourceGruppe.TabStop = false;
-            this.DataSourceGruppe.Text = "Data Source";
-            // 
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(24, 68);
+            this.radioButton2.Location = new System.Drawing.Point(212, 50);
             this.radioButton2.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(91, 22);
@@ -706,7 +704,7 @@
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(24, 35);
+            this.radioButton1.Location = new System.Drawing.Point(122, 50);
             this.radioButton1.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(68, 22);
@@ -723,7 +721,7 @@
             this.RetKundeGruppe.Controls.Add(this.RetKundeNavn);
             this.RetKundeGruppe.Controls.Add(this.RetKundeKnap);
             this.RetKundeGruppe.Controls.Add(this.label16);
-            this.RetKundeGruppe.Location = new System.Drawing.Point(210, 796);
+            this.RetKundeGruppe.Location = new System.Drawing.Point(570, 845);
             this.RetKundeGruppe.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.RetKundeGruppe.Name = "RetKundeGruppe";
             this.RetKundeGruppe.Padding = new System.Windows.Forms.Padding(5, 3, 5, 3);
@@ -738,7 +736,7 @@
             this.FortrydNavnKnap.Location = new System.Drawing.Point(30, 112);
             this.FortrydNavnKnap.Margin = new System.Windows.Forms.Padding(25, 10, 25, 25);
             this.FortrydNavnKnap.Name = "FortrydNavnKnap";
-            this.FortrydNavnKnap.Size = new System.Drawing.Size(101, 35);
+            this.FortrydNavnKnap.Size = new System.Drawing.Size(100, 35);
             this.FortrydNavnKnap.TabIndex = 22;
             this.FortrydNavnKnap.Text = "Fortryd";
             this.FortrydNavnKnap.UseVisualStyleBackColor = true;
@@ -757,7 +755,7 @@
             this.RetKundeKnap.Location = new System.Drawing.Point(202, 112);
             this.RetKundeKnap.Margin = new System.Windows.Forms.Padding(25, 10, 25, 25);
             this.RetKundeKnap.Name = "RetKundeKnap";
-            this.RetKundeKnap.Size = new System.Drawing.Size(101, 35);
+            this.RetKundeKnap.Size = new System.Drawing.Size(100, 35);
             this.RetKundeKnap.TabIndex = 7;
             this.RetKundeKnap.Text = "Ret Kunde";
             this.RetKundeKnap.UseVisualStyleBackColor = true;
@@ -789,7 +787,7 @@
             // Music
             // 
             this.Music.AutoSize = true;
-            this.Music.Location = new System.Drawing.Point(52, 523);
+            this.Music.Location = new System.Drawing.Point(52, 536);
             this.Music.Name = "Music";
             this.Music.Size = new System.Drawing.Size(92, 22);
             this.Music.TabIndex = 24;
@@ -797,22 +795,134 @@
             this.Music.UseVisualStyleBackColor = true;
             this.Music.CheckedChanged += new System.EventHandler(this.Music_CheckedChanged);
             // 
+            // LoginBox
+            // 
+            this.LoginBox.Controls.Add(this.label18);
+            this.LoginBox.Controls.Add(this.radioButton2);
+            this.LoginBox.Controls.Add(this.Opret);
+            this.LoginBox.Controls.Add(this.radioButton1);
+            this.LoginBox.Controls.Add(this.Login);
+            this.LoginBox.Controls.Add(this.label17);
+            this.LoginBox.Controls.Add(this.label15);
+            this.LoginBox.Controls.Add(this.Brugerpassword);
+            this.LoginBox.Controls.Add(this.Brugernavn);
+            this.LoginBox.Location = new System.Drawing.Point(210, 795);
+            this.LoginBox.Margin = new System.Windows.Forms.Padding(2);
+            this.LoginBox.Name = "LoginBox";
+            this.LoginBox.Padding = new System.Windows.Forms.Padding(2);
+            this.LoginBox.Size = new System.Drawing.Size(333, 225);
+            this.LoginBox.TabIndex = 25;
+            this.LoginBox.TabStop = false;
+            this.LoginBox.Text = "Login";
+            // 
+            // Opret
+            // 
+            this.Opret.Location = new System.Drawing.Point(27, 164);
+            this.Opret.Margin = new System.Windows.Forms.Padding(25, 10, 25, 25);
+            this.Opret.Name = "Opret";
+            this.Opret.Size = new System.Drawing.Size(100, 35);
+            this.Opret.TabIndex = 5;
+            this.Opret.Text = "Opret";
+            this.Opret.UseVisualStyleBackColor = true;
+            this.Opret.Click += new System.EventHandler(this.Opret_Click);
+            // 
+            // Login
+            // 
+            this.Login.Location = new System.Drawing.Point(206, 164);
+            this.Login.Margin = new System.Windows.Forms.Padding(25, 10, 25, 25);
+            this.Login.Name = "Login";
+            this.Login.Size = new System.Drawing.Size(100, 35);
+            this.Login.TabIndex = 4;
+            this.Login.Text = "Login";
+            this.Login.UseVisualStyleBackColor = true;
+            this.Login.Click += new System.EventHandler(this.Login_Click);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(27, 129);
+            this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(65, 18);
+            this.label17.TabIndex = 3;
+            this.label17.Text = "Password";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(26, 90);
+            this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(80, 18);
+            this.label15.TabIndex = 2;
+            this.label15.Text = "Brugernavn";
+            // 
+            // Brugerpassword
+            // 
+            this.Brugerpassword.Location = new System.Drawing.Point(110, 129);
+            this.Brugerpassword.Margin = new System.Windows.Forms.Padding(2);
+            this.Brugerpassword.Name = "Brugerpassword";
+            this.Brugerpassword.Size = new System.Drawing.Size(193, 23);
+            this.Brugerpassword.TabIndex = 1;
+            this.Brugerpassword.TextChanged += new System.EventHandler(this.Brugerpassword_TextChanged);
+            // 
+            // Brugernavn
+            // 
+            this.Brugernavn.Location = new System.Drawing.Point(110, 87);
+            this.Brugernavn.Margin = new System.Windows.Forms.Padding(2);
+            this.Brugernavn.Name = "Brugernavn";
+            this.Brugernavn.Size = new System.Drawing.Size(193, 23);
+            this.Brugernavn.TabIndex = 0;
+            // 
+            // MainMenu
+            // 
+            this.MainMenu.Controls.Add(this.OpretKundeMenu);
+            this.MainMenu.Controls.Add(this.FindKundeMenu);
+            this.MainMenu.Location = new System.Drawing.Point(25, 142);
+            this.MainMenu.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.MainMenu.Name = "MainMenu";
+            this.MainMenu.Padding = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.MainMenu.Size = new System.Drawing.Size(155, 140);
+            this.MainMenu.TabIndex = 24;
+            this.MainMenu.TabStop = false;
+            this.MainMenu.Text = "Menu";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(27, 52);
+            this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(81, 18);
+            this.label18.TabIndex = 6;
+            this.label18.Text = "Data Source";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.InitialImage = null;
+            this.pictureBox1.Location = new System.Drawing.Point(25, 25);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(155, 100);
+            this.pictureBox1.TabIndex = 26;
+            this.pictureBox1.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.ClientSize = new System.Drawing.Size(1130, 1028);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.MainMenu);
+            this.Controls.Add(this.LoginBox);
             this.Controls.Add(this.Music);
             this.Controls.Add(this.DigiClockTextBox);
             this.Controls.Add(this.KundeListeGruppe);
             this.Controls.Add(this.RetKundeGruppe);
-            this.Controls.Add(this.DataSourceGruppe);
             this.Controls.Add(this.OpretKontoGruppe);
             this.Controls.Add(this.TransaktionerGruppe);
             this.Controls.Add(this.OpretNyKundeGruppe);
-            this.Controls.Add(this.FindKundeMenu);
-            this.Controls.Add(this.OpretKundeMenu);
             this.Controls.Add(this.KundeMenuGruppe);
             this.Controls.Add(this.FindKundeGruppe);
             this.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -834,10 +944,12 @@
             this.TransaktionerGruppe.ResumeLayout(false);
             this.TransaktionerGruppe.PerformLayout();
             this.KundeListeGruppe.ResumeLayout(false);
-            this.DataSourceGruppe.ResumeLayout(false);
-            this.DataSourceGruppe.PerformLayout();
             this.RetKundeGruppe.ResumeLayout(false);
             this.RetKundeGruppe.PerformLayout();
+            this.LoginBox.ResumeLayout(false);
+            this.LoginBox.PerformLayout();
+            this.MainMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -891,7 +1003,6 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.GroupBox KundeListeGruppe;
         private System.Windows.Forms.CheckBox AktivKunde;
-        private System.Windows.Forms.GroupBox DataSourceGruppe;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.ComboBox DropDownSorter;
@@ -905,6 +1016,16 @@
         private System.Windows.Forms.Button FortrydNavnKnap;
         private System.Windows.Forms.TextBox DigiClockTextBox;
         private System.Windows.Forms.CheckBox Music;
+        private System.Windows.Forms.GroupBox LoginBox;
+        private System.Windows.Forms.Button Opret;
+        private System.Windows.Forms.Button Login;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox Brugerpassword;
+        private System.Windows.Forms.TextBox Brugernavn;
+        private System.Windows.Forms.GroupBox MainMenu;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

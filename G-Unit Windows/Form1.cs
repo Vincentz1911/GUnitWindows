@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Drawing;
 using System.Media;
+using System.Security.Cryptography;
+using System.Text;
 using System.Windows.Forms;
 
 namespace G_Unit_Windows
@@ -32,10 +34,11 @@ namespace G_Unit_Windows
             OpretNyKundeGruppe.Location = new Point(posX, 20);
             FindKundeGruppe.Location = new Point(posX, 20);
             KundeMenuGruppe.Location = new Point(posX, 20);
-            OpretKontoGruppe.Location = new Point(25, 273);
+            OpretKontoGruppe.Location = new Point(25, 287);
             TransaktionerGruppe.Location = new Point(posX2, 20);
             KundeListeGruppe.Location = new Point(posX2, 20);
-
+            LoginBox.Location = new Point(410, 225);
+            MainMenu.Visible = false;
         }
 
         private void t_Tick(object sender, EventArgs e)
@@ -299,12 +302,12 @@ namespace G_Unit_Windows
                 KontoInfo = KontiListe.SelectedItem.ToString();
                 KontoInfoBox.Text = KontoInfo;
                 string[] KontoSplitArray = KontoInfo.Split(',');
-                
+
 
                 AktivKontonr = int.Parse(KontoSplitArray[0]);
 
                 Konto.VisTransaktion(AktivKontonr);
-                
+
                 TransaktionUpdate(AktivKontonr);
 
             }
@@ -395,6 +398,63 @@ namespace G_Unit_Windows
             {
                 Player.Stop();
             }
+        }
+
+        private void Brugerpassword_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        static string GetMd5Hash(MD5 md5Hash, string input)
+        {
+            byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
+
+            StringBuilder sBuilder = new StringBuilder();
+
+            for (int i = 0; i < data.Length; i++)
+            {
+                sBuilder.Append(data[i].ToString("x2"));
+            }
+            return sBuilder.ToString();
+        }
+
+        private void Opret_Click(object sender, EventArgs e)
+        {
+            MD5 md5Hash = MD5.Create();
+            string hash = GetMd5Hash(md5Hash, Brugerpassword.Text);
+
+            // Check if user already exists.
+            string SQLGet = $"select 1 from BrugerLogin where Loginnavn = '{Brugernavn.Text}';";
+            if (Database.SQLkommandoGet(SQLGet).Length > 0)
+            {
+                MessageBox.Show("Brugernavn optaget!");
+                return;
+            }
+
+            // Else create user with password.
+            string SQLSend = $"insert into BrugerLogin values ('{Brugernavn.Text}', '{hash}')";
+            Database.SQLkommandoSet(SQLSend);
+
+            MessageBox.Show("Bruger Oprettet!");
+        }
+
+        private void Login_Click(object sender, EventArgs e)
+        {
+            MD5 md5Hash = MD5.Create();
+            string hash = GetMd5Hash(md5Hash, Brugerpassword.Text);
+
+            string SQLGet = $"select 1 from BrugerLogin where Loginnavn = '{Brugernavn.Text}' and Loginpassword = '{hash}';";
+
+            if (Database.SQLkommandoGet(SQLGet).Length <= 0)
+            {
+                MessageBox.Show("Login failed!");
+                return;
+            }
+
+            MessageBox.Show("Login success!!");
+            LoginBox.Visible = false;
+            MainMenu.Visible = true;
+
         }
     }
 }
