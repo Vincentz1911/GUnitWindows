@@ -69,6 +69,7 @@
             this.FortrydOpretKontoKnap = new System.Windows.Forms.Button();
             this.TransaktionsListe = new System.Windows.Forms.ListBox();
             this.TransaktionerGruppe = new System.Windows.Forms.GroupBox();
+            this.SaldoBox = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -89,6 +90,7 @@
             this.DigiClockTextBox = new System.Windows.Forms.TextBox();
             this.Music = new System.Windows.Forms.CheckBox();
             this.LoginBox = new System.Windows.Forms.GroupBox();
+            this.label18 = new System.Windows.Forms.Label();
             this.Opret = new System.Windows.Forms.Button();
             this.Login = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
@@ -96,8 +98,8 @@
             this.Brugerpassword = new System.Windows.Forms.TextBox();
             this.Brugernavn = new System.Windows.Forms.TextBox();
             this.MainMenu = new System.Windows.Forms.GroupBox();
-            this.label18 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label19 = new System.Windows.Forms.Label();
             this.OpretNyKundeGruppe.SuspendLayout();
             this.FindKundeGruppe.SuspendLayout();
             this.KundeMenuGruppe.SuspendLayout();
@@ -561,6 +563,8 @@
             // TransaktionerGruppe
             // 
             this.TransaktionerGruppe.BackColor = System.Drawing.Color.Transparent;
+            this.TransaktionerGruppe.Controls.Add(this.label19);
+            this.TransaktionerGruppe.Controls.Add(this.SaldoBox);
             this.TransaktionerGruppe.Controls.Add(this.label13);
             this.TransaktionerGruppe.Controls.Add(this.SletKontoKnap);
             this.TransaktionerGruppe.Controls.Add(this.label12);
@@ -580,6 +584,15 @@
             this.TransaktionerGruppe.TabIndex = 17;
             this.TransaktionerGruppe.TabStop = false;
             this.TransaktionerGruppe.Text = "Transaktioner";
+            // 
+            // SaldoBox
+            // 
+            this.SaldoBox.Location = new System.Drawing.Point(225, 44);
+            this.SaldoBox.Margin = new System.Windows.Forms.Padding(3, 15, 25, 2);
+            this.SaldoBox.Name = "SaldoBox";
+            this.SaldoBox.ReadOnly = true;
+            this.SaldoBox.Size = new System.Drawing.Size(94, 23);
+            this.SaldoBox.TabIndex = 23;
             // 
             // label13
             // 
@@ -815,6 +828,16 @@
             this.LoginBox.TabStop = false;
             this.LoginBox.Text = "Login";
             // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(27, 52);
+            this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(81, 18);
+            this.label18.TabIndex = 6;
+            this.label18.Text = "Data Source";
+            // 
             // Opret
             // 
             this.Opret.Location = new System.Drawing.Point(27, 164);
@@ -864,7 +887,6 @@
             this.Brugerpassword.Name = "Brugerpassword";
             this.Brugerpassword.Size = new System.Drawing.Size(193, 23);
             this.Brugerpassword.TabIndex = 1;
-            this.Brugerpassword.TextChanged += new System.EventHandler(this.Brugerpassword_TextChanged);
             // 
             // Brugernavn
             // 
@@ -887,16 +909,6 @@
             this.MainMenu.TabStop = false;
             this.MainMenu.Text = "Menu";
             // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(27, 52);
-            this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(81, 18);
-            this.label18.TabIndex = 6;
-            this.label18.Text = "Data Source";
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
@@ -906,6 +918,16 @@
             this.pictureBox1.Size = new System.Drawing.Size(155, 100);
             this.pictureBox1.TabIndex = 26;
             this.pictureBox1.TabStop = false;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(176, 49);
+            this.label19.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(41, 18);
+            this.label19.TabIndex = 24;
+            this.label19.Text = "Saldo";
             // 
             // Form1
             // 
@@ -1026,6 +1048,8 @@
         private System.Windows.Forms.GroupBox MainMenu;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TextBox SaldoBox;
+        private System.Windows.Forms.Label label19;
     }
 }
 

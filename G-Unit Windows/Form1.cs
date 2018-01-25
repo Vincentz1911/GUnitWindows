@@ -300,11 +300,10 @@ namespace G_Unit_Windows
                 TransaktionerGruppe.Visible = true;
 
                 KontoInfo = KontiListe.SelectedItem.ToString();
-                KontoInfoBox.Text = KontoInfo;
                 string[] KontoSplitArray = KontoInfo.Split(',');
-
-
                 AktivKontonr = int.Parse(KontoSplitArray[0]);
+                KontoInfoBox.Text = KontoInfo;
+
 
                 Konto.VisTransaktion(AktivKontonr);
 
@@ -370,10 +369,8 @@ namespace G_Unit_Windows
                     TransaktionsListe.Items.Add(item);
                 }
             }
-
-            //KontoInfoBox.Text = KontoInfo;
+            SaldoBox.Text = Konto.CheckSaldo(AktivKontonr).ToString();
             KundeMenuUpdate();
-            //KontiListe.SetSelected(0, true);
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
@@ -384,7 +381,6 @@ namespace G_Unit_Windows
         {
             Database.DataSource = ".\\SQLEXPRESS";
         }
-
 
         private SoundPlayer Player = new SoundPlayer();
         private void Music_CheckedChanged(object sender, EventArgs e)
@@ -400,11 +396,6 @@ namespace G_Unit_Windows
             }
         }
 
-        private void Brugerpassword_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         static string GetMd5Hash(MD5 md5Hash, string input)
         {
             byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
@@ -417,7 +408,6 @@ namespace G_Unit_Windows
             }
             return sBuilder.ToString();
         }
-
         private void Opret_Click(object sender, EventArgs e)
         {
             MD5 md5Hash = MD5.Create();
@@ -437,7 +427,6 @@ namespace G_Unit_Windows
 
             MessageBox.Show("Bruger Oprettet!");
         }
-
         private void Login_Click(object sender, EventArgs e)
         {
             MD5 md5Hash = MD5.Create();
