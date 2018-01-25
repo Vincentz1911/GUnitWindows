@@ -382,12 +382,11 @@ namespace G_Unit_Windows
             Database.DataSource = ".\\SQLEXPRESS";
         }
 
-        private SoundPlayer Player = new SoundPlayer();
+        private SoundPlayer Player = new SoundPlayer(Properties.Resources.intro);
         private void Music_CheckedChanged(object sender, EventArgs e)
         {
             if (Music.Checked)
             {
-                Player.SoundLocation = @"intro.wav";
                 Player.PlayLooping();
             }
             else
