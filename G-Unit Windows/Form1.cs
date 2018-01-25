@@ -369,7 +369,7 @@ namespace G_Unit_Windows
                     TransaktionsListe.Items.Add(item);
                 }
             }
-            SaldoBox.Text = Konto.CheckSaldo(AktivKontonr).ToString();
+            if (AktivKontonr != 0) SaldoBox.Text = Konto.CheckSaldo(AktivKontonr).ToString();
             KundeMenuUpdate();
         }
 

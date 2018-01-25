@@ -69,6 +69,7 @@
             this.FortrydOpretKontoKnap = new System.Windows.Forms.Button();
             this.TransaktionsListe = new System.Windows.Forms.ListBox();
             this.TransaktionerGruppe = new System.Windows.Forms.GroupBox();
+            this.label19 = new System.Windows.Forms.Label();
             this.SaldoBox = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -99,7 +100,6 @@
             this.Brugernavn = new System.Windows.Forms.TextBox();
             this.MainMenu = new System.Windows.Forms.GroupBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label19 = new System.Windows.Forms.Label();
             this.OpretNyKundeGruppe.SuspendLayout();
             this.FindKundeGruppe.SuspendLayout();
             this.KundeMenuGruppe.SuspendLayout();
@@ -139,7 +139,7 @@
             this.OpretKundeNavn.Location = new System.Drawing.Point(91, 57);
             this.OpretKundeNavn.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.OpretKundeNavn.Name = "OpretKundeNavn";
-            this.OpretKundeNavn.Size = new System.Drawing.Size(212, 23);
+            this.OpretKundeNavn.Size = new System.Drawing.Size(212, 26);
             this.OpretKundeNavn.TabIndex = 3;
             // 
             // OpretKundeCPR
@@ -147,7 +147,7 @@
             this.OpretKundeCPR.Location = new System.Drawing.Point(91, 101);
             this.OpretKundeCPR.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.OpretKundeCPR.Name = "OpretKundeCPR";
-            this.OpretKundeCPR.Size = new System.Drawing.Size(212, 23);
+            this.OpretKundeCPR.Size = new System.Drawing.Size(212, 26);
             this.OpretKundeCPR.TabIndex = 4;
             // 
             // label1
@@ -156,7 +156,7 @@
             this.label1.Location = new System.Drawing.Point(42, 60);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(39, 18);
+            this.label1.Size = new System.Drawing.Size(49, 23);
             this.label1.TabIndex = 5;
             this.label1.Text = "Navn";
             // 
@@ -166,7 +166,7 @@
             this.label2.Location = new System.Drawing.Point(49, 104);
             this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(32, 18);
+            this.label2.Size = new System.Drawing.Size(40, 23);
             this.label2.TabIndex = 6;
             this.label2.Text = "CPR";
             // 
@@ -227,7 +227,7 @@
             this.DropDownSorter.Location = new System.Drawing.Point(113, 100);
             this.DropDownSorter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DropDownSorter.Name = "DropDownSorter";
-            this.DropDownSorter.Size = new System.Drawing.Size(192, 26);
+            this.DropDownSorter.Size = new System.Drawing.Size(192, 30);
             this.DropDownSorter.TabIndex = 13;
             // 
             // label14
@@ -236,7 +236,7 @@
             this.label14.Location = new System.Drawing.Point(25, 103);
             this.label14.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(80, 18);
+            this.label14.Size = new System.Drawing.Size(105, 23);
             this.label14.TabIndex = 12;
             this.label14.Text = "Sortér efter";
             // 
@@ -252,7 +252,7 @@
             this.DropDownFind.Location = new System.Drawing.Point(113, 56);
             this.DropDownFind.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DropDownFind.Name = "DropDownFind";
-            this.DropDownFind.Size = new System.Drawing.Size(192, 26);
+            this.DropDownFind.Size = new System.Drawing.Size(192, 30);
             this.DropDownFind.TabIndex = 11;
             // 
             // FindKundeKnap
@@ -271,7 +271,7 @@
             this.FindKundeSøg.Location = new System.Drawing.Point(28, 152);
             this.FindKundeSøg.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.FindKundeSøg.Name = "FindKundeSøg";
-            this.FindKundeSøg.Size = new System.Drawing.Size(277, 23);
+            this.FindKundeSøg.Size = new System.Drawing.Size(277, 26);
             this.FindKundeSøg.TabIndex = 8;
             // 
             // label4
@@ -280,7 +280,7 @@
             this.label4.Location = new System.Drawing.Point(57, 59);
             this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(48, 18);
+            this.label4.Size = new System.Drawing.Size(62, 23);
             this.label4.TabIndex = 10;
             this.label4.Text = "Søg på";
             // 
@@ -288,11 +288,11 @@
             // 
             this.FindKundeListe.BackColor = System.Drawing.Color.Honeydew;
             this.FindKundeListe.FormattingEnabled = true;
-            this.FindKundeListe.ItemHeight = 18;
+            this.FindKundeListe.ItemHeight = 22;
             this.FindKundeListe.Location = new System.Drawing.Point(30, 44);
             this.FindKundeListe.Margin = new System.Windows.Forms.Padding(25);
             this.FindKundeListe.Name = "FindKundeListe";
-            this.FindKundeListe.Size = new System.Drawing.Size(273, 490);
+            this.FindKundeListe.Size = new System.Drawing.Size(273, 488);
             this.FindKundeListe.TabIndex = 12;
             this.FindKundeListe.SelectedIndexChanged += new System.EventHandler(this.FindKundeListe_SelectedIndexChanged);
             // 
@@ -341,7 +341,7 @@
             this.AktivKunde.Location = new System.Drawing.Point(209, 46);
             this.AktivKunde.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.AktivKunde.Name = "AktivKunde";
-            this.AktivKunde.Size = new System.Drawing.Size(97, 22);
+            this.AktivKunde.Size = new System.Drawing.Size(126, 27);
             this.AktivKunde.TabIndex = 21;
             this.AktivKunde.Text = "Deaktiveret";
             this.AktivKunde.UseVisualStyleBackColor = true;
@@ -351,7 +351,7 @@
             // 
             this.KontiListe.BackColor = System.Drawing.Color.Honeydew;
             this.KontiListe.FormattingEnabled = true;
-            this.KontiListe.ItemHeight = 18;
+            this.KontiListe.ItemHeight = 22;
             this.KontiListe.Location = new System.Drawing.Point(30, 284);
             this.KontiListe.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.KontiListe.Name = "KontiListe";
@@ -376,7 +376,7 @@
             this.label9.Location = new System.Drawing.Point(27, 264);
             this.label9.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(40, 18);
+            this.label9.Size = new System.Drawing.Size(53, 23);
             this.label9.TabIndex = 8;
             this.label9.Text = "Konti";
             // 
@@ -386,7 +386,7 @@
             this.label8.Location = new System.Drawing.Point(27, 47);
             this.label8.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(61, 18);
+            this.label8.Size = new System.Drawing.Size(78, 23);
             this.label8.TabIndex = 16;
             this.label8.Text = "Kundenr";
             // 
@@ -396,7 +396,7 @@
             this.Kundenr.Margin = new System.Windows.Forms.Padding(3, 15, 25, 2);
             this.Kundenr.Name = "Kundenr";
             this.Kundenr.ReadOnly = true;
-            this.Kundenr.Size = new System.Drawing.Size(94, 23);
+            this.Kundenr.Size = new System.Drawing.Size(94, 26);
             this.Kundenr.TabIndex = 15;
             // 
             // label7
@@ -405,7 +405,7 @@
             this.label7.Location = new System.Drawing.Point(27, 207);
             this.label7.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(59, 18);
+            this.label7.Size = new System.Drawing.Size(77, 23);
             this.label7.TabIndex = 14;
             this.label7.Text = "Slutdato";
             // 
@@ -415,7 +415,7 @@
             this.label6.Location = new System.Drawing.Point(27, 167);
             this.label6.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(60, 18);
+            this.label6.Size = new System.Drawing.Size(80, 23);
             this.label6.TabIndex = 13;
             this.label6.Text = "Oprettet";
             // 
@@ -425,7 +425,7 @@
             this.KundeSlut.Margin = new System.Windows.Forms.Padding(3, 15, 25, 2);
             this.KundeSlut.Name = "KundeSlut";
             this.KundeSlut.ReadOnly = true;
-            this.KundeSlut.Size = new System.Drawing.Size(209, 23);
+            this.KundeSlut.Size = new System.Drawing.Size(209, 26);
             this.KundeSlut.TabIndex = 12;
             // 
             // KundeStart
@@ -434,7 +434,7 @@
             this.KundeStart.Margin = new System.Windows.Forms.Padding(3, 15, 25, 2);
             this.KundeStart.Name = "KundeStart";
             this.KundeStart.ReadOnly = true;
-            this.KundeStart.Size = new System.Drawing.Size(209, 23);
+            this.KundeStart.Size = new System.Drawing.Size(209, 26);
             this.KundeStart.TabIndex = 11;
             // 
             // label5
@@ -443,7 +443,7 @@
             this.label5.Location = new System.Drawing.Point(27, 127);
             this.label5.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(51, 18);
+            this.label5.Size = new System.Drawing.Size(63, 23);
             this.label5.TabIndex = 10;
             this.label5.Text = "CPR-nr";
             // 
@@ -453,7 +453,7 @@
             this.KundeCPR.Margin = new System.Windows.Forms.Padding(3, 15, 25, 2);
             this.KundeCPR.Name = "KundeCPR";
             this.KundeCPR.ReadOnly = true;
-            this.KundeCPR.Size = new System.Drawing.Size(210, 23);
+            this.KundeCPR.Size = new System.Drawing.Size(210, 26);
             this.KundeCPR.TabIndex = 9;
             // 
             // label3
@@ -462,7 +462,7 @@
             this.label3.Location = new System.Drawing.Point(27, 87);
             this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(39, 18);
+            this.label3.Size = new System.Drawing.Size(49, 23);
             this.label3.TabIndex = 8;
             this.label3.Text = "Navn";
             // 
@@ -472,7 +472,7 @@
             this.KundeNavn.Margin = new System.Windows.Forms.Padding(3, 15, 25, 2);
             this.KundeNavn.Name = "KundeNavn";
             this.KundeNavn.ReadOnly = true;
-            this.KundeNavn.Size = new System.Drawing.Size(209, 23);
+            this.KundeNavn.Size = new System.Drawing.Size(209, 26);
             this.KundeNavn.TabIndex = 0;
             // 
             // SletKontoKnap
@@ -497,7 +497,7 @@
             this.comboBoxKontoType.Location = new System.Drawing.Point(28, 57);
             this.comboBoxKontoType.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBoxKontoType.Name = "comboBoxKontoType";
-            this.comboBoxKontoType.Size = new System.Drawing.Size(100, 26);
+            this.comboBoxKontoType.Size = new System.Drawing.Size(100, 30);
             this.comboBoxKontoType.TabIndex = 18;
             // 
             // label10
@@ -506,7 +506,7 @@
             this.label10.Location = new System.Drawing.Point(25, 37);
             this.label10.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(74, 18);
+            this.label10.Size = new System.Drawing.Size(99, 23);
             this.label10.TabIndex = 19;
             this.label10.Text = "Konto type";
             // 
@@ -553,11 +553,11 @@
             // 
             this.TransaktionsListe.BackColor = System.Drawing.Color.Honeydew;
             this.TransaktionsListe.FormattingEnabled = true;
-            this.TransaktionsListe.ItemHeight = 18;
+            this.TransaktionsListe.ItemHeight = 22;
             this.TransaktionsListe.Location = new System.Drawing.Point(28, 155);
             this.TransaktionsListe.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TransaktionsListe.Name = "TransaktionsListe";
-            this.TransaktionsListe.Size = new System.Drawing.Size(477, 274);
+            this.TransaktionsListe.Size = new System.Drawing.Size(477, 268);
             this.TransaktionsListe.TabIndex = 16;
             // 
             // TransaktionerGruppe
@@ -585,13 +585,23 @@
             this.TransaktionerGruppe.TabStop = false;
             this.TransaktionerGruppe.Text = "Transaktioner";
             // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(176, 49);
+            this.label19.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(53, 23);
+            this.label19.TabIndex = 24;
+            this.label19.Text = "Saldo";
+            // 
             // SaldoBox
             // 
             this.SaldoBox.Location = new System.Drawing.Point(225, 44);
             this.SaldoBox.Margin = new System.Windows.Forms.Padding(3, 15, 25, 2);
             this.SaldoBox.Name = "SaldoBox";
             this.SaldoBox.ReadOnly = true;
-            this.SaldoBox.Size = new System.Drawing.Size(94, 23);
+            this.SaldoBox.Size = new System.Drawing.Size(94, 26);
             this.SaldoBox.TabIndex = 23;
             // 
             // label13
@@ -600,7 +610,7 @@
             this.label13.Location = new System.Drawing.Point(25, 64);
             this.label13.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(78, 18);
+            this.label13.Size = new System.Drawing.Size(104, 23);
             this.label13.TabIndex = 19;
             this.label13.Text = "Aktiv Konto";
             // 
@@ -610,7 +620,7 @@
             this.label12.Location = new System.Drawing.Point(25, 441);
             this.label12.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(42, 18);
+            this.label12.Size = new System.Drawing.Size(55, 23);
             this.label12.TabIndex = 21;
             this.label12.Text = "Beløb";
             // 
@@ -620,7 +630,7 @@
             this.label11.Location = new System.Drawing.Point(354, 441);
             this.label11.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(43, 18);
+            this.label11.Size = new System.Drawing.Size(58, 23);
             this.label11.TabIndex = 19;
             this.label11.Text = "Konto";
             // 
@@ -629,7 +639,7 @@
             this.OverførTilKonto.Location = new System.Drawing.Point(357, 462);
             this.OverførTilKonto.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.OverførTilKonto.Name = "OverførTilKonto";
-            this.OverførTilKonto.Size = new System.Drawing.Size(148, 23);
+            this.OverførTilKonto.Size = new System.Drawing.Size(148, 26);
             this.OverførTilKonto.TabIndex = 20;
             this.OverførTilKonto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -648,7 +658,7 @@
             this.IndtastTransaktion.Location = new System.Drawing.Point(28, 462);
             this.IndtastTransaktion.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.IndtastTransaktion.Name = "IndtastTransaktion";
-            this.IndtastTransaktion.Size = new System.Drawing.Size(291, 23);
+            this.IndtastTransaktion.Size = new System.Drawing.Size(291, 26);
             this.IndtastTransaktion.TabIndex = 8;
             this.IndtastTransaktion.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -707,7 +717,7 @@
             this.radioButton2.Location = new System.Drawing.Point(212, 50);
             this.radioButton2.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(91, 22);
+            this.radioButton2.Size = new System.Drawing.Size(113, 27);
             this.radioButton2.TabIndex = 1;
             this.radioButton2.Text = "sqlexpress";
             this.radioButton2.UseVisualStyleBackColor = true;
@@ -720,7 +730,7 @@
             this.radioButton1.Location = new System.Drawing.Point(122, 50);
             this.radioButton1.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(68, 22);
+            this.radioButton1.Size = new System.Drawing.Size(85, 27);
             this.radioButton1.TabIndex = 0;
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "(Local)";
@@ -760,7 +770,7 @@
             this.RetKundeNavn.Location = new System.Drawing.Point(30, 76);
             this.RetKundeNavn.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.RetKundeNavn.Name = "RetKundeNavn";
-            this.RetKundeNavn.Size = new System.Drawing.Size(272, 23);
+            this.RetKundeNavn.Size = new System.Drawing.Size(272, 26);
             this.RetKundeNavn.TabIndex = 3;
             // 
             // RetKundeKnap
@@ -780,7 +790,7 @@
             this.label16.Location = new System.Drawing.Point(27, 55);
             this.label16.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(63, 18);
+            this.label16.Size = new System.Drawing.Size(80, 23);
             this.label16.TabIndex = 5;
             this.label16.Text = "Nyt navn";
             // 
@@ -792,7 +802,7 @@
             this.DigiClockTextBox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.DigiClockTextBox.Name = "DigiClockTextBox";
             this.DigiClockTextBox.ReadOnly = true;
-            this.DigiClockTextBox.Size = new System.Drawing.Size(155, 23);
+            this.DigiClockTextBox.Size = new System.Drawing.Size(155, 26);
             this.DigiClockTextBox.TabIndex = 0;
             this.DigiClockTextBox.TabStop = false;
             this.DigiClockTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -802,7 +812,7 @@
             this.Music.AutoSize = true;
             this.Music.Location = new System.Drawing.Point(52, 536);
             this.Music.Name = "Music";
-            this.Music.Size = new System.Drawing.Size(92, 22);
+            this.Music.Size = new System.Drawing.Size(115, 27);
             this.Music.TabIndex = 24;
             this.Music.Text = "In Da Bank";
             this.Music.UseVisualStyleBackColor = true;
@@ -834,7 +844,7 @@
             this.label18.Location = new System.Drawing.Point(27, 52);
             this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(81, 18);
+            this.label18.Size = new System.Drawing.Size(106, 23);
             this.label18.TabIndex = 6;
             this.label18.Text = "Data Source";
             // 
@@ -866,7 +876,7 @@
             this.label17.Location = new System.Drawing.Point(27, 129);
             this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(65, 18);
+            this.label17.Size = new System.Drawing.Size(83, 23);
             this.label17.TabIndex = 3;
             this.label17.Text = "Password";
             // 
@@ -876,7 +886,7 @@
             this.label15.Location = new System.Drawing.Point(26, 90);
             this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(80, 18);
+            this.label15.Size = new System.Drawing.Size(101, 23);
             this.label15.TabIndex = 2;
             this.label15.Text = "Brugernavn";
             // 
@@ -885,7 +895,7 @@
             this.Brugerpassword.Location = new System.Drawing.Point(110, 129);
             this.Brugerpassword.Margin = new System.Windows.Forms.Padding(2);
             this.Brugerpassword.Name = "Brugerpassword";
-            this.Brugerpassword.Size = new System.Drawing.Size(193, 23);
+            this.Brugerpassword.Size = new System.Drawing.Size(193, 26);
             this.Brugerpassword.TabIndex = 1;
             // 
             // Brugernavn
@@ -893,7 +903,7 @@
             this.Brugernavn.Location = new System.Drawing.Point(110, 87);
             this.Brugernavn.Margin = new System.Windows.Forms.Padding(2);
             this.Brugernavn.Name = "Brugernavn";
-            this.Brugernavn.Size = new System.Drawing.Size(193, 23);
+            this.Brugernavn.Size = new System.Drawing.Size(193, 26);
             this.Brugernavn.TabIndex = 0;
             // 
             // MainMenu
@@ -919,29 +929,19 @@
             this.pictureBox1.TabIndex = 26;
             this.pictureBox1.TabStop = false;
             // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(176, 49);
-            this.label19.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(41, 18);
-            this.label19.TabIndex = 24;
-            this.label19.Text = "Saldo";
-            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.ClientSize = new System.Drawing.Size(1130, 1028);
+            this.ClientSize = new System.Drawing.Size(1448, 1028);
+            this.Controls.Add(this.RetKundeGruppe);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.MainMenu);
             this.Controls.Add(this.LoginBox);
             this.Controls.Add(this.Music);
             this.Controls.Add(this.DigiClockTextBox);
             this.Controls.Add(this.KundeListeGruppe);
-            this.Controls.Add(this.RetKundeGruppe);
             this.Controls.Add(this.OpretKontoGruppe);
             this.Controls.Add(this.TransaktionerGruppe);
             this.Controls.Add(this.OpretNyKundeGruppe);
